@@ -266,10 +266,7 @@ def main():
 
     # Карта сайта: сначала постоянные страницы, потом статьи блога
     static_pages = [
-        (f"{SITE_URL}/landing.html", "1.0", "weekly"),
-        (f"{BASE_URL}/", "1.0", "weekly"),
-        (f"{BASE_URL}/pulse.html", "0.8", "weekly"),
-        (f"{BLOG_URL}/", "0.9", "weekly"),
+        (f"{BLOG_URL}/", "1.0", "weekly"),
     ]
     today = datetime.now().strftime("%Y-%m-%d")
     rows = [f"""  <url>
