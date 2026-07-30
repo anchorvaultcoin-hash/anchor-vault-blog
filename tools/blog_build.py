@@ -155,7 +155,10 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="{SITE_URL}/landing.html">Anchor<span>Vault</span>Coin</a>
+  <a class="brand" href="{SITE_URL}/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="{BLOG_URL}/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
   <nav class="nav">
     <a href="{BLOG_URL}/">Блог</a>
     <a href="{SITE_URL}/landing.html">О сервисе</a>
