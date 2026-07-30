@@ -4,12 +4,24 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 30 Jul 2026 20:18:55 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 30 Jul 2026 20:37:54 +0000</lastBuildDate>
   <item>
     <title>Пропала крипта без кражи сид-фразы: что такое approval-фишинг</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-fishing-krypta-propala.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-fishing-krypta-propala.html</guid>
     <description>Как воры выводят деньги, не зная ни пароля, ни сид-фразы — просто получив вашу подпись на одну транзакцию. Разбор реального случая и как проверить свой кошелёк за 5 минут.</description>
+  </item>
+  <item>
+    <title>Crypto gone without seed phrase theft: what is approval phishing</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/crypto-gone-without-seed-phrase-theft-what-is-approval-phish.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/crypto-gone-without-seed-phrase-theft-what-is-approval-phish.html</guid>
+    <description>How thieves withdraw money without knowing your password or seed phrase — simply by obtaining your signature on a single transaction. An analysis of a real case and how to check your wallet in 5 minutes.</description>
+  </item>
+  <item>
+    <title>未泄露助记词但加密货币丢失：什么是授权钓鱼攻击</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-zh.html</guid>
+    <description>盗贼如何仅凭一笔交易的签名，在既不知密码也不知助记词的情况下转移资金——真实案例解析及5分钟自查钱包方法</description>
   </item>
   <item>
     <title>Украли сид-фразу: что происходит дальше и почему деньги не вернуть</title>
