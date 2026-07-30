@@ -23,6 +23,16 @@ SITE_URL = "https://anchorvaultcoin-hash.github.io/anchor-vault-frontend"
 BASE_URL = "https://anchorvaultcoin-hash.github.io/anchor-vault-blog"
 BLOG_URL = BASE_URL
 
+
+IC_X = ('<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">'
+        '<path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68'
+        'l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg>')
+
+IC_TG = ('<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">'
+         '<path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.14'
+         '1.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.09'
+         '8.12-5.11c.38-.25.73-.11.44.14z"/></svg>')
+
 SITE_NAME = "AnchorVaultCoin"
 BLOG_TITLE = "Блог о безопасности криптовалюты"
 BLOG_DESC = ("Разборы реальных краж, простые объяснения и практические советы "
@@ -52,8 +62,11 @@ header.top{
 header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
 .brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
 .brand span{color:var(--gold)}
-.nav a{color:var(--text2); font-size:14px; margin-left:22px}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
 .nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
 main{padding:48px 0 72px}
 h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
 h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
@@ -84,7 +97,15 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .card p{color:var(--text2); margin:0 0 10px; font-size:15px}
 .card .meta{margin:0; font-size:13px}
 footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
-footer.bottom .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
 @media(max-width:600px){
   h1{font-size:27px} main{padding:32px 0 52px}
@@ -138,7 +159,8 @@ def page(title, description, canonical, body, lang="ru", jsonld=""):
   <nav class="nav">
     <a href="{BLOG_URL}/">Блог</a>
     <a href="{SITE_URL}/landing.html">О сервисе</a>
-    <a href="https://t.me/AnchorVaultCoin">Telegram</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X">{IC_X}<span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram">{IC_TG}<span>Telegram</span></a>
   </nav>
 </div></header>
 <main><div class="wrap">
@@ -146,7 +168,10 @@ def page(title, description, canonical, body, lang="ru", jsonld=""):
 </div></main>
 <footer class="bottom"><div class="wrap">
   <div>© {datetime.now().year} {SITE_NAME}</div>
-  <div><a href="https://x.com/Anchorvaultcoin">X</a> · <a href="https://t.me/AnchorVaultCoin">Telegram</a></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin">{IC_X}<span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin">{IC_TG}<span>Telegram-канал</span></a>
+  </div>
 </div></footer>
 </body>
 </html>
