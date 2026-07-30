@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anchorvaultcoin-hash.github.io/anchor-vault-blog/sitemap.xml
