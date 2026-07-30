@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 30 Jul 2026 18:13:49 +0000</lastBuildDate>
+  <lastBuildDate>Thu, 30 Jul 2026 19:28:49 +0000</lastBuildDate>
   <item>
     <title>Украли сид-фразу: что происходит дальше и почему деньги не вернуть</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ukrali-seed-frazu.html</link>
@@ -16,5 +16,11 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-what-to-do.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-what-to-do.html</guid>
     <description>An honest breakdown — what actually happens after a seed phrase is stolen, what to do in the first few minutes, and why wallet support can&#x27;t help.</description>
+  </item>
+  <item>
+    <title>助记词被盗：后续会发生什么，以及为何资金无法追回</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-zh.html</guid>
+    <description>冷静分析，无需恐慌——实际会发生什么，最初几分钟内该做什么，以及为何支持无济于事</description>
   </item>
 </channel></rss>

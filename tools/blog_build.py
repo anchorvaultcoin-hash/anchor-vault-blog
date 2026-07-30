@@ -191,7 +191,7 @@ def main():
     # первый проход: читаем метаданные всех статей, строим группы переводов
     raw_items = []
     for fn in sorted(os.listdir(POSTS_DIR)):
-        if not fn.endswith(".md"):
+        if not fn.endswith(".md") or fn.startswith("draft-"):
             continue
         with open(os.path.join(POSTS_DIR, fn), encoding="utf-8") as f:
             meta, body = read_front_matter(f.read())
