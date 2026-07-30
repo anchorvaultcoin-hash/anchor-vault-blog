@@ -132,7 +132,7 @@ def slugify(name):
     return re.sub(r"[^a-z0-9-]", "", name.lower().replace(" ", "-"))
 
 
-def page(title, description, canonical, body, lang="ru", jsonld=""):
+def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=""):
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -161,6 +161,7 @@ def page(title, description, canonical, body, lang="ru", jsonld=""):
     <a href="{SITE_URL}/landing.html">О сервисе</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X">{IC_X}<span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram">{IC_TG}<span>Telegram</span></a>
+    {lang_switch}
   </nav>
 </div></header>
 <main><div class="wrap">
@@ -187,6 +188,8 @@ def main():
     md = markdown.Markdown(extensions=["extra", "sane_lists", "smarty"])
     posts = []
 
+    # первый проход: читаем метаданные всех статей, строим группы переводов
+    raw_items = []
     for fn in sorted(os.listdir(POSTS_DIR)):
         if not fn.endswith(".md"):
             continue
@@ -198,6 +201,31 @@ def main():
         desc = meta.get("description", "")
         date = meta.get("date", datetime.now().strftime("%Y-%m-%d"))
         lang = meta.get("lang", "ru")
+        group = meta.get("group", "")
+        raw_items.append({"slug": slug, "title": title, "desc": desc, "date": date,
+                           "lang": lang, "group": group, "body": body})
+
+    LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
+    groups = {}
+    for item in raw_items:
+        if item["group"]:
+            groups.setdefault(item["group"], {})[item["lang"]] = item["slug"]
+
+    for item in raw_items:
+        slug, title, desc, date, lang = (item["slug"], item["title"], item["desc"],
+                                          item["date"], item["lang"])
+        body = item["body"]
+
+        lang_switch = ""
+        if item["group"] and item["group"] in groups and len(groups[item["group"]]) > 1:
+            parts = []
+            for l, s in sorted(groups[item["group"]].items()):
+                label = LANG_NAMES.get(l, l.upper())
+                if l == lang:
+                    parts.append(f'<span style="color:var(--gold);font-weight:600">{label}</span>')
+                else:
+                    parts.append(f'<a href="{BLOG_URL}/{s}.html">{label}</a>')
+            lang_switch = '<span class="soc" style="gap:8px">' + " · ".join(parts) + "</span>"
 
         md.reset()
         content = md.convert(body)
@@ -225,9 +253,9 @@ def main():
 <a href="{SITE_URL}/landing.html">Подробнее</a>.</p>'''
 
         with open(os.path.join(OUT_DIR, f"{slug}.html"), "w", encoding="utf-8") as f:
-            f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld))
+            f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld, lang_switch))
 
-        posts.append({"slug": slug, "title": title, "desc": desc, "date": date, "url": url})
+        posts.append({"slug": slug, "title": title, "desc": desc, "date": date, "url": url, "lang": lang})
         print(f"собрано: {slug}.html")
 
     posts.sort(key=lambda p: p["date"], reverse=True)
