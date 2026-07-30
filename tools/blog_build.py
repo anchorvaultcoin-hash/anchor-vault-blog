@@ -260,18 +260,49 @@ def main():
 
     posts.sort(key=lambda p: p["date"], reverse=True)
 
-    cards = "\n".join(
-        f'''<a class="card" href="{BLOG_URL}/{p["slug"]}.html">
-  <h2>{html.escape(p["title"])}</h2>
-  <p>{html.escape(p["desc"])}</p>
-  <div class="meta">{p["date"]}</div>
-</a>''' for p in posts) or "<p>Пока пусто.</p>"
+    INDEX_I18N = {
+        "en": {"title": "Crypto Security Blog",
+               "desc": "Breakdowns of real thefts, plain-language explanations, "
+                       "and practical advice on not losing your coins.",
+               "empty": "Nothing here yet."},
+        "ru": {"title": BLOG_TITLE, "desc": BLOG_DESC, "empty": "Пока пусто."},
+        "zh": {"title": "加密货币安全博客",
+               "desc": "真实盗窃案例分析、通俗易懂的讲解，以及避免资产被盗的实用建议。",
+               "empty": "暂无内容。"},
+    }
+    LANG_PATH = {"en": "", "ru": "ru/", "zh": "zh/"}
 
-    index_body = f'''<h1>{BLOG_TITLE}</h1>
-<p class="lead">{BLOG_DESC}</p>
+    def build_index(lang):
+        info = INDEX_I18N[lang]
+        lang_posts = [pp for pp in posts if pp["lang"] == lang]
+        cards = "\n".join(
+            f'''<a class="card" href="{pp["url"]}">
+  <h2>{html.escape(pp["title"])}</h2>
+  <p>{html.escape(pp["desc"])}</p>
+  <div class="meta">{pp["date"]}</div>
+</a>''' for pp in lang_posts) or f"<p>{info['empty']}</p>"
+
+        parts = []
+        for l, path in LANG_PATH.items():
+            label = LANG_NAMES.get(l, l.upper())
+            if l == lang:
+                parts.append(f'<span style="color:var(--gold);font-weight:600">{label}</span>')
+            else:
+                parts.append(f'<a href="{BLOG_URL}/{path}">{label}</a>')
+        lang_switch = '<span class="soc" style="gap:8px">' + " · ".join(parts) + "</span>"
+
+        index_body = f'''<h1>{info["title"]}</h1>
+<p class="lead">{info["desc"]}</p>
 {cards}'''
-    with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
-        f.write(page(f"{BLOG_TITLE} — {SITE_NAME}", BLOG_DESC, f"{BLOG_URL}/", index_body))
+        out_dir = OUT_DIR if not LANG_PATH[lang] else os.path.join(OUT_DIR, LANG_PATH[lang])
+        os.makedirs(out_dir, exist_ok=True)
+        canonical = f"{BLOG_URL}/{LANG_PATH[lang]}"
+        with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
+            f.write(page(f"{info['title']} — {SITE_NAME}", info["desc"], canonical,
+                         index_body, lang, "", lang_switch))
+
+    for lang in LANG_PATH:
+        build_index(lang)
 
     now = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
     items = "\n".join(f'''  <item>
@@ -285,16 +316,16 @@ def main():
   <title>{BLOG_TITLE} — {SITE_NAME}</title>
   <link>{BLOG_URL}/</link>
   <description>{BLOG_DESC}</description>
-  <language>ru</language>
+  <language>en</language>
   <lastBuildDate>{now}</lastBuildDate>
 {items}
 </channel></rss>'''
     with open(os.path.join(OUT_DIR, "rss.xml"), "w", encoding="utf-8") as f:
         f.write(rss)
 
-    # Карта сайта: сначала постоянные страницы, потом статьи блога
+    # Карта сайта: сначала постоянные страницы (все языковые версии главной), потом статьи блога
     static_pages = [
-        (f"{BLOG_URL}/", "1.0", "weekly"),
+        (f"{BLOG_URL}/{path}", "1.0", "weekly") for path in LANG_PATH.values()
     ]
     today = datetime.now().strftime("%Y-%m-%d")
     rows = [f"""  <url>

@@ -7,6 +7,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ru/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/zh/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ukrali-seed-frazu.html</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
