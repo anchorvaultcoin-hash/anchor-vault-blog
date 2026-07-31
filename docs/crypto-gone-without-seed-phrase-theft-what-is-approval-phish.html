@@ -76,6 +76,11 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
 footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
 .soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
 .soc-btn{
   display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
   border:1px solid var(--border); border-radius:9px; background:var(--bg2);
@@ -164,14 +169,20 @@ main figcaption{
 <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
 </div></main>
 <footer class="bottom"><div class="wrap">
-  <div>© 2026 AnchorVaultCoin<img
-    src="https://hits.seeyoufarm.com/files/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
-    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
-    onerror="this.style.display='none'"></div>
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
   <div class="soc-row">
     <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
     <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
   </div>
 </div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
 </body>
 </html>

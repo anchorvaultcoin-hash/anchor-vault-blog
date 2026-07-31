@@ -33,6 +33,16 @@ IC_TG = ('<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" ar
          '1.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.09'
          '8.12-5.11c.38-.25.73-.11.44.14z"/></svg>')
 
+COUNTER_JS = """<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>"""
+
 SITE_NAME = "AnchorVaultCoin"
 BLOG_TITLE = "Блог о безопасности криптовалюты"
 BLOG_DESC = ("Разборы реальных краж, простые объяснения и практические советы "
@@ -99,6 +109,11 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
 footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
 .soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
 .soc-btn{
   display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
   border:1px solid var(--border); border-radius:9px; background:var(--bg2);
@@ -188,15 +203,13 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
 {body}
 </div></main>
 <footer class="bottom"><div class="wrap">
-  <div>© {datetime.now().year} {SITE_NAME}<img
-    src="https://hits.seeyoufarm.com/files/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
-    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
-    onerror="this.style.display='none'"></div>
+  <div>© {datetime.now().year} {SITE_NAME}<span id="vc"><span id="vcn"></span></span></div>
   <div class="soc-row">
     <a class="soc-btn" href="https://x.com/Anchorvaultcoin">{IC_X}<span>Читать в X</span></a>
     <a class="soc-btn" href="https://t.me/AnchorVaultCoin">{IC_TG}<span>Telegram-канал</span></a>
   </div>
 </div></footer>
+{COUNTER_JS}
 </body>
 </html>
 """
