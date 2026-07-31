@@ -183,7 +183,20 @@ def slugify(name):
     return re.sub(r"[^a-z0-9-]", "", name.lower().replace(" ", "-"))
 
 
+SHARE_LABELS = {
+    "ru": {"copy": "Скопировать ссылку", "copied": "Скопировано"},
+    "en": {"copy": "Copy link", "copied": "Copied"},
+    "zh": {"copy": "复制链接", "copied": "已复制"},
+}
+UI = {
+    "ru": {"blog": "Блог", "about": "О сервисе", "back": "← Все статьи"},
+    "en": {"blog": "Blog", "about": "About", "back": "← All articles"},
+    "zh": {"blog": "博客", "about": "关于我们", "back": "← 所有文章"},
+}
+
+
 def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=""):
+    ui = UI.get(lang, UI["ru"])
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -211,8 +224,8 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
     Anchor<span>Vault</span>Coin
   </a>
   <nav class="nav">
-    <a href="{BLOG_URL}/">Блог</a>
-    <a href="{SITE_URL}/landing.html">О сервисе</a>
+    <a href="{BLOG_URL}/">{ui["blog"]}</a>
+    <a href="{SITE_URL}/landing.html">{ui["about"]}</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X">{IC_X}<span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram">{IC_TG}<span>Telegram</span></a>
     {lang_switch}
@@ -279,11 +292,6 @@ def main():
 
     LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
 
-    SHARE_LABELS = {
-        "ru": {"copy": "Скопировать ссылку", "copied": "Скопировано"},
-        "en": {"copy": "Copy link", "copied": "Copied"},
-        "zh": {"copy": "复制链接", "copied": "已复制"},
-    }
     groups = {}
     for item in raw_items:
         if item["group"]:
@@ -328,7 +336,8 @@ def main():
         share_copy = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copy"]
         share_copied = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copied"]
 
-        article = f'''<a class="back" href="{BLOG_URL}/">← Все статьи</a>
+        ui = UI.get(lang, UI["ru"])
+        article = f'''<a class="back" href="{BLOG_URL}/">{ui["back"]}</a>
 <h1>{html.escape(title)}</h1>
 <div class="meta">{date}</div>
 {content}
