@@ -99,6 +99,15 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
 .soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -173,6 +182,15 @@ main figcaption{
 <p>Get into the habit of checking your active approvals list every few months using the method described above, and revoke anything you haven’t used in a while. This isn’t paranoia — it’s the same as periodically checking the list of apps with access to your email.</p>
 <h2>What this means for storing funds</h2>
 <p>Revoking approvals closes a specific vulnerability, but it doesn’t solve the broader question: what happens if you still make a mistake and sign something wrong. If there’s only one key signing operations, any signature error means losing everything. If a large transfer requires confirmation from a second, separate key, one wrong signature on a phishing site won’t give the thief access to the entire amount at once.</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fapproval-phishing-en.html&text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fapproval-phishing-en.html&text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fapproval-phishing-en.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fapproval-phishing-en.html&title=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-en.html');this.textContent='Copied'" type="button">Copy link</button>
+</div>
+
 <hr>
 <p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
 где каждая операция подтверждается двумя отдельными ключами.

@@ -132,6 +132,15 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
 .soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -254,6 +263,12 @@ def main():
                            "img": m.group(1) if m else ""})
 
     LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
+
+    SHARE_LABELS = {
+        "ru": {"copy": "Скопировать ссылку", "copied": "Скопировано"},
+        "en": {"copy": "Copy link", "copied": "Copied"},
+        "zh": {"copy": "复制链接", "copied": "已复制"},
+    }
     groups = {}
     for item in raw_items:
         if item["group"]:
@@ -291,10 +306,25 @@ def main():
 "logo":{{"@type":"ImageObject","url":"{SITE_URL}/og.png"}}}}}}
 </script>'''.replace("'", '"')
 
+        from urllib.parse import quote
+        share_url = quote(url, safe="")
+        share_q = quote(title, safe="")
+        share_copy = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copy"]
+        share_copied = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copied"]
+
         article = f'''<a class="back" href="{BLOG_URL}/">← Все статьи</a>
 <h1>{html.escape(title)}</h1>
 <div class="meta">{date}</div>
 {content}
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url={share_url}&text={share_q}" target="_blank" rel="noopener noreferrer">{IC_X} X</a>
+  <a class="share-btn" href="https://t.me/share/url?url={share_url}&text={share_q}" target="_blank" rel="noopener noreferrer">{IC_TG} Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text={share_q}%20{share_url}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url={share_url}&title={share_q}" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('{url}');this.textContent='{share_copied}'" type="button">{share_copy}</button>
+</div>
+
 <hr>
 <p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
 где каждая операция подтверждается двумя отдельными ключами.

@@ -99,6 +99,15 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
 .soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -190,6 +199,15 @@ main figcaption{
 <h2>这背后是什么</h2>
 <p>这三个故事有一个共同点。没有任何密钥被盗，没有任何密码被破解。人们自己签署了转账——只是转错了地址。</p>
 <p>只要单密钥签名仍然是最终且不可逆的操作，一次疏忽的代价就等于全部余额。而大额转账需要第二个独立密钥确认的方案，能提供这里最缺的东西：错误与后果之间的缓冲。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fotravlenie-adresa-zh.html&text=%E5%9C%B0%E5%9D%80%E6%8A%95%E6%AF%92%EF%BC%9A%E9%92%B1%E5%8C%85%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%B8%AD%E7%9A%84%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%8D%9F%E5%A4%B15000%E4%B8%87%E7%BE%8E%E5%85%83" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fotravlenie-adresa-zh.html&text=%E5%9C%B0%E5%9D%80%E6%8A%95%E6%AF%92%EF%BC%9A%E9%92%B1%E5%8C%85%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%B8%AD%E7%9A%84%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%8D%9F%E5%A4%B15000%E4%B8%87%E7%BE%8E%E5%85%83" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E5%9C%B0%E5%9D%80%E6%8A%95%E6%AF%92%EF%BC%9A%E9%92%B1%E5%8C%85%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%B8%AD%E7%9A%84%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%8D%9F%E5%A4%B15000%E4%B8%87%E7%BE%8E%E5%85%83%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fotravlenie-adresa-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fotravlenie-adresa-zh.html&title=%E5%9C%B0%E5%9D%80%E6%8A%95%E6%AF%92%EF%BC%9A%E9%92%B1%E5%8C%85%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%B8%AD%E7%9A%84%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%8D%9F%E5%A4%B15000%E4%B8%87%E7%BE%8E%E5%85%83" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-zh.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
 <hr>
 <p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
 где каждая операция подтверждается двумя отдельными ключами.
