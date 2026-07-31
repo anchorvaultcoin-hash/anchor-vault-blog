@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 31 Jul 2026 09:01:40 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 31 Jul 2026 10:19:19 +0000</lastBuildDate>
   <item>
     <title>Пропала крипта без кражи сид-фразы: что такое approval-фишинг</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-fishing-krypta-propala.html</link>
@@ -30,6 +30,12 @@
     <description>Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.</description>
   </item>
   <item>
+    <title>Поддельное приложение кошелька: как мошенники украли криптовалюту у пользователей</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki.html</guid>
+    <description>Разбор реального случая с фальшивым кошельком: как одно приложение в магазине привело к потере сотен тысяч долларов.</description>
+  </item>
+  <item>
     <title>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html</guid>
@@ -40,6 +46,18 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-zh.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-zh.html</guid>
     <description>他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。</description>
+  </item>
+  <item>
+    <title>Fake wallet app: how scammers stole cryptocurrency from users</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-en.html</guid>
+    <description>Analysis of a real case involving a fake wallet: how one app in the store led to the loss of hundreds of thousands of dollars.</description>
+  </item>
+  <item>
+    <title>假冒钱包应用：骗子如何窃取用户的加密货币</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-zh.html</guid>
+    <description>真实案例剖析：一个假冒钱包应用如何导致数十万美元损失</description>
   </item>
   <item>
     <title>Украли сид-фразу: что происходит дальше и почему деньги не вернуть</title>
