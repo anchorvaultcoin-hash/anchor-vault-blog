@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов — AnchorVaultCoin</title>
+<meta name="description" content="Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов — AnchorVaultCoin">
+<meta property="og:description" content="Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов",
+"description":"Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.",
+"datePublished":"2026-07-31","inLanguage":"ru",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">EN</a> · <span style="color:var(--gold);font-weight:600">RU</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов</h1>
+<div class="meta">2026-07-31</div>
+<p>Начну с истории, которая переворачивает привычный совет по безопасности.</p>
+<p><img alt="Пробный перевод прошёл успешно — и именно он стал сигналом для вора" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png" />
+<em>Пробный перевод прошёл успешно — и именно он стал сигналом для вора</em></p>
+<p>В декабре 2025 года человек собирался перевести 50 миллионов долларов в USDT. Действовал он грамотно: сначала отправил пробные 50 долларов, убедился, что деньги дошли, и только потом отправил всю сумму. Так советуют делать все руководства по безопасности.</p>
+<p>Через 26 минут после пробного перевода 49 999 950 USDT ушли вору.</p>
+<h2>Что произошло в эти 26 минут</h2>
+<p>Пробный перевод и был спусковым крючком. Вор следил за кошельком. Увидев тестовую транзакцию, он за считаные минуты сгенерировал адрес, который выглядел почти как настоящий — те же первые символы, те же последние — и отправил с него мизерную транзакцию на кошелёк жертвы.</p>
+<p>Теперь в истории операций кошелька лежали две записи подряд. Настоящий адрес получателя и поддельный, похожий на него как две капли воды.</p>
+<p>Человек вернулся к кошельку, скопировал адрес из недавних операций — как делает почти каждый — и отправил деньги. Вору.</p>
+<h2>Почему это работает</h2>
+<p>Механика простая до обидного.</p>
+<p>Адрес в блокчейне — длинная строка случайных символов. Целиком её никто не читает. Глаз проверяет начало и конец: первые четыре-пять символов, последние четыре-пять. Так устроены и сами кошельки — они показывают адрес сокращённо, пряча середину за многоточием.</p>
+<p>Вор пользуется ровно этим. Он подбирает адрес, у которого совпадают начало и конец с нужным. Это не взлом, а перебор на видеокарте, пока не выпадет подходящая комбинация. Дальше отправляет с него копеечный перевод — «пыль» — чтобы адрес осел в вашей истории.</p>
+<p>Больше делать ничего не нужно. Остаётся ждать, когда вы скопируете адрес из истории вместо того, чтобы взять его из надёжного источника.</p>
+<h2>Это бьёт по осторожным</h2>
+<p>Тут самое неприятное. ФБР предупреждало о таких атаках ещё в апреле 2024 года и отметило важное: они одинаково хорошо работают против новичков и опытных. Потому что эксплуатируют не незнание, а привычку.</p>
+<p>Опытный пользователь как раз и делает тестовый перевод. Он копирует адрес из истории, потому что доверяет собственной недавней операции больше, чем письму или сообщению. Логика правильная — и именно она подставляет.</p>
+<p>Второй случай, январь 2026 года: человек потерял 4 556 ETH, около 12 миллионов долларов, при обычном переводе на свой же депозитный адрес. Вор капал пылью на его кошелёк больше двух месяцев, терпеливо дожидаясь крупной операции.</p>
+<p>Только за декабрь и январь на Ethereum таким способом увели около 62 миллионов долларов.</p>
+<h2>Почему стало массово</h2>
+<p>Раньше такие атаки жили в основном на Tron: комиссии копеечные, рассылать пыль тысячами транзакций было дёшево.</p>
+<p>В конце 2025 года в Ethereum прошло обновление Fusaka, которое сильно снизило комиссии. Массовая рассылка пыли стала дешёвой и там — атака переехала на Ethereum.</p>
+<p>Цифра, которая описывает масштаб: у 67% новых адресов первой в истории операцией стала входящая пылевая транзакция. Не перевод от друга, не покупка — заготовка под будущую кражу.</p>
+<p>Всего зафиксировано более 225 миллионов попыток отравления адресов и около полумиллиарда долларов подтверждённых потерь.</p>
+<h2>На кошелёк надежды мало</h2>
+<p>Логично ожидать, что кошелёк предупредит. Исследование 53 кошельков на Ethereum показало обратное: 17 вообще не показывали историю операций, 16 отображали поддельные переводы без всяких пометок. Явное предупреждение о заведомо известном отравленном адресе выдавали только три.</p>
+<p>То есть в подавляющем большинстве случаев поддельная запись ляжет в вашу историю ровно так же, как настоящая.</p>
+<h2>Что делать</h2>
+<p>Правило одно и короткое: <strong>никогда не копируйте адрес из истории операций</strong>.</p>
+<p>История — это не справочник адресов. Это лента того, что происходило с кошельком, и написать туда может кто угодно.</p>
+<p>Вместо этого:</p>
+<p>Заведите адресную книгу в кошельке. Занесите адреса, которыми пользуетесь регулярно — свою биржу, свой второй кошелёк, партнёра. Берите адрес оттуда.</p>
+<p>Если книги нет, берите адрес из первоисточника каждый раз заново: со страницы вывода на бирже, из переписки с получателем.</p>
+<p>Проверяйте адрес целиком, а не начало и конец. Или хотя бы середину — именно её подделать нельзя.</p>
+<p>Если сумма крупная, разбейте перевод. Отправьте часть, дождитесь подтверждения от получателя, что деньги дошли, и только потом остальное. Адрес для второй части возьмите заново из первоисточника, а не из истории.</p>
+<p>Пылевые транзакции, которые уже пришли, трогать не нужно. Не отправляйте обратно, не пытайтесь вернуть — просто не используйте эти адреса. В некоторых кошельках такие записи можно скрыть.</p>
+<h2>Что за этим стоит</h2>
+<p>У всех трёх историй общая черта. Ни один ключ не был украден, ни один пароль не подобран. Люди сами подписали перевод — просто не тому адресу.</p>
+<p>Пока подпись одним ключом остаётся финальным и необратимым действием, цена одной невнимательной секунды равна всему балансу. Схема, где крупный перевод требует подтверждения вторым, отдельным ключом, даёт то, чего здесь не хватило больше всего: паузу между ошибкой и её последствиями.</p>
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<img
+    src="https://hits.seeyoufarm.com/files/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
+    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
+    onerror="this.style.display='none'"></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+</body>
+</html>

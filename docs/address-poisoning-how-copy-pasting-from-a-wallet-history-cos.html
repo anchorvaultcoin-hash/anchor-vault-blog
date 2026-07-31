@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Address poisoning: how copy-pasting from a wallet history cost a person $50 million. — AnchorVaultCoin</title>
+<meta name="description" content="He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Address poisoning: how copy-pasting from a wallet history cost a person $50 million. — AnchorVaultCoin">
+<meta property="og:description" content="He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"Address poisoning: how copy-pasting from a wallet history cost a person $50 million.",
+"description":"He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.",
+"datePublished":"2026-07-31","inLanguage":"en",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><span style="color:var(--gold);font-weight:600">EN</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">RU</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</h1>
+<div class="meta">2026-07-31</div>
+<p>I&rsquo;ll start with a story that turns the usual security advice on its head.</p>
+<p><img alt="The trial translation was successful — and it was precisely this that served as the signal for the thief." src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png" />
+<em>The trial translation was successful — and it was precisely this that served as the signal for the thief.</em></p>
+<p>In December 2025, someone was about to transfer $50 million in USDT. They acted prudently: first sent a test amount of $50, confirmed the funds arrived, and only then sent the full sum. That&rsquo;s what every security guide recommends.</p>
+<p>26 minutes after the test transfer, 49,999,950 USDT went to a thief.</p>
+<h2>What happened in those 26 minutes</h2>
+<p>The test transfer was the trigger. The thief was watching the wallet. Seeing the test transaction, they generated an address within minutes that looked almost identical to the real one — same first characters, same last ones — and sent a tiny transaction from it to the victim&rsquo;s wallet.</p>
+<p>Now the wallet&rsquo;s transaction history showed two entries in a row. The real recipient address and a fake one that looked like its mirror image.</p>
+<p>The person returned to the wallet, copied the address from recent transactions — as almost everyone does — and sent the money. To the thief.</p>
+<h2>Why this works</h2>
+<p>The mechanics are almost insultingly simple.</p>
+<p>A blockchain address is a long string of random characters. Nobody reads the whole thing. The eye checks the beginning and the end: the first four or five characters, the last four or five. Wallets themselves are built this way — they display addresses in abbreviated form, hiding the middle behind an ellipsis.</p>
+<p>The thief exploits exactly that. They generate an address whose beginning and end match the target. This isn&rsquo;t hacking, it&rsquo;s brute-forcing on a graphics card until a suitable combination comes up. Then they send a penny transfer — &ldquo;dust&rdquo; — so the address settles into your history.</p>
+<p>Nothing more is needed. Just wait until you copy the address from history instead of taking it from a trusted source.</p>
+<h2>It hits the cautious hardest</h2>
+<p>Here&rsquo;s the worst part. The FBI warned about such attacks back in April 2024 and noted something important: they work equally well against beginners and experienced users. Because they exploit not ignorance, but habit.</p>
+<p>An experienced user is exactly the one who makes a test transfer. They copy the address from history because they trust their own recent transaction more than a letter or a message. The logic is sound — and that&rsquo;s precisely what sets them up.</p>
+<p>Second case, January 2026: someone lost 4,556 ETH, about $12 million, in a routine transfer to their own deposit address. The thief had been dusting their wallet for over two months, patiently waiting for a large transaction.</p>
+<p>In December and January alone, about $62 million was stolen this way on Ethereum.</p>
+<h2>Why it became widespread</h2>
+<p>Previously, such attacks mostly lived on Tron: fees were negligible, and spreading dust across thousands of transactions was cheap.</p>
+<p>In late 2025, the Fusaka upgrade on Ethereum significantly reduced fees. Mass dusting became cheap there too — and the attack moved to Ethereum.</p>
+<p>A number that captures the scale: for 67% of new addresses, the first transaction in their history was an incoming dust transfer. Not a transfer from a friend, not a purchase — a setup for a future theft.</p>
+<p>In total, over 225 million address poisoning attempts were recorded, with about half a billion dollars in confirmed losses.</p>
+<h2>Little hope from the wallet</h2>
+<p>It&rsquo;s reasonable to expect the wallet to warn you. A study of 53 Ethereum wallets showed the opposite: 17 didn&rsquo;t show transaction history at all, 16 displayed fake transfers without any markings. Only three gave an explicit warning about a known poisoned address.</p>
+<p>In other words, in the vast majority of cases, a fake entry will sit in your history exactly like a real one.</p>
+<h2>What to do</h2>
+<p>One short rule: <strong>never copy an address from transaction history</strong>.</p>
+<p>History is not an address book. It&rsquo;s a feed of what happened to the wallet, and anyone can write to it.</p>
+<p>Instead:</p>
+<p>Set up an address book in your wallet. Add the addresses you use regularly — your exchange, your second wallet, your counterparty. Take addresses from there.</p>
+<p>If there&rsquo;s no address book, take the address from the original source each time anew: from the withdrawal page on the exchange, from correspondence with the recipient.</p>
+<p>Check the entire address, not just the beginning and end. Or at least the middle — that&rsquo;s the part that can&rsquo;t be forged.</p>
+<p>If the amount is large, split the transfer. Send a portion, wait for confirmation from the recipient that the funds arrived, and only then send the rest. Take the address for the second part from the original source again, not from history.</p>
+<p>Dust transactions that have already arrived don&rsquo;t need to be touched. Don&rsquo;t send them back, don&rsquo;t try to return them — just don&rsquo;t use those addresses. Some wallets let you hide such entries.</p>
+<h2>What lies beneath</h2>
+<p>All three stories share a common trait. No key was stolen, no password was cracked. People signed the transfer themselves — just to the wrong address.</p>
+<p>As long as a single-key signature remains the final and irreversible action, the price of one careless second equals the entire balance. A scheme where a large transfer requires confirmation by a second, separate key provides what was most lacking here: a pause between the mistake and its consequences.</p>
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<img
+    src="https://hits.seeyoufarm.com/files/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
+    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
+    onerror="this.style.display='none'"></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+</body>
+</html>

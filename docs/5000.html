@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元 — AnchorVaultCoin</title>
+<meta name="description" content="他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元 — AnchorVaultCoin">
+<meta property="og:description" content="他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元",
+"description":"他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。",
+"datePublished":"2026-07-31","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元</h1>
+<div class="meta">2026-07-31</div>
+<p>我先讲一个颠覆常规安全建议的故事。</p>
+<p><img alt="试译很成功——而这恰恰成了窃贼的信号。" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png" />
+<em>试译很成功——而这恰恰成了窃贼的信号。</em></p>
+<p>2025年12月，有人准备转账5000万美元的USDT。他操作得很规范：先发了50美元的测试转账，确认到账后才转出全部金额。所有安全指南都这么建议。</p>
+<p>测试转账26分钟后，49,999,950 USDT进了小偷的口袋。</p>
+<h2>这26分钟里发生了什么</h2>
+<p>测试转账正是导火索。小偷盯着这个钱包。看到测试交易后，他在几分钟内生成了一个看起来几乎一模一样的地址——开头几位相同，结尾几位也相同——然后从这个地址向受害者钱包发了一笔极小额的交易。</p>
+<p>现在钱包的交易记录里连续躺着两条记录：真实收款地址和一个几乎一模一样的伪造地址。</p>
+<p>那人回到钱包，从近期交易里复制了地址——几乎每个人都会这么做——然后转出了钱。转给了小偷。</p>
+<h2>为什么这招管用</h2>
+<p>原理简单得让人窝火。</p>
+<p>区块链地址是一长串随机字符。没人会完整读一遍。眼睛只检查开头和结尾：前四五个字符，后四五个字符。钱包本身也是这么设计的——它们用省略号把地址中间部分藏起来，只显示缩写。</p>
+<p>小偷利用的正是这一点。他找一个开头和结尾都与目标地址匹配的地址。这不是破解，而是用显卡暴力穷举，直到撞出合适的组合。然后从这个地址发一笔微不足道的转账——“粉尘”——让这个地址沉淀在你的交易记录里。</p>
+<p>接下来什么都不用做。只等你从记录里复制地址，而不是从可靠来源获取。</p>
+<h2>这专坑谨慎的人</h2>
+<p>最麻烦的地方在这里。FBI早在2024年4月就警告过这类攻击，并指出了一个关键点：它们对新手和老手同样有效。因为利用的不是无知，而是习惯。</p>
+<p>有经验的用户恰恰会做测试转账。他从记录里复制地址，是因为他更信任自己最近的交易，而不是邮件或消息。逻辑是对的——但正是这个逻辑害了他。</p>
+<p>第二个案例，2026年1月：有人往自己的存款地址做常规转账时损失了4,556个ETH，约1200万美元。小偷往他钱包撒了两个多月的粉尘，耐心等着大额操作。</p>
+<p>仅12月和1月，以太坊上就因此被盗约6200万美元。</p>
+<h2>为什么突然大规模爆发</h2>
+<p>以前这类攻击主要活跃在Tron上：手续费几乎为零，用几千笔交易撒粉尘很便宜。</p>
+<p>2025年底，以太坊完成了Fusaka升级，大幅降低了手续费。大规模撒粉尘在那里也变得便宜了——攻击转移到了以太坊。</p>
+<p>一个能说明规模的数字：67%的新地址，历史上第一笔操作就是一笔入账的粉尘交易。不是朋友的转账，不是购买——而是为将来盗窃做的铺垫。</p>
+<p>总共记录了超过2.25亿次地址投毒尝试，确认损失约5亿美元。</p>
+<h2>别指望钱包</h2>
+<p>按理说钱包应该发出警告。一项对53个以太坊钱包的研究显示恰恰相反：17个根本不显示交易记录，16个把伪造转账显示出来且没有任何标记。只有3个对已知的投毒地址给出了明确警告。</p>
+<p>也就是说，在绝大多数情况下，伪造记录会像真实记录一样躺在你的历史里。</p>
+<h2>该怎么办</h2>
+<p>规则只有一条，很短：<strong>永远不要从交易记录里复制地址</strong>。</p>
+<p>记录不是地址簿。它是钱包发生过什么的流水账，任何人都能往里写东西。</p>
+<p>正确的做法：</p>
+<p>在钱包里建一个地址簿。把常用的地址存进去——你的交易所、你的另一个钱包、你的合作伙伴。从那里取地址。</p>
+<p>如果没有地址簿，每次重新从原始来源获取地址：交易所的提现页面、与收款方的通信记录。</p>
+<p>检查完整地址，而不是开头和结尾。或者至少检查中间部分——那部分恰恰无法伪造。</p>
+<p>如果金额较大，拆分转账。先转一部分，等收款方确认到账，再转剩下的。第二部分的地址要重新从原始来源获取，而不是从记录里。</p>
+<p>已经收到的粉尘交易不用管。不要转回去，不要试图退回——只是不要使用这些地址。有些钱包可以隐藏这类记录。</p>
+<h2>这背后是什么</h2>
+<p>这三个故事有一个共同点。没有任何密钥被盗，没有任何密码被破解。人们自己签署了转账——只是转错了地址。</p>
+<p>只要单密钥签名仍然是最终且不可逆的操作，一次疏忽的代价就等于全部余额。而大额转账需要第二个独立密钥确认的方案，能提供这里最缺的东西：错误与后果之间的缓冲。</p>
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<img
+    src="https://hits.seeyoufarm.com/files/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
+    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
+    onerror="this.style.display='none'"></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+</body>
+</html>
