@@ -308,7 +308,7 @@ def main():
 
         from urllib.parse import quote
         share_url = quote(url, safe="")
-        share_q = quote(title, safe="")
+        share_q = quote(f"{title} — {desc}" if desc else title, safe="")
         share_copy = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copy"]
         share_copied = SHARE_LABELS.get(lang, SHARE_LABELS["en"])["copied"]
 
