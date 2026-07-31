@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 31 Jul 2026 14:37:39 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 31 Jul 2026 14:51:02 +0000</lastBuildDate>
   <item>
     <title>Пропала крипта без кражи сид-фразы: что такое approval-фишинг</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-fishing-krypta-propala.html</link>
@@ -36,6 +36,12 @@
     <description>Разбор реального случая с фальшивым кошельком: как одно приложение в магазине привело к потере сотен тысяч долларов.</description>
   </item>
   <item>
+    <title>Пропала крипта без кражи сид-фразы: что такое approval-фишинг</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.html</guid>
+    <description>Если вы обнаружили, что деньги пропали, а сид-фразу никому не показывали — не спешите думать, что это баг или ошибка.</description>
+  </item>
+  <item>
     <title>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html</guid>
@@ -58,6 +64,18 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-zh.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-zh.html</guid>
     <description>真实案例剖析：一个假冒钱包应用如何导致数十万美元损失</description>
+  </item>
+  <item>
+    <title>Crypto gone without seed phrase theft: what is approval phishing</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html</guid>
+    <description>If you discover that funds are missing but haven&#x27;t shown your seed phrase to anyone, don&#x27;t rush to assume it&#x27;s a bug or a mistake.</description>
+  </item>
+  <item>
+    <title>没有泄露助记词，加密货币却消失了：什么是授权钓鱼（approval-фишинг）</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html</guid>
+    <description>如果你发现钱不见了，而助记词从未给任何人看过——别急着认为这是漏洞或错误。</description>
   </item>
   <item>
     <title>Украли сид-фразу: что происходит дальше и почему деньги не вернуть</title>

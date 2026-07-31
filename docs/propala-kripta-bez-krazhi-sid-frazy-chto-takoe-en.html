@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto gone without seed phrase theft: what is approval phishing — AnchorVaultCoin</title>
+<meta name="description" content="If you discover that funds are missing but haven&#x27;t shown your seed phrase to anyone, don&#x27;t rush to assume it&#x27;s a bug or a mistake.">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto gone without seed phrase theft: what is approval phishing — AnchorVaultCoin">
+<meta property="og:description" content="If you discover that funds are missing but haven&#x27;t shown your seed phrase to anyone, don&#x27;t rush to assume it&#x27;s a bug or a mistake.">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"Crypto gone without seed phrase theft: what is approval phishing",
+"description":"If you discover that funds are missing but haven&#x27;t shown your seed phrase to anyone, don&#x27;t rush to assume it&#x27;s a bug or a mistake.",
+"datePublished":"2026-07-31","inLanguage":"en",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><span style="color:var(--gold);font-weight:600">EN</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.html">RU</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>Crypto gone without seed phrase theft: what is approval phishing</h1>
+<div class="meta">2026-07-31</div>
+<p>If you discover that money has disappeared and you never showed your seed phrase to anyone, don&rsquo;t rush to assume it&rsquo;s a bug or an error. There&rsquo;s a way to withdraw funds that doesn&rsquo;t require the thief to know your seed phrase at all. All they need is one signature from you.</p>
+<p><img alt="A seed phrase written on paper is the only secret that decides the fate of all funds." src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.png" />
+<em>A seed phrase written on paper is the only secret that decides the fate of all funds.</em></p>
+<p>What happened on July 9
+An Ethereum user signed a transaction on a website that looked like an ordinary service. Within seconds, 999,999 USDT left their wallet — nearly a million dollars. They never entered their seed phrase anywhere, never revealed their private key. All they did was click &ldquo;Confirm&rdquo; in a pop-up window from their wallet.</p>
+<p>Analysts at Scam Sniffer, who spotted the theft, noted a detail: when the thief saw the wallet had slightly less money than expected, the attack script automatically recalculated the amount and took exactly the remaining balance available. This wasn&rsquo;t manual work by a scammer — it was a pre-written program waiting for your signature and acting instantly.</p>
+<p>How it works
+When you use any crypto service — an exchange, a swap, an app — at some point the wallet asks you to confirm an &ldquo;approval.&rdquo; Essentially, this is a document that says &ldquo;this service can manage my tokens without asking further questions.&rdquo; It&rsquo;s a legitimate and standard part of how most crypto applications work — without it, services couldn&rsquo;t interact with your tokens.</p>
+<p>The problem is that the confirmation looks to a person like a routine click, one of dozens in a day. The thief simply fakes a website so that you sign such an approval for them, not for the real service. The key and seed phrase aren&rsquo;t needed at all — the thief doesn&rsquo;t get access to your wallet, but rather your own permission to take money out of it.</p>
+<p>From the network&rsquo;s perspective, this looks just as legitimate as a normal transaction. You signed it with your key — so you authorized it.</p>
+<p>Why this is scarier than ordinary phishing
+Stealing a seed phrase happens once and is immediately clear: get the phrase, steal everything. Approval phishing works differently and is more dangerous for one reason: the approval can sit dormant for weeks or months.</p>
+<p>You sign it today on a website that&rsquo;s safe at the moment. Two months later, that same site gets hacked, or its owner turns out to be a fraudster. Your old approval is still active — and the money leaves without any new action on your part. A person might genuinely not understand why they were hit: they didn&rsquo;t sign anything today.</p>
+<p>How to check your wallet right now
+This takes about five minutes and requires no special knowledge.</p>
+<p>Open Etherscan, go to the &ldquo;Token Approvals&rdquo; section, enter your wallet address — the service will show a list of all approvals you&rsquo;ve ever granted. An alternative with a clearer interface is revoke.cash, which works the same way for Ethereum and most other networks.</p>
+<p>Review the list. If you see a service you haven&rsquo;t used in months, or don&rsquo;t recognize at all — click &ldquo;Revoke&rdquo; next to it. This is a separate transaction with a small network fee, but it permanently revokes the approval until you grant a new one.</p>
+<p>Pay special attention to approvals with no amount limit — that is, &ldquo;unlimited&rdquo; access rather than access to a specific sum. These are the most dangerous: the thief can take not just what was on the wallet at the moment of signing, but everything that ever appears there in the future.</p>
+<p>How to avoid signing unnecessary things in the future
+Check the website address before connecting your wallet — not from memory, but literally character by character, especially if you arrived via a link from an email or message. Fakes often differ by a single rearranged letter in the domain.</p>
+<p>When a signature request pop-up appears, don&rsquo;t click &ldquo;Confirm&rdquo; on autopilot. The wallet usually shows what exactly you&rsquo;re approving and to what extent — take three seconds to read it rather than just dismissing the window with a click.</p>
+<p>Get into the habit of checking your active approvals list every few months using the method described above, and revoke anything you haven&rsquo;t used in a long time. This isn&rsquo;t paranoia — it&rsquo;s the same as periodically reviewing which apps have access to your email.</p>
+<p>What this has to do with storing money
+Revoking approvals closes one specific vulnerability, but it doesn&rsquo;t solve the broader question: what happens if you still make a mistake and sign something you shouldn&rsquo;t. If a single key signs all operations, any signing error means losing everything. If a large transfer requires confirmation from a second, separate key — one wrong signature on a phishing site won&rsquo;t give the thief access to the entire sum at once.</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html&text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing%20%E2%80%94%20If%20you%20discover%20that%20funds%20are%20missing%20but%20haven%27t%20shown%20your%20seed%20phrase%20to%20anyone%2C%20don%27t%20rush%20to%20assume%20it%27s%20a%20bug%20or%20a%20mistake." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html&text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing%20%E2%80%94%20If%20you%20discover%20that%20funds%20are%20missing%20but%20haven%27t%20shown%20your%20seed%20phrase%20to%20anyone%2C%20don%27t%20rush%20to%20assume%20it%27s%20a%20bug%20or%20a%20mistake." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing%20%E2%80%94%20If%20you%20discover%20that%20funds%20are%20missing%20but%20haven%27t%20shown%20your%20seed%20phrase%20to%20anyone%2C%20don%27t%20rush%20to%20assume%20it%27s%20a%20bug%20or%20a%20mistake.%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html&title=Crypto%20gone%20without%20seed%20phrase%20theft%3A%20what%20is%20approval%20phishing%20%E2%80%94%20If%20you%20discover%20that%20funds%20are%20missing%20but%20haven%27t%20shown%20your%20seed%20phrase%20to%20anyone%2C%20don%27t%20rush%20to%20assume%20it%27s%20a%20bug%20or%20a%20mistake." target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html');this.textContent='Copied'" type="button">Copy link</button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+</body>
+</html>

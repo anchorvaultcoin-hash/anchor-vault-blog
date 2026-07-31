@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>没有泄露助记词，加密货币却消失了：什么是授权钓鱼（approval-фишинг） — AnchorVaultCoin</title>
+<meta name="description" content="如果你发现钱不见了，而助记词从未给任何人看过——别急着认为这是漏洞或错误。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="没有泄露助记词，加密货币却消失了：什么是授权钓鱼（approval-фишинг） — AnchorVaultCoin">
+<meta property="og:description" content="如果你发现钱不见了，而助记词从未给任何人看过——别急着认为这是漏洞或错误。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"没有泄露助记词，加密货币却消失了：什么是授权钓鱼（approval-фишинг）",
+"description":"如果你发现钱不见了，而助记词从未给任何人看过——别急着认为这是漏洞或错误。",
+"datePublished":"2026-07-31","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>没有泄露助记词，加密货币却消失了：什么是授权钓鱼（approval-фишинг）</h1>
+<div class="meta">2026-07-31</div>
+<p>如果你发现钱不见了，而助记词从未给过任何人——先别急着认为是漏洞或错误。有一种方式可以转走资金，而盗贼根本不需要知道你的助记词。他只需要你的一次签名。</p>
+<p><img alt="写在纸上的助记词是唯一决定所有资金命运的密钥。" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.png" />
+<em>写在纸上的助记词是唯一决定所有资金命运的密钥。</em></p>
+<p>7月9日发生了什么
+一名以太坊用户在一个看起来像普通服务的网站上签署了一笔交易。几秒钟后，他的钱包里转走了999 999 USDT——接近一百万美元。他没有向任何人输入助记词，也没有展示私钥。他所做的一切，就是在钱包弹窗里点了“确认”。</p>
+<p>发现这次盗窃的分析师Scam Sniffer注意到一个细节：当盗贼看到钱包里的钱比预期略少时，攻击脚本自动重新计算了金额，并精确转走了可用余额。这不是骗子的手动操作——这是一个预先写好的程序，等待你的签名并立即行动。</p>
+<p>这是如何运作的
+当你使用任何加密货币服务——交易所、兑换平台、应用——钱包在某个阶段会要求你确认“授权”（approval）。本质上这是一份类似“该服务可以在无需额外询问的情况下支配我的代币”的文件。这是大多数加密应用合法且常规的运作部分——没有它，服务就无法处理你的代币。</p>
+<p>问题在于，对人来说，确认看起来像一次例行点击，一天中几十次中的一次。骗子只是伪造网站，让你为他签署授权，而不是为真正的服务。私钥和助记词根本不需要——骗子获得的不是钱包的访问权，而是你本人授权他从钱包里取走资金。</p>
+<p>从网络的角度看，这在合法性上与普通交易无异。你用私钥签了名——意味着你允许了。</p>
+<p>为什么这比普通钓鱼更可怕
+助记词被盗只发生一次，而且立刻就能明白：拿到助记词——偷走一切。授权钓鱼则不同，而且更危险，原因只有一个：授权可以“沉睡”数周或数月。</p>
+<p>你今天在一个当时安全的网站上签署了它。两个月后，同一个网站被黑客入侵，或者其所有者本身就是骗子。你旧的授权仍然有效——钱会在你没有任何新操作的情况下被转走。一个人可能真心不明白自己为什么被惩罚：他今天明明什么都没签。</p>
+<p>如何现在就检查你的钱包
+这大约需要五分钟，不需要专业知识。</p>
+<p>打开Etherscan，在“Token Approvals”部分输入你的钱包地址——服务会显示你曾经发出的所有授权列表。界面更友好的替代方案是revoke.cash网站，同样支持以太坊和大多数其他网络。</p>
+<p>浏览列表。如果你看到几个月没用过的服务，或者完全不认识——点击旁边的“Revoke”。这是一笔单独的交易，需要支付少量网络手续费，但它会永久撤销授权，直到你发出新的授权。</p>
+<p>另外特别注意没有金额限制的授权——即“无限”访问，而不是对特定金额的访问。这些最危险：骗子可以转走的不是签名时钱包里的余额，而是未来出现的任何资金。</p>
+<p>如何避免未来签署多余的东西
+连接钱包前检查网站地址——不要凭记忆，而是逐字符核对，尤其是通过邮件或消息中的链接进入时。伪造网站通常只差域名中一个调换的字母。</p>
+<p>当签名请求弹窗出现时，不要机械地点“确认”。钱包通常会显示你具体授权了什么、授权范围多大——花三秒钟读一下，而不是用点击直接关掉窗口。</p>
+<p>养成每隔几个月用上述方法检查活跃授权列表的习惯，并撤销所有长期不用的授权。这不是偏执——这和定期检查有权访问你邮箱的应用列表是一回事。</p>
+<p>这和资金存储有什么关系
+撤销授权解决了特定的漏洞，但没有解决更普遍的问题：如果你还是犯了错，签了不该签的东西，会发生什么。如果签署操作的私钥只有一个——任何签名错误都意味着失去一切。如果大额转账需要第二个独立私钥确认——在钓鱼网站上的一次错误签名不会让骗子立刻获得全部资金的访问权。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html&text=%E6%B2%A1%E6%9C%89%E6%B3%84%E9%9C%B2%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E5%8D%B4%E6%B6%88%E5%A4%B1%E4%BA%86%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%88%E6%9D%83%E9%92%93%E9%B1%BC%EF%BC%88approval-%D1%84%D0%B8%D1%88%D0%B8%D0%BD%D0%B3%EF%BC%89%20%E2%80%94%20%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%8F%91%E7%8E%B0%E9%92%B1%E4%B8%8D%E8%A7%81%E4%BA%86%EF%BC%8C%E8%80%8C%E5%8A%A9%E8%AE%B0%E8%AF%8D%E4%BB%8E%E6%9C%AA%E7%BB%99%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9C%8B%E8%BF%87%E2%80%94%E2%80%94%E5%88%AB%E6%80%A5%E7%9D%80%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%98%AF%E6%BC%8F%E6%B4%9E%E6%88%96%E9%94%99%E8%AF%AF%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html&text=%E6%B2%A1%E6%9C%89%E6%B3%84%E9%9C%B2%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E5%8D%B4%E6%B6%88%E5%A4%B1%E4%BA%86%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%88%E6%9D%83%E9%92%93%E9%B1%BC%EF%BC%88approval-%D1%84%D0%B8%D1%88%D0%B8%D0%BD%D0%B3%EF%BC%89%20%E2%80%94%20%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%8F%91%E7%8E%B0%E9%92%B1%E4%B8%8D%E8%A7%81%E4%BA%86%EF%BC%8C%E8%80%8C%E5%8A%A9%E8%AE%B0%E8%AF%8D%E4%BB%8E%E6%9C%AA%E7%BB%99%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9C%8B%E8%BF%87%E2%80%94%E2%80%94%E5%88%AB%E6%80%A5%E7%9D%80%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%98%AF%E6%BC%8F%E6%B4%9E%E6%88%96%E9%94%99%E8%AF%AF%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E6%B2%A1%E6%9C%89%E6%B3%84%E9%9C%B2%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E5%8D%B4%E6%B6%88%E5%A4%B1%E4%BA%86%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%88%E6%9D%83%E9%92%93%E9%B1%BC%EF%BC%88approval-%D1%84%D0%B8%D1%88%D0%B8%D0%BD%D0%B3%EF%BC%89%20%E2%80%94%20%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%8F%91%E7%8E%B0%E9%92%B1%E4%B8%8D%E8%A7%81%E4%BA%86%EF%BC%8C%E8%80%8C%E5%8A%A9%E8%AE%B0%E8%AF%8D%E4%BB%8E%E6%9C%AA%E7%BB%99%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9C%8B%E8%BF%87%E2%80%94%E2%80%94%E5%88%AB%E6%80%A5%E7%9D%80%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%98%AF%E6%BC%8F%E6%B4%9E%E6%88%96%E9%94%99%E8%AF%AF%E3%80%82%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fpropala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html&title=%E6%B2%A1%E6%9C%89%E6%B3%84%E9%9C%B2%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E5%8D%B4%E6%B6%88%E5%A4%B1%E4%BA%86%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%88%E6%9D%83%E9%92%93%E9%B1%BC%EF%BC%88approval-%D1%84%D0%B8%D1%88%D0%B8%D0%BD%D0%B3%EF%BC%89%20%E2%80%94%20%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%8F%91%E7%8E%B0%E9%92%B1%E4%B8%8D%E8%A7%81%E4%BA%86%EF%BC%8C%E8%80%8C%E5%8A%A9%E8%AE%B0%E8%AF%8D%E4%BB%8E%E6%9C%AA%E7%BB%99%E4%BB%BB%E4%BD%95%E4%BA%BA%E7%9C%8B%E8%BF%87%E2%80%94%E2%80%94%E5%88%AB%E6%80%A5%E7%9D%80%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%98%AF%E6%BC%8F%E6%B4%9E%E6%88%96%E9%94%99%E8%AF%AF%E3%80%82" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-zh.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+</body>
+</html>
