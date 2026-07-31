@@ -15,7 +15,7 @@ group: propala-kripta-bez-krazhi-sid-frazy-chto-takoe
 
 If you discover that money has disappeared and you never showed your seed phrase to anyone, don't rush to assume it's a bug or an error. There's a way to withdraw funds that doesn't require the thief to know your seed phrase at all. All they need is one signature from you.
 
-![A seed phrase written on paper is the only secret that decides the fate of all funds.](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.png)
+![A seed phrase written on paper is the only secret that decides the fate of all funds.](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.jpg)
 *A seed phrase written on paper is the only secret that decides the fate of all funds.*
 
 What happened on July 9

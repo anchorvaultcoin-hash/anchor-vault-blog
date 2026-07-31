@@ -36,7 +36,7 @@ group: propala-kripta-bez-krazhi-sid-frazy-chto-takoe
 
 如果你发现钱不见了，而助记词从未给过任何人——先别急着认为是漏洞或错误。有一种方式可以转走资金，而盗贼根本不需要知道你的助记词。他只需要你的一次签名。
 
-![写在纸上的助记词是唯一决定所有资金命运的密钥。](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.png)
+![写在纸上的助记词是唯一决定所有资金命运的密钥。](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.jpg)
 *写在纸上的助记词是唯一决定所有资金命运的密钥。*
 
 7月9日发生了什么

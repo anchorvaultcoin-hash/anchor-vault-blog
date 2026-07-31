@@ -240,6 +240,21 @@ def main():
         print(f"Создал папку {POSTS_DIR}. Положи туда .md файлы.")
         return
 
+    def fix_image_ext(body):
+        """Меняет расширение картинки в markdown на то, что реально лежит на диске."""
+        def repl(m):
+            alt, path = m.group(1), m.group(2)
+            if not path.startswith(f"{BLOG_URL}/img/"):
+                return m.group(0)
+            fname = path.rsplit("/", 1)[-1]
+            stem = fname.rsplit(".", 1)[0]
+            for ext in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
+                if (os.path.join(OUT_DIR, "img", stem + ext)) and \
+                   os.path.isfile(os.path.join(OUT_DIR, "img", stem + ext)):
+                    return f"![{alt}]({BLOG_URL}/img/{stem}{ext})"
+            return m.group(0)
+        return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", repl, body)
+
     md = markdown.Markdown(extensions=["extra", "sane_lists", "smarty"])
     posts = []
 
@@ -290,6 +305,7 @@ def main():
                     parts.append(f'<a href="{BLOG_URL}/{s}.html">{label}</a>')
             lang_switch = '<span class="soc" style="gap:8px">' + " · ".join(parts) + "</span>"
 
+        body = fix_image_ext(body)
         md.reset()
         content = md.convert(body)
         url = f"{BLOG_URL}/{slug}.html"
