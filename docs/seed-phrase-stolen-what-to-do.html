@@ -84,6 +84,23 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
 .soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
 @media(max-width:600px){
   h1{font-size:27px} main{padding:32px 0 52px}
   .nav a{margin-left:14px; font-size:13px}
@@ -165,7 +182,10 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
 </div></main>
 <footer class="bottom"><div class="wrap">
-  <div>© 2026 AnchorVaultCoin</div>
+  <div>© 2026 AnchorVaultCoin<img
+    src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
+    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
+    onerror="this.style.display='none'"></div>
   <div class="soc-row">
     <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
     <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>

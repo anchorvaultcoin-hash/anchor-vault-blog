@@ -107,6 +107,23 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
 .soc-btn svg{opacity:.9}
 .back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
 @media(max-width:600px){
   h1{font-size:27px} main{padding:32px 0 52px}
   .nav a{margin-left:14px; font-size:13px}
@@ -171,7 +188,10 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
 {body}
 </div></main>
 <footer class="bottom"><div class="wrap">
-  <div>© {datetime.now().year} {SITE_NAME}</div>
+  <div>© {datetime.now().year} {SITE_NAME}<img
+    src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F&title=views&title_bg=%232a3347&count_bg=%230f1318&edge_flat=true"
+    alt="" style="height:16px;vertical-align:-3px;margin-left:12px;opacity:.5"
+    onerror="this.style.display='none'"></div>
   <div class="soc-row">
     <a class="soc-btn" href="https://x.com/Anchorvaultcoin">{IC_X}<span>Читать в X</span></a>
     <a class="soc-btn" href="https://t.me/AnchorVaultCoin">{IC_TG}<span>Telegram-канал</span></a>
