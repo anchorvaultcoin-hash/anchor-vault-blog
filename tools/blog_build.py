@@ -99,8 +99,18 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .meta{color:var(--text3); font-size:14px; margin-bottom:34px}
 .lead{font-size:18px; color:var(--text2); margin-bottom:30px}
 .card{
-  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
   border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
 }
 .card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
 .card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
@@ -238,8 +248,10 @@ def main():
         date = meta.get("date", datetime.now().strftime("%Y-%m-%d"))
         lang = meta.get("lang", "ru")
         group = meta.get("group", "")
+        m = re.search(r"!\[[^\]]*\]\(([^)]+)\)", body)
         raw_items.append({"slug": slug, "title": title, "desc": desc, "date": date,
-                           "lang": lang, "group": group, "body": body})
+                           "lang": lang, "group": group, "body": body,
+                           "img": m.group(1) if m else ""})
 
     LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
     groups = {}
@@ -291,7 +303,8 @@ def main():
         with open(os.path.join(OUT_DIR, f"{slug}.html"), "w", encoding="utf-8") as f:
             f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld, lang_switch))
 
-        posts.append({"slug": slug, "title": title, "desc": desc, "date": date, "url": url, "lang": lang})
+        posts.append({"slug": slug, "title": title, "desc": desc, "date": date,
+                      "url": url, "lang": lang, "img": item["img"]})
         print(f"собрано: {slug}.html")
 
     posts.sort(key=lambda p: p["date"], reverse=True)
@@ -311,12 +324,16 @@ def main():
     def build_index(lang):
         info = INDEX_I18N[lang]
         lang_posts = [pp for pp in posts if pp["lang"] == lang]
-        cards = "\n".join(
-            f'''<a class="card" href="{pp["url"]}">
-  <h2>{html.escape(pp["title"])}</h2>
-  <p>{html.escape(pp["desc"])}</p>
-  <div class="meta">{pp["date"]}</div>
-</a>''' for pp in lang_posts) or f"<p>{info['empty']}</p>"
+        def card(pp):
+            thumb = (f'<img class="card-thumb" src="{pp["img"]}" alt="" loading="lazy">'
+                     if pp.get("img") else "")
+            return (f'<a class="card" href="{pp["url"]}"><div class="card-body">'
+                    f'<h2>{html.escape(pp["title"])}</h2>'
+                    f'<p>{html.escape(pp["desc"])}</p>'
+                    f'<div class="meta">{pp["date"]}</div>'
+                    f'</div>{thumb}</a>')
+
+        cards = "\n".join(card(pp) for pp in lang_posts) or f"<p>{info['empty']}</p>"
 
         parts = []
         for l, path in LANG_PATH.items():

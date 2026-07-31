@@ -3,13 +3,13 @@ title: Address poisoning: how copy-pasting from a wallet history cost a person $
 description: He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.
 date: 2026-07-31
 lang: en
-slug: address-poisoning-how-copy-pasting-from-a-wallet-history-cos
-group: otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che
+slug: otravlenie-adresa-en
+group: otravlenie-adresa
 ---
 
 I'll start with a story that turns the usual security advice on its head.
 
-![The trial translation was successful — and it was precisely this that served as the signal for the thief.](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png)
+![The trial translation was successful — and it was precisely this that served as the signal for the thief.](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg)
 *The trial translation was successful — and it was precisely this that served as the signal for the thief.*
 
 In December 2025, someone was about to transfer $50 million in USDT. They acted prudently: first sent a test amount of $50, confirmed the funds arrived, and only then sent the full sum. That's what every security guide recommends.

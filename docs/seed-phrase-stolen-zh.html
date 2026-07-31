@@ -66,8 +66,18 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .meta{color:var(--text3); font-size:14px; margin-bottom:34px}
 .lead{font-size:18px; color:var(--text2); margin-bottom:30px}
 .card{
-  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
   border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
 }
 .card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
 .card h2{margin:0 0 8px; font-size:20px; color:var(--text)}

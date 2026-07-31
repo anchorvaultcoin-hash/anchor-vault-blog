@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов — AnchorVaultCoin</title>
 <meta name="description" content="Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.">
-<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов — AnchorVaultCoin">
 <meta property="og:description" content="Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.">
-<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa.html">
 <meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Anchorvaultcoin">
@@ -66,8 +66,18 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .meta{color:var(--text3); font-size:14px; margin-bottom:34px}
 .lead{font-size:18px; color:var(--text2); margin-bottom:30px}
 .card{
-  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
   border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
 }
 .card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
 .card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
@@ -116,7 +126,7 @@ main figcaption{
 "headline":"Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов",
 "description":"Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.",
 "datePublished":"2026-07-31","inLanguage":"ru",
-"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.html"},
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa.html"},
 "image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
 "author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
 "publisher":{"@type":"Organization","name":"AnchorVaultCoin",
@@ -134,7 +144,7 @@ main figcaption{
     <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
-    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">EN</a> · <span style="color:var(--gold);font-weight:600">RU</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">ZH</a></span>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html">EN</a> · <span style="color:var(--gold);font-weight:600">RU</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-zh.html">ZH</a></span>
   </nav>
 </div></header>
 <main><div class="wrap">
@@ -142,7 +152,7 @@ main figcaption{
 <h1>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов</h1>
 <div class="meta">2026-07-31</div>
 <p>Начну с истории, которая переворачивает привычный совет по безопасности.</p>
-<p><img alt="Пробный перевод прошёл успешно — и именно он стал сигналом для вора" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png" />
+<p><img alt="Пробный перевод прошёл успешно — и именно он стал сигналом для вора" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg" />
 <em>Пробный перевод прошёл успешно — и именно он стал сигналом для вора</em></p>
 <p>В декабре 2025 года человек собирался перевести 50 миллионов долларов в USDT. Действовал он грамотно: сначала отправил пробные 50 долларов, убедился, что деньги дошли, и только потом отправил всю сумму. Так советуют делать все руководства по безопасности.</p>
 <p>Через 26 минут после пробного перевода 49 999 950 USDT ушли вору.</p>

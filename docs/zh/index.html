@@ -66,8 +66,18 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .meta{color:var(--text3); font-size:14px; margin-bottom:34px}
 .lead{font-size:18px; color:var(--text2); margin-bottom:30px}
 .card{
-  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
   border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
 }
 .card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
 .card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
@@ -130,21 +140,9 @@ main figcaption{
 <main><div class="wrap">
 <h1>加密货币安全博客</h1>
 <p class="lead">真实盗窃案例分析、通俗易懂的讲解，以及避免资产被盗的实用建议。</p>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-zh.html">
-  <h2>未泄露助记词但加密货币丢失：什么是授权钓鱼攻击</h2>
-  <p>盗贼如何仅凭一笔交易的签名，在既不知密码也不知助记词的情况下转移资金——真实案例解析及5分钟自查钱包方法</p>
-  <div class="meta">2026-08-01</div>
-</a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/5000.html">
-  <h2>地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元</h2>
-  <p>他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。</p>
-  <div class="meta">2026-07-31</div>
-</a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-zh.html">
-  <h2>助记词被盗：后续会发生什么，以及为何资金无法追回</h2>
-  <p>冷静分析，无需恐慌——实际会发生什么，最初几分钟内该做什么，以及为何支持无济于事</p>
-  <div class="meta">2026-07-30</div>
-</a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-zh.html"><div class="card-body"><h2>未泄露助记词但加密货币丢失：什么是授权钓鱼攻击</h2><p>盗贼如何仅凭一笔交易的签名，在既不知密码也不知助记词的情况下转移资金——真实案例解析及5分钟自查钱包方法</p><div class="meta">2026-08-01</div></div></a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-zh.html"><div class="card-body"><h2>地址投毒：钱包历史记录中的复制粘贴如何让一个人损失5000万美元</h2><p>他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。</p><div class="meta">2026-07-31</div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg" alt="" loading="lazy"></a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-zh.html"><div class="card-body"><h2>助记词被盗：后续会发生什么，以及为何资金无法追回</h2><p>冷静分析，无需恐慌——实际会发生什么，最初几分钟内该做什么，以及为何支持无济于事</p><div class="meta">2026-07-30</div></div></a>
 </div></main>
 <footer class="bottom"><div class="wrap">
   <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>

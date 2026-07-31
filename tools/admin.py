@@ -240,8 +240,13 @@ $('go').addEventListener('click', async () => {
 """
 
 
-def slugify(name):
-    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9-]", "", name.lower().replace(" ", "-"))).strip("-")
+def slugify(name, limit=50):
+    """Латиница через дефис. Режет по целым словам, не посреди слова."""
+    s = re.sub(r"-+", "-", re.sub(r"[^a-z0-9-]", "", name.lower().replace(" ", "-"))).strip("-")
+    if len(s) <= limit:
+        return s
+    cut = s[:limit].rsplit("-", 1)[0]
+    return cut.strip("-") or s[:limit].strip("-")
 
 
 def translit(text):
@@ -295,7 +300,13 @@ def save_image(b64, orig_name, slug, log):
             im = Image.open(BytesIO(raw))
             if im.width > 1200:
                 im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
-            if ext in (".jpg", ".jpeg"):
+            has_alpha = im.mode in ("RGBA", "LA", "P")
+            if ext in (".jpg", ".jpeg") or not has_alpha:
+                # фото всегда в JPEG — PNG для фотографий весит в разы больше
+                if ext not in (".jpg", ".jpeg"):
+                    os.remove(path) if os.path.exists(path) else None
+                    ext, fname = ".jpg", f"{slug}.jpg"
+                    path = os.path.join(IMG_DIR, fname)
                 im.convert("RGB").save(path, quality=85, optimize=True)
             else:
                 im.save(path, optimize=True)
@@ -341,7 +352,7 @@ def publish(d, log):
     body = d["body"]
     date = datetime.now().strftime("%Y-%m-%d")
 
-    slug = slugify(d.get("slug") or translit(title))[:60] or "post"
+    slug = slugify(d.get("slug") or translit(title)) or "post"
     group = slug
     log.append(f"Адрес страницы: {slug}.html")
 
@@ -372,9 +383,9 @@ def publish(d, log):
                 if cap:
                     img_md_l += f"\n*{cap}*"
 
-            lslug = slugify(t)[:60]
-            if len(lslug) < 3:
-                lslug = f"{group}-{lang}"
+            # Адрес для перевода строим от группы: заголовок на китайском
+            # даёт мусор, а английский — обрубки слов.
+            lslug = f"{group}-{lang}"
             name = write_post(lslug, group, lang, t, ds, date, b, img_md_l)
             log.append(f"[{lang}] сохранено: {name}")
         except Exception as e:

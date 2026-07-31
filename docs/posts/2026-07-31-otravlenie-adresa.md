@@ -3,13 +3,13 @@ title: Отравление адреса: как копипаст из исто�
 description: Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.
 date: 2026-07-31
 lang: ru
-slug: otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che
-group: otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che
+slug: otravlenie-adresa
+group: otravlenie-adresa
 ---
 
 Начну с истории, которая переворачивает привычный совет по безопасности.
 
-![Пробный перевод прошёл успешно — и именно он стал сигналом для вора](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png)
+![Пробный перевод прошёл успешно — и именно он стал сигналом для вора](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg)
 *Пробный перевод прошёл успешно — и именно он стал сигналом для вора*
 
 В декабре 2025 года человек собирался перевести 50 миллионов долларов в USDT. Действовал он грамотно: сначала отправил пробные 50 долларов, убедился, что деньги дошли, и только потом отправил всю сумму. Так советуют делать все руководства по безопасности.

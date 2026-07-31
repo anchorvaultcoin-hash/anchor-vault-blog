@@ -3,7 +3,7 @@ title: Crypto gone without seed phrase theft: what is approval phishing
 description: How thieves withdraw money without knowing your password or seed phrase — simply by obtaining your signature on a single transaction. An analysis of a real case and how to check your wallet in 5 minutes.
 date: 2026-08-01
 lang: en
-slug: crypto-gone-without-seed-phrase-theft-what-is-approval-phish
+slug: approval-phishing-en
 group: approval-phishing
 ---
 

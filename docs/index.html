@@ -66,8 +66,18 @@ hr{border:none; border-top:1px solid var(--border); margin:36px 0}
 .meta{color:var(--text3); font-size:14px; margin-bottom:34px}
 .lead{font-size:18px; color:var(--text2); margin-bottom:30px}
 .card{
-  display:block; padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
   border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
 }
 .card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
 .card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
@@ -130,21 +140,9 @@ main figcaption{
 <main><div class="wrap">
 <h1>Crypto Security Blog</h1>
 <p class="lead">Breakdowns of real thefts, plain-language explanations, and practical advice on not losing your coins.</p>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/crypto-gone-without-seed-phrase-theft-what-is-approval-phish.html">
-  <h2>Crypto gone without seed phrase theft: what is approval phishing</h2>
-  <p>How thieves withdraw money without knowing your password or seed phrase — simply by obtaining your signature on a single transaction. An analysis of a real case and how to check your wallet in 5 minutes.</p>
-  <div class="meta">2026-08-01</div>
-</a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/address-poisoning-how-copy-pasting-from-a-wallet-history-cos.html">
-  <h2>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</h2>
-  <p>He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.</p>
-  <div class="meta">2026-07-31</div>
-</a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-what-to-do.html">
-  <h2>Seed Phrase Stolen? What Happens Next and Why You Can&#x27;t Get the Money Back</h2>
-  <p>An honest breakdown — what actually happens after a seed phrase is stolen, what to do in the first few minutes, and why wallet support can&#x27;t help.</p>
-  <div class="meta">2026-07-30</div>
-</a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/approval-phishing-en.html"><div class="card-body"><h2>Crypto gone without seed phrase theft: what is approval phishing</h2><p>How thieves withdraw money without knowing your password or seed phrase — simply by obtaining your signature on a single transaction. An analysis of a real case and how to check your wallet in 5 minutes.</p><div class="meta">2026-08-01</div></div></a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html"><div class="card-body"><h2>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</h2><p>He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.</p><div class="meta">2026-07-31</div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg" alt="" loading="lazy"></a>
+<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/seed-phrase-stolen-what-to-do.html"><div class="card-body"><h2>Seed Phrase Stolen? What Happens Next and Why You Can&#x27;t Get the Money Back</h2><p>An honest breakdown — what actually happens after a seed phrase is stolen, what to do in the first few minutes, and why wallet support can&#x27;t help.</p><div class="meta">2026-07-30</div></div></a>
 </div></main>
 <footer class="bottom"><div class="wrap">
   <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>

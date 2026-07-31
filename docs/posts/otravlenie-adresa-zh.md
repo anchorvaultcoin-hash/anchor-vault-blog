@@ -3,13 +3,13 @@ title: 地址投毒：钱包历史记录中的复制粘贴如何让一个人损�
 description: 他做了一个50美元的测试转账——一切符合安全规范。26分钟后，损失了5000万。真实案例剖析，以及如何验证地址。
 date: 2026-07-31
 lang: zh
-slug: 5000
-group: otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che
+slug: otravlenie-adresa-zh
+group: otravlenie-adresa
 ---
 
 我先讲一个颠覆常规安全建议的故事。
 
-![试译很成功——而这恰恰成了窃贼的信号。](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa-kak-kopipast-iz-istorii-koshelka-stoil-che.png)
+![试译很成功——而这恰恰成了窃贼的信号。](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg)
 *试译很成功——而这恰恰成了窃贼的信号。*
 
 2025年12月，有人准备转账5000万美元的USDT。他操作得很规范：先发了50美元的测试转账，确认到账后才转出全部金额。所有安全指南都这么建议。
