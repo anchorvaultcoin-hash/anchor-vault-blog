@@ -163,5 +163,5 @@ Drift Protocol думал, что безопасность кода — это �
 
 В 2026 году самый опасный баг в системе — это человек, который считает, что его система достаточно безопасна.
 
-Использованы данные отчётов OKX Web3 Security, SlowMist, OtterSec, QuillAudits, а также материалы CoinDesk, PANews, Odaily и Gate.io за 2025-2026 годы. 🐕 Твой AnchorVaultCoin в X: @Anchorvaultcoin
+Использованы данные отчётов OKX Web3 Security, SlowMist, OtterSec, QuillAudits, а также материалы CoinDesk, PANews, Odaily и Gate.io за 2025-2026 годы. AnchorVaultCoin в X: @Anchorvaultcoin
 ♦️ Ethereum в X: @ethereum

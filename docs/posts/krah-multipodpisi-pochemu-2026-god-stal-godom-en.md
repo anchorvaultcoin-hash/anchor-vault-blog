@@ -161,5 +161,5 @@ Vitalik Buterin is right: perfect security doesn't exist. But there's layered de
 
 In 2026, the most dangerous bug in the system is the person who believes their system is secure enough.
 
-*Data sourced from OKX Web3 Security, SlowMist, OtterSec, and QuillAudits reports, as well as CoinDesk, PANews, Odaily, and Gate.io materials from 2025-2026.* 🐕 Your AnchorVaultCoin on X: @Anchorvaultcoin
+*Data sourced from OKX Web3 Security, SlowMist, OtterSec, and QuillAudits reports, as well as CoinDesk, PANews, Odaily, and Gate.io materials from 2025-2026.* AnchorVaultCoin on X: @Anchorvaultcoin
 ♦️ Ethereum on X: @ethereum

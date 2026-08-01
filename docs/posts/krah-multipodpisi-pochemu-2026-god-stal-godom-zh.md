@@ -249,5 +249,5 @@ Vitalik Buterin说得对：不存在完美的安全。但有多层防护，有�
 
 ---
 
-*数据来源：OKX Web3 Security、SlowMist、OtterSec、QuillAudits报告，以及CoinDesk、PANews、Odaily和Gate.io 2025-2026年资料。* 🐕 你的AnchorVaultCoin在X：@Anchorvaultcoin
+*数据来源：OKX Web3 Security、SlowMist、OtterSec、QuillAudits报告，以及CoinDesk、PANews、Odaily和Gate.io 2025-2026年资料。* AnchorVaultCoin在X：@Anchorvaultcoin
 ♦️ 以太坊在X：@ethereum
