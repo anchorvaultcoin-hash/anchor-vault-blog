@@ -8,6 +8,7 @@
 Нужен:   pip install markdown
 """
 import html
+import json
 import os
 import re
 import shutil
@@ -56,7 +57,7 @@ REACTION_EMOJI = [("🔥", "fire"), ("👍", "like"), ("🤯", "mind")]
 REACTIONS_JS = """<script>
 (function(){
   var NS = 'anchor-vault-blog';
-  var EMOJI = """ + repr(REACTION_EMOJI).replace("'", '"') + """; // [[emoji, code], ...]
+  var EMOJI = """ + json.dumps(REACTION_EMOJI, ensure_ascii=False) + """; // [[emoji, code], ...]
 
   function keyFor(slug, code){ return 'reactions-' + slug + '-' + code; }
   function votedKey(slug, code){ return 'reacted:' + slug + ':' + code; }

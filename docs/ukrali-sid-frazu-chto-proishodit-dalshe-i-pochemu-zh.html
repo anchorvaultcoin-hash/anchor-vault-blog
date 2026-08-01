@@ -258,7 +258,7 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
 <script>
 (function(){
   var NS = 'anchor-vault-blog';
-  var EMOJI = [("🔥", "fire"), ("👍", "like"), ("🤯", "mind")]; // [[emoji, code], ...]
+  var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
 
   function keyFor(slug, code){ return 'reactions-' + slug + '-' + code; }
   function votedKey(slug, code){ return 'reacted:' + slug + ':' + code; }
