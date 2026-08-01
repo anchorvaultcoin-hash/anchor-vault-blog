@@ -125,23 +125,8 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
 .reaction-btn.voted .reaction-count{color:var(--gold)}
 .card .reactions-mini{
-  position:relative; display:inline-flex; margin-top:8px; font-size:12.5px;
+  display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
 }
-.card .reactions-mini.empty{display:none}
-.card .reactions-collapsed{
-  display:inline-flex; align-items:center; gap:4px; padding:3px 9px;
-  border-radius:12px; background:var(--bg3); color:var(--text2);
-  transition:opacity .15s;
-}
-.card .reactions-full{
-  display:none; position:absolute; left:0; bottom:100%; margin-bottom:6px;
-  gap:6px; padding:6px 10px; border-radius:10px; background:var(--bg2);
-  border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.35);
-  white-space:nowrap; z-index:5;
-}
-.card .reactions-full span{display:inline-flex; align-items:center; gap:3px; color:var(--text2)}
-.card .reactions-mini:hover .reactions-collapsed{opacity:0}
-.card .reactions-mini:hover .reactions-full{display:inline-flex}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -371,55 +356,62 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
     });
   });
 
-  // Мини-виджет на карточках главной: свёрнутый в один значок с общей суммой,
-  // при наведении разворачивается в полный список по каждой реакции.
-  // Только чтение — проголосовать можно лишь внутри самой статьи.
+  // Виджет на карточках главной. Только чтение, без кликов.
+  //
+  // ВАЖНО: у Abacus лимит 30 запросов с IP за 10 секунд. На главной может быть
+  // 18+ постов x 3 реакции = 54+ запроса. Если слать их разом, часть отвалится
+  // и счётчики покажут нули. Поэтому: сначала берём из кэша (мгновенно),
+  // затем догружаем очередью по одному запросу раз в 350 мс.
+  var CACHE_TTL = 5 * 60 * 1000; // 5 минут
+  var queue = [];
+  var queueRunning = false;
+
+  function cacheGet(key){
+    try {
+      var raw = localStorage.getItem('rc:' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.t > CACHE_TTL) return null;
+      return obj.v;
+    } catch(e){ return null; }
+  }
+
+  function cacheSet(key, value){
+    try { localStorage.setItem('rc:' + key, JSON.stringify({v: value, t: Date.now()})); } catch(e){}
+  }
+
+  function runQueue(){
+    if (queueRunning || queue.length === 0) return;
+    queueRunning = true;
+    var job = queue.shift();
+    fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + job.key)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (d && typeof d.value === 'number'){
+          cacheSet(job.key, d.value);
+          job.span.textContent = job.emoji + ' ' + d.value;
+        }
+      })
+      .catch(function(){})
+      .then(function(){
+        queueRunning = false;
+        setTimeout(runQueue, 350); // ~3 запроса/сек, с запасом под лимит
+      });
+  }
+
   document.querySelectorAll('.reactions-mini').forEach(function(mini){
     var slug = mini.getAttribute('data-slug');
-    var pending = EMOJI.length;
-    var counts = {};
-
     EMOJI.forEach(function(pair){
-      var code = pair[1];
-      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, code))
-        .then(function(r){ return r.json(); })
-        .then(function(d){ counts[code] = d.value || 0; })
-        .catch(function(){ counts[code] = 0; })
-        .then(function(){
-          pending--;
-          if (pending === 0) renderMini(mini, counts);
-        });
+      var emoji = pair[0], code = pair[1];
+      var key = keyFor(slug, code);
+      var span = document.createElement('span');
+      var cached = cacheGet(key);
+      span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
+      mini.appendChild(span);
+      queue.push({key: key, span: span, emoji: emoji});
     });
   });
-
-  function renderMini(mini, counts){
-    var total = 0, leaderEmoji = null, leaderCount = -1;
-    EMOJI.forEach(function(pair){
-      var emoji = pair[0], code = pair[1];
-      var c = counts[code] || 0;
-      total += c;
-      if (c > leaderCount){ leaderCount = c; leaderEmoji = emoji; }
-    });
-    if (total === 0){ mini.classList.add('empty'); return; }
-
-    var collapsed = document.createElement('div');
-    collapsed.className = 'reactions-collapsed';
-    collapsed.textContent = leaderEmoji + ' ' + total.toLocaleString();
-
-    var full = document.createElement('div');
-    full.className = 'reactions-full';
-    EMOJI.forEach(function(pair){
-      var emoji = pair[0], code = pair[1];
-      var c = counts[code] || 0;
-      if (c === 0) return;
-      var span = document.createElement('span');
-      span.textContent = emoji + ' ' + c.toLocaleString();
-      full.appendChild(span);
-    });
-
-    mini.appendChild(collapsed);
-    mini.appendChild(full);
-  }
+  runQueue();
 })();
 </script>
 </body>
