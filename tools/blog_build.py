@@ -255,19 +255,53 @@ def main():
         print(f"Создал папку {POSTS_DIR}. Положи туда .md файлы.")
         return
 
+    # Полный список того, что умеет отдавать GitHub Pages как картинку.
+    KNOWN_IMG_EXT = (".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".svg", ".bmp", ".JPG", ".JPEG", ".PNG", ".WEBP", ".GIF")
+
+    _img_dir_cache = None
+
+    def _list_img_dir():
+        nonlocal _img_dir_cache
+        if _img_dir_cache is None:
+            img_dir = os.path.join(OUT_DIR, "img")
+            _img_dir_cache = os.listdir(img_dir) if os.path.isdir(img_dir) else []
+        return _img_dir_cache
+
+    def resolve_img_ext(path):
+        """Возвращает путь к картинке с тем расширением, что реально лежит на диске.
+        Всеяден: сначала пробует путь как есть, затем перебирает известные
+        расширения по стему, затем ищет файл по стему без учёта регистра.
+        Если ничего не найдено — путь не трогаем (лучше явная 404, чем тихая подмена)."""
+        if not path.startswith(f"{BLOG_URL}/img/"):
+            return path
+        fname = path.rsplit("/", 1)[-1]
+        stem = fname.rsplit(".", 1)[0]
+        img_dir = os.path.join(OUT_DIR, "img")
+
+        # 1) путь уже верный — самый частый случай, не трогаем его
+        if os.path.isfile(os.path.join(img_dir, fname)):
+            return path
+
+        # 2) перебор известных расширений по тому же стему
+        for ext in KNOWN_IMG_EXT:
+            if os.path.isfile(os.path.join(img_dir, stem + ext)):
+                return f"{BLOG_URL}/img/{stem}{ext}"
+
+        # 3) регистронезависимый поиск по стему — на случай Stem.PNG vs stem.png
+        stem_lower = stem.lower()
+        for real_name in _list_img_dir():
+            real_stem = real_name.rsplit(".", 1)[0]
+            if real_stem.lower() == stem_lower:
+                return f"{BLOG_URL}/img/{real_name}"
+
+        return path
+
     def fix_image_ext(body):
         """Меняет расширение картинки в markdown на то, что реально лежит на диске."""
         def repl(m):
             alt, path = m.group(1), m.group(2)
-            if not path.startswith(f"{BLOG_URL}/img/"):
-                return m.group(0)
-            fname = path.rsplit("/", 1)[-1]
-            stem = fname.rsplit(".", 1)[0]
-            for ext in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
-                if (os.path.join(OUT_DIR, "img", stem + ext)) and \
-                   os.path.isfile(os.path.join(OUT_DIR, "img", stem + ext)):
-                    return f"![{alt}]({BLOG_URL}/img/{stem}{ext})"
-            return m.group(0)
+            fixed = resolve_img_ext(path)
+            return f"![{alt}]({fixed})" if fixed != path else m.group(0)
         return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", repl, body)
 
     md = markdown.Markdown(extensions=["extra", "sane_lists", "smarty"])
@@ -290,7 +324,7 @@ def main():
         m = re.search(r"!\[[^\]]*\]\(([^)]+)\)", body)
         raw_items.append({"slug": slug, "title": title, "desc": desc, "date": date,
                            "lang": lang, "group": group, "body": body,
-                           "img": m.group(1) if m else ""})
+                           "img": resolve_img_ext(m.group(1)) if m else ""})
 
     LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
 
