@@ -4,12 +4,30 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 01 Aug 2026 12:54:57 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 01 Aug 2026 13:20:29 +0000</lastBuildDate>
+  <item>
+    <title>Крах мультиподписи: почему 2026 год стал годом «человеческого фактора» в криптобезопасности</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom.html</guid>
+    <description>И как некастодиальные хранилища меняют правила игры</description>
+  </item>
   <item>
     <title>Мультиподпись не спасла: как $36 миллионов утекли из-за одного ноутбука</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html</guid>
     <description>У них было шесть ключей вместо одного. Это должно было защитить. Разбираем, почему не защитило.</description>
+  </item>
+  <item>
+    <title>The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html</guid>
+    <description>And how non-custodial storage is changing the game</description>
+  </item>
+  <item>
+    <title>多签崩塌：为何2026年成为加密安全领域的“人为因素之年”</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-zh.html</guid>
+    <description>那么，非托管金库是如何改变游戏规则的？</description>
   </item>
   <item>
     <title>Multisig didn&#x27;t save them: how $36 million leaked from a single laptop</title>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security — AnchorVaultCoin</title>
+<meta name="description" content="And how non-custodial storage is changing the game">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html">
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security — AnchorVaultCoin">
+<meta property="og:description" content="And how non-custodial storage is changing the game">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security",
+"description":"And how non-custodial storage is changing the game",
+"datePublished":"2026-08-01","inLanguage":"en",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Blog</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">About</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><span style="color:var(--gold);font-weight:600">EN</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom.html">RU</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-zh.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← All articles</a>
+<h1>The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security</h1>
+<div class="meta">2026-08-01</div>
+<h2>Introduction: The Year the Code Stopped Being the Main Target</h2>
+<p><img alt="The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/krah-multipodpisi-pochemu-2026-god-stal-godom.jpg" /></p>
+<p>2026 will go down in crypto history as the year the most expensive bug in the system turned out to be&hellip; a human.</p>
+<p>In the first half of 2026, the crypto industry saw 182 public security incidents with total losses of roughly $9.56 billion. On the surface, that&rsquo;s nearly 60% lower than the same period in 2025. But this calm is deceiving.</p>
+<p>Why? Because the drop is entirely due to the fact that the record-breaking Bybit attack in 2025 (a $15 billion loss) wasn&rsquo;t repeated. In reality, the number of incidents is up 50% year-over-year. Attacks haven&rsquo;t weakened — they&rsquo;ve shifted direction.</p>
+<p>&ldquo;The most expensive vulnerabilities are no longer in code, but in people,&rdquo; is the unanimous conclusion from the OKX Web3 Security, SlowMist, and OtterSec reports.</p>
+<h2>Numbers That Make You Think</h2>
+<p>The average loss from a single wallet or key compromise incident in the first half of 2026 was around $13 million. For comparison: the average loss from a smart contract exploit — under $1 million.</p>
+<p>That&rsquo;s a 13x difference. Hackers have clearly figured out: hacking people pays better than hacking code.</p>
+<p>Of the $9.56 billion in losses, only 12.3% was recovered or frozen. The remaining nearly 90% of stolen funds is gone forever.</p>
+<h2>Case #1: &ldquo;Multisig on a Single Laptop&rdquo; — The Humanity Protocol Lesson</h2>
+<p>June 9, 2026. Humanity Protocol, backed by Pantera Capital and Jump Crypto with a valuation of over $1 billion, lost more than $36 million of its own H tokens.</p>
+<p>How did it happen?</p>
+<p>Humanity Protocol used Gnosis Safe multisig wallets:</p>
+<ul>
+<li>On Ethereum: 3-of-6 keys</li>
+<li>On BNB Chain: 3-of-5 keys</li>
+</ul>
+<p>Everything looked correct. Multisig is the gold standard of security. But there was one detail.</p>
+<p>All six keys on Ethereum and all five keys on BNB Chain were stored on a single employee&rsquo;s laptop.</p>
+<p>When that laptop was compromised, the attacker didn&rsquo;t get one key — they got every key needed to sign. Formally, the multisig requirements were met: 3-of-6 and 3-of-5. But those three keys belonged to one person and lived on one device.</p>
+<p>Project founder Terence Kwok later explained: &ldquo;Some of the keys were accidentally reserved on the compromised device during setup.&rdquo;</p>
+<p>The result:</p>
+<ul>
+<li>141 million H tokens stolen on Ethereum</li>
+<li>200 million H tokens minted out of control on BNB Chain</li>
+<li>Token price crashed 80% — from nearly $1 to $0.05</li>
+</ul>
+<p>As analysts rightly noted: &ldquo;When one person controls enough keys to authorize transactions, the multisig security model is compromised from the start.&rdquo;</p>
+<h2>Case #2: Drift Protocol — Six Months of Social Engineering</h2>
+<p>In April 2026, Drift Protocol lost $285 million.</p>
+<p>This wasn&rsquo;t a code attack. It was a six-month social engineering operation.</p>
+<p>The attackers, allegedly linked to North Korean hacker groups, spent months embedding themselves in the team&rsquo;s trust. They convinced one of the multisig key holders to sign a series of &ldquo;harmless&rdquo; transactions that didn&rsquo;t raise suspicion at first glance.</p>
+<p>These transactions gradually gave the attackers control over the system. Once everything was in place — they struck.</p>
+<p>The code was flawless. The people weren&rsquo;t.</p>
+<h2>Case #3: Bybit — $1.45 Billion Through an Interface Hack</h2>
+<p>February 2025. Bybit, one of the largest crypto exchanges, lost $1.45 billion.</p>
+<p>The attack didn&rsquo;t target smart contracts. The hackers compromised a Safe{Wallet} developer workstation and modified the JavaScript code on the server.</p>
+<p>When Bybit&rsquo;s multisig key holders opened the interface to sign a transaction, they saw a legitimate transaction. In reality, they were signing malicious code that handed control of the wallet to the attackers.</p>
+<p>&ldquo;Multisig didn&rsquo;t save them because all signers used the same interface. The hacker only needed to compromise one shared point to fool everyone.&rdquo;</p>
+<h2>The Big Takeaway of 2026: Multisig ≠ Security</h2>
+<p>Multisig is a tool, not a solution. And like any tool, it can be used wrong.</p>
+<p>Analysts identify four main weaknesses in current security approaches:</p>
+<p><strong>1. Blind Signing</strong>
+Signers approve what they see on screen instead of verifying what the transaction actually does. In the Bybit attack, signers thought they were approving a routine transfer.</p>
+<p><strong>2. Key Concentration</strong>
+Keys are generated on internet-connected devices, held by a single founder, sent through chat apps, or held by signers sitting in the same office. One incident compromises everything.</p>
+<p><strong>3. Trust in Infrastructure</strong>
+The Kelp DAO attack (a $291 million loss) didn&rsquo;t start with a contract vulnerability — it started with a compromised RPC, the infrastructure connecting the team to the blockchain.</p>
+<p><strong>4. Single Point of Failure in the Signing Process</strong>
+When all signers use the same web interface, the same set of RPC nodes, and identical hardware wallets — a hacker only needs to break one shared point to fool everyone.</p>
+<h2>What Does Vitalik Buterin Say?</h2>
+<p>The Ethereum co-founder, known in China as V神 (&ldquo;God V&rdquo;), has spoken repeatedly about wallet security. And his position isn&rsquo;t philosophy — it&rsquo;s a practical playbook.</p>
+<p><strong>90% in Multisig</strong>
+Vitalik admits he keeps 90% of his crypto in a multisig wallet. He uses an m-of-n scheme — where m is the minimum number of signatures required for a transaction, and n is the total number of key holders.</p>
+<p><strong>Layered Defense</strong>
+Buterin advocates for a combined strategy:</p>
+<ul>
+<li>Transaction limits — capping amounts</li>
+<li>Multisig — multiple approvals for large operations</li>
+<li>User intent verification — confirming the transaction does exactly what&rsquo;s intended</li>
+</ul>
+<p><strong>Intent-Based Security</strong>
+In February 2026, Vitalik proposed a new framework:</p>
+<p>&ldquo;The user first specifies the action they want to take. The system simulates the transaction result on the blockchain. Only after reviewing the simulation does the user click &lsquo;Confirm&rsquo; or &lsquo;Cancel.&rsquo;&rdquo;</p>
+<p>His key point: &ldquo;Security and user experience are the same thing. Both are about minimizing the gap between what the user wants to do and what the system actually does.&rdquo;</p>
+<p><strong>Openness and Verifiability</strong>
+Vitalik also stresses the importance of open-source code. He recently demonstrated how to manage a multisig wallet through the &ldquo;Read Contract&rdquo; function on a block explorer, without any installed app. That&rsquo;s only possible because the contracts are open and verifiable.</p>
+<h2>What This Means for You</h2>
+<p>If you hold crypto — especially significant amounts — the lessons of 2026 should change how you approach security.</p>
+<p><strong>Multisig Is Not a Silver Bullet</strong>
+Multisig doesn&rsquo;t protect you when:</p>
+<ul>
+<li>Keys are stored in one place</li>
+<li>Signers use identical interfaces</li>
+<li>There&rsquo;s no independent transaction verification</li>
+<li>Keys are generated on internet-connected devices</li>
+</ul>
+<p><strong>Non-Custodial Vaults Are the New Standard</strong>
+This is where non-custodial multi-asset vaults stop being a &ldquo;nice option&rdquo; and become a necessity.</p>
+<p>A properly built vault:</p>
+<ul>
+<li>Separates keys physically and geographically — no &ldquo;all keys on one laptop&rdquo;</li>
+<li>Provides independent verification — each transaction is checked separately</li>
+<li>Doesn&rsquo;t rely on a single interface — multiple confirmation paths</li>
+<li>Has emergency mechanisms — panic withdrawal, pause protection, escrow periods</li>
+<li>Is audited and open-source — as with AnchorVault</li>
+</ul>
+<h2>Statistics That Should Worry You</h2>
+<p>Research on hacked protocols shows: only 19% used multisig wallets, and just 2.4% relied on cold storage.</p>
+<p>Most projects that lost billions weren&rsquo;t even using basic security measures.</p>
+<h2>Conclusion: Security Is a Process, Not a Product</h2>
+<p>The most expensive mistake in crypto in 2026 is believing that multisig makes you invulnerable.</p>
+<p>Humanity Protocol thought 3-of-6 and 3-of-5 was enough. It wasn&rsquo;t, because the keys were all in one place.</p>
+<p>Bybit thought multisig would protect against any attack. It wasn&rsquo;t enough, because every signer saw the same compromised interface.</p>
+<p>Drift Protocol thought code security was what mattered most. It wasn&rsquo;t enough, because the attack came through people.</p>
+<p>Vitalik Buterin is right: perfect security doesn&rsquo;t exist. But there&rsquo;s layered defense, openness and verifiability, independent verification, and proper key distribution.</p>
+<p>In 2026, the most dangerous bug in the system is the person who believes their system is secure enough.</p>
+<p><em>Data sourced from OKX Web3 Security, SlowMist, OtterSec, and QuillAudits reports, as well as CoinDesk, PANews, Odaily, and Gate.io materials from 2025-2026.</em> 🐕 Your AnchorVaultCoin on X: @Anchorvaultcoin
+♦️ Ethereum on X: @ethereum</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkrah-multipodpisi-pochemu-2026-god-stal-godom-en.html&text=The%20collapse%20of%20multisig%3A%20why%202026%20became%20the%20year%20of%20the%20%22human%20factor%22%20in%20crypto%20security%20%E2%80%94%20And%20how%20non-custodial%20storage%20is%20changing%20the%20game" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkrah-multipodpisi-pochemu-2026-god-stal-godom-en.html&text=The%20collapse%20of%20multisig%3A%20why%202026%20became%20the%20year%20of%20the%20%22human%20factor%22%20in%20crypto%20security%20%E2%80%94%20And%20how%20non-custodial%20storage%20is%20changing%20the%20game" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=The%20collapse%20of%20multisig%3A%20why%202026%20became%20the%20year%20of%20the%20%22human%20factor%22%20in%20crypto%20security%20%E2%80%94%20And%20how%20non-custodial%20storage%20is%20changing%20the%20game%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkrah-multipodpisi-pochemu-2026-god-stal-godom-en.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkrah-multipodpisi-pochemu-2026-god-stal-godom-en.html&title=The%20collapse%20of%20multisig%3A%20why%202026%20became%20the%20year%20of%20the%20%22human%20factor%22%20in%20crypto%20security%20%E2%80%94%20And%20how%20non-custodial%20storage%20is%20changing%20the%20game" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html');this.textContent='Copied'" type="button">Copy link</button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+</body>
+</html>
