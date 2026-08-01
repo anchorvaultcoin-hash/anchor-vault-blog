@@ -288,7 +288,7 @@ This is where non-custodial multi-asset vaults stop being a &ldquo;nice option&r
   <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html');this.textContent='Copied'" type="button">Copy link</button>
 </div>
 
-<div class="reactions" data-slug="krah-multipodpisi-pochemu-2026-god-stal-godom-en">
+<div class="reactions" data-rkey="7147c2e84e4f22f2">
 <button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count"></span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count"></span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count"></span></button>
 </div>
 
@@ -318,35 +318,35 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
   var NS = 'anchor-vault-blog';
   var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
 
-  function keyFor(slug, code){ return 'reactions-' + slug + '-' + code; }
-  function votedKey(slug, code){ return 'reacted:' + slug + ':' + code; }
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
 
   function renderCount(el, value){
     el.textContent = value > 0 ? value.toLocaleString() : '';
   }
 
   function loadCounts(root){
-    var slug = root.getAttribute('data-slug');
+    var rkey = root.getAttribute('data-rkey');
     root.querySelectorAll('.reaction-btn').forEach(function(btn){
       var code = btn.getAttribute('data-code');
-      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, code))
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
         .then(function(r){ return r.json(); })
         .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value || 0); })
         .catch(function(){});
-      if (localStorage.getItem(votedKey(slug, code))) btn.classList.add('voted');
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
     });
   }
 
   function vote(root, btn){
-    var slug = root.getAttribute('data-slug');
+    var rkey = root.getAttribute('data-rkey');
     var code = btn.getAttribute('data-code');
-    if (localStorage.getItem(votedKey(slug, code))) return; // уже жал эту реакцию
-    localStorage.setItem(votedKey(slug, code), '1');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
     btn.classList.add('voted');
-    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(slug, code))
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
       .then(function(r){ return r.json(); })
       .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value); })
-      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(slug, code)); });
+      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(rkey, code)); });
   }
 
   document.querySelectorAll('.reactions').forEach(function(root){
@@ -400,10 +400,10 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
   }
 
   document.querySelectorAll('.reactions-mini').forEach(function(mini){
-    var slug = mini.getAttribute('data-slug');
+    var rkey = mini.getAttribute('data-rkey');
     EMOJI.forEach(function(pair){
       var emoji = pair[0], code = pair[1];
-      var key = keyFor(slug, code);
+      var key = keyFor(rkey, code);
       var span = document.createElement('span');
       var cached = cacheGet(key);
       span.textContent = emoji + ' ' + (cached === null ? 0 : cached);

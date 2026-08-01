@@ -7,6 +7,7 @@
 Запуск:  python3 tools/blog_build.py
 Нужен:   pip install markdown
 """
+import hashlib
 import html
 import json
 import os
@@ -54,40 +55,51 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
 # сам эмодзи (для показа) и латинский код (для ключа счётчика).
 REACTION_EMOJI = [("🔥", "fire"), ("👍", "like"), ("🤯", "mind")]
 
+
+def reaction_key(slug):
+    """Короткий стабильный идентификатор поста для ключа счётчика.
+
+    Abacus ограничивает ключ 64 символами, а slug переведённых статей бывает
+    длиной 60+ ("multisig-didnt-save-them-how-36-million-leaked-from-a-single").
+    Ключ вида reactions-<slug>-fire вылезал за лимит, и сервер отклонял запрос.
+    Хеш даёт фиксированные 16 символов независимо от длины заголовка.
+    """
+    return hashlib.md5(slug.encode("utf-8")).hexdigest()[:16]
+
 REACTIONS_JS = """<script>
 (function(){
   var NS = 'anchor-vault-blog';
   var EMOJI = """ + json.dumps(REACTION_EMOJI, ensure_ascii=False) + """; // [[emoji, code], ...]
 
-  function keyFor(slug, code){ return 'reactions-' + slug + '-' + code; }
-  function votedKey(slug, code){ return 'reacted:' + slug + ':' + code; }
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
 
   function renderCount(el, value){
     el.textContent = value > 0 ? value.toLocaleString() : '';
   }
 
   function loadCounts(root){
-    var slug = root.getAttribute('data-slug');
+    var rkey = root.getAttribute('data-rkey');
     root.querySelectorAll('.reaction-btn').forEach(function(btn){
       var code = btn.getAttribute('data-code');
-      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, code))
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
         .then(function(r){ return r.json(); })
         .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value || 0); })
         .catch(function(){});
-      if (localStorage.getItem(votedKey(slug, code))) btn.classList.add('voted');
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
     });
   }
 
   function vote(root, btn){
-    var slug = root.getAttribute('data-slug');
+    var rkey = root.getAttribute('data-rkey');
     var code = btn.getAttribute('data-code');
-    if (localStorage.getItem(votedKey(slug, code))) return; // уже жал эту реакцию
-    localStorage.setItem(votedKey(slug, code), '1');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
     btn.classList.add('voted');
-    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(slug, code))
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
       .then(function(r){ return r.json(); })
       .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value); })
-      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(slug, code)); });
+      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(rkey, code)); });
   }
 
   document.querySelectorAll('.reactions').forEach(function(root){
@@ -141,10 +153,10 @@ REACTIONS_JS = """<script>
   }
 
   document.querySelectorAll('.reactions-mini').forEach(function(mini){
-    var slug = mini.getAttribute('data-slug');
+    var rkey = mini.getAttribute('data-rkey');
     EMOJI.forEach(function(pair){
       var emoji = pair[0], code = pair[1];
-      var key = keyFor(slug, code);
+      var key = keyFor(rkey, code);
       var span = document.createElement('span');
       var cached = cacheGet(key);
       span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
@@ -523,7 +535,7 @@ def main():
   <button class="share-btn" onclick="navigator.clipboard.writeText('{url}');this.textContent='{share_copied}'" type="button">{share_copy}</button>
 </div>
 
-<div class="reactions" data-slug="{slug}">
+<div class="reactions" data-rkey="{reaction_key(slug)}">
 {"".join(f'<button class="reaction-btn" data-code="{code}" type="button">{e}<span class="reaction-count"></span></button>' for e, code in REACTION_EMOJI)}
 </div>
 
@@ -563,7 +575,7 @@ def main():
                     f'<h2>{html.escape(pp["title"])}</h2>'
                     f'<p>{html.escape(pp["desc"])}</p>'
                     f'<div class="meta">{pp["date"]}</div>'
-                    f'<div class="reactions-mini" data-slug="{pp["slug"]}"></div>'
+                    f'<div class="reactions-mini" data-rkey="{reaction_key(pp["slug"])}"></div>'
                     f'</div>{thumb}</a>')
 
         cards = "\n".join(card(pp) for pp in lang_posts) or f"<p>{info['empty']}</p>"
