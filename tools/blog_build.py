@@ -195,7 +195,7 @@ UI = {
 }
 
 
-def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=""):
+def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch="", hreflang_tags=""):
     ui = UI.get(lang, UI["ru"])
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -205,6 +205,8 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
 <link rel="canonical" href="{canonical}">
+{hreflang_tags}
+<meta name="yandex-verification" content="c44efc0436415d5b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(description)}">
@@ -303,6 +305,7 @@ def main():
         body = item["body"]
 
         lang_switch = ""
+        hreflang_tags = ""
         if item["group"] and item["group"] in groups and len(groups[item["group"]]) > 1:
             parts = []
             for l, s in sorted(groups[item["group"]].items()):
@@ -312,6 +315,14 @@ def main():
                 else:
                     parts.append(f'<a href="{BLOG_URL}/{s}.html">{label}</a>')
             lang_switch = '<span class="soc" style="gap:8px">' + " · ".join(parts) + "</span>"
+
+            # SEO: hreflang говорит Google/Яндексу, что это переводы одной статьи,
+            # а не разноязычные дубли контента.
+            hf_rows = [f'<link rel="alternate" hreflang="{l}" href="{BLOG_URL}/{s}.html">'
+                       for l, s in sorted(groups[item["group"]].items())]
+            default_lang, default_slug = sorted(groups[item["group"]].items())[0]
+            hf_rows.append(f'<link rel="alternate" hreflang="x-default" href="{BLOG_URL}/{default_slug}.html">')
+            hreflang_tags = "\n".join(hf_rows)
 
         body = fix_image_ext(body)
         md.reset()
@@ -356,7 +367,7 @@ def main():
 <a href="{SITE_URL}/landing.html">Подробнее</a>.</p>'''
 
         with open(os.path.join(OUT_DIR, f"{slug}.html"), "w", encoding="utf-8") as f:
-            f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld, lang_switch))
+            f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld, lang_switch, hreflang_tags))
 
         posts.append({"slug": slug, "title": title, "desc": desc, "date": date,
                       "url": url, "lang": lang, "img": item["img"]})
@@ -458,6 +469,9 @@ def main():
         f.write(sitemap)
 
     robots = f"""User-agent: *
+Allow: /
+
+User-agent: Yandex
 Allow: /
 
 Sitemap: {BASE_URL}/sitemap.xml
