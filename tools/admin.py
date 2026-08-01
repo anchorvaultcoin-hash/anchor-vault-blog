@@ -205,6 +205,7 @@ button:disabled{opacity:.4; cursor:not-allowed}
 Секретная фраза — это не пароль..."></textarea>
 
   <label class="chk"><input type="checkbox" id="push" checked> Сразу опубликовать на сайт (git push)</label>
+  <label class="chk"><input type="checkbox" id="pinned"> Закрепить наверху списка</label>
 
   <button id="go">Опубликовать</button>
   <div id="log"></div>
@@ -253,6 +254,7 @@ $('go').addEventListener('click', async () => {
         caption: $('caption').value.trim(),
         body: body,
         push: $('push').checked,
+        pinned: $('pinned').checked,
         img: imgData,
         img_name: imgName
       })
@@ -369,9 +371,10 @@ def insert_image(body, img_md):
     return body + "\n\n" + img_md
 
 
-def write_post(slug, group, lang, title, desc, date, body, img_md):
+def write_post(slug, group, lang, title, desc, date, body, img_md, pinned=False):
+    pin_line = "pinned: true\n" if pinned else ""
     front = (f"---\ntitle: {title}\ndescription: {desc}\ndate: {date}\n"
-             f"lang: {lang}\nslug: {slug}\ngroup: {group}\n---\n\n")
+             f"lang: {lang}\nslug: {slug}\ngroup: {group}\n{pin_line}---\n\n")
     name = f"{date}-{slug}.md" if lang == "ru" else f"{group}-{lang}.md"
     path = os.path.join(POSTS_DIR, name)
     with open(path, "w", encoding="utf-8") as f:
@@ -402,7 +405,7 @@ def publish(d, log):
         if img_caption:
             img_md += f"\n*{img_caption}*"
 
-    name = write_post(slug, group, "ru", title, desc, date, body, img_md)
+    name = write_post(slug, group, "ru", title, desc, date, body, img_md, d.get("pinned"))
     log.append(f"[ru] сохранено: {name}")
 
     for lang, lang_name in LANGS.items():
@@ -457,6 +460,21 @@ def publish(d, log):
     return True
 
 
+def save_log(log):
+    """Пишет лог последней публикации в файл.
+
+    Окно браузера закрывается вместе с текстом ошибки, и потом непонятно,
+    на каком шаге всё встало. Файл переживает закрытие вкладки.
+    """
+    try:
+        path = os.path.join(ROOT, "tools", "admin.log")
+        stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(f"\n===== {stamp} =====\n" + "\n".join(log) + "\n")
+    except Exception:
+        pass
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
@@ -481,6 +499,7 @@ class Handler(BaseHTTPRequestHandler):
 
         for line in log:
             print(line)
+        save_log(log)
         out = json.dumps({"ok": ok, "log": log}, ensure_ascii=False).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")

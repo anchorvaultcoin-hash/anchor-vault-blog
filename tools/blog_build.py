@@ -297,6 +297,7 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
 .reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
 .reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .pin{font-size:15px; opacity:.9}
 .card .reactions-mini{
   display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
 }
@@ -472,7 +473,9 @@ def main():
     for fn in sorted(os.listdir(POSTS_DIR)):
         if not fn.endswith(".md") or fn.startswith("draft-"):
             continue
-        with open(os.path.join(POSTS_DIR, fn), encoding="utf-8") as f:
+        fpath = os.path.join(POSTS_DIR, fn)
+        mtime = os.path.getmtime(fpath)
+        with open(fpath, encoding="utf-8") as f:
             meta, body = read_front_matter(f.read())
 
         slug = meta.get("slug") or slugify(os.path.splitext(fn)[0])
@@ -481,9 +484,11 @@ def main():
         date = meta.get("date", datetime.now().strftime("%Y-%m-%d"))
         lang = meta.get("lang", "ru")
         group = meta.get("group", "")
+        pinned = str(meta.get("pinned", "")).strip().lower() in ("true", "yes", "1")
         m = re.search(r"!\[[^\]]*\]\(([^)]+)\)", body)
         raw_items.append({"slug": slug, "title": title, "desc": desc, "date": date,
-                           "lang": lang, "group": group, "body": body,
+                           "lang": lang, "group": group, "body": body, "mtime": mtime,
+                           "pinned": pinned,
                            "img": resolve_img_ext(m.group(1)) if m else ""})
 
     LANG_NAMES = {"ru": "RU", "en": "EN", "zh": "ZH"}
@@ -492,6 +497,13 @@ def main():
     for item in raw_items:
         if item["group"]:
             groups.setdefault(item["group"], {})[item["lang"]] = item["slug"]
+
+    # Закрепление ставится в одном файле, а действовать должно на все языки:
+    # если помечена русская версия, английская и китайская тоже идут наверх.
+    pinned_groups = {it["group"] for it in raw_items if it["pinned"] and it["group"]}
+    for item in raw_items:
+        if item["group"] in pinned_groups:
+            item["pinned"] = True
 
     for item in raw_items:
         slug, title, desc, date, lang = (item["slug"], item["title"], item["desc"],
@@ -568,10 +580,14 @@ def main():
             f.write(page(f"{title} — {SITE_NAME}", desc, url, article, lang, jsonld, lang_switch, hreflang_tags))
 
         posts.append({"slug": slug, "title": title, "desc": desc, "date": date,
-                      "url": url, "lang": lang, "img": item["img"]})
+                      "url": url, "lang": lang, "img": item["img"],
+                      "mtime": item.get("mtime", 0), "pinned": item.get("pinned", False)})
         print(f"собрано: {slug}.html")
 
-    posts.sort(key=lambda p: p["date"], reverse=True)
+    # Дата в front matter одна на весь день, поэтому статьи, вышедшие в один
+    # день, шли в алфавитном порядке и новая могла оказаться в середине списка.
+    # Вторичный ключ — время изменения файла: свежая статья поднимается выше.
+    posts.sort(key=lambda p: (p.get("pinned", False), p["date"], p.get("mtime", 0)), reverse=True)
 
     INDEX_I18N = {
         "en": {"title": "Crypto Security Blog",
@@ -591,8 +607,9 @@ def main():
         def card(pp):
             thumb = (f'<img class="card-thumb" src="{pp["img"]}" alt="" loading="lazy">'
                      if pp.get("img") else "")
+            pin = '<span class="pin">📌</span> ' if pp.get("pinned") else ""
             return (f'<a class="card" href="{pp["url"]}"><div class="card-body">'
-                    f'<h2>{html.escape(pp["title"])}</h2>'
+                    f'<h2>{pin}{html.escape(pp["title"])}</h2>'
                     f'<p>{html.escape(pp["desc"])}</p>'
                     f'<div class="meta">{pp["date"]}</div>'
                     f'<div class="reactions-mini" data-rkey="{reaction_key(pp["slug"])}"></div>'
