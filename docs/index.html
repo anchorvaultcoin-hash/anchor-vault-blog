@@ -122,9 +122,23 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 .reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
 .reaction-btn.voted .reaction-count{color:var(--gold)}
 .card .reactions-mini{
-  display:flex; gap:6px; margin-top:8px; font-size:12px; color:var(--text2);
+  position:relative; display:inline-flex; margin-top:8px; font-size:12.5px;
 }
-.card .reactions-mini span{display:inline-flex; align-items:center; gap:3px}
+.card .reactions-mini.empty{display:none}
+.card .reactions-collapsed{
+  display:inline-flex; align-items:center; gap:4px; padding:3px 9px;
+  border-radius:12px; background:var(--bg3); color:var(--text2);
+  transition:opacity .15s;
+}
+.card .reactions-full{
+  display:none; position:absolute; left:0; bottom:100%; margin-bottom:6px;
+  gap:6px; padding:6px 10px; border-radius:10px; background:var(--bg2);
+  border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.35);
+  white-space:nowrap; z-index:5;
+}
+.card .reactions-full span{display:inline-flex; align-items:center; gap:3px; color:var(--text2)}
+.card .reactions-mini:hover .reactions-collapsed{opacity:0}
+.card .reactions-mini:hover .reactions-full{display:inline-flex}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -232,22 +246,52 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
     });
   });
 
-  // Мини-виджет на карточках главной: суммарное число реакций по посту,
-  // без возможности проголосовать — только чтение.
+  // Мини-виджет на карточках главной: свёрнутый в один значок с общей суммой,
+  // при наведении разворачивается в полный список по каждому эмодзи.
+  // Только чтение — проголосовать можно лишь внутри самой статьи.
   document.querySelectorAll('.reactions-mini').forEach(function(mini){
     var slug = mini.getAttribute('data-slug');
+    var pending = EMOJI.length;
+    var counts = {};
+
     EMOJI.forEach(function(emoji){
       fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, emoji))
         .then(function(r){ return r.json(); })
-        .then(function(d){
-          if (!d.value) return;
-          var span = document.createElement('span');
-          span.textContent = emoji + ' ' + d.value;
-          mini.appendChild(span);
-        })
-        .catch(function(){});
+        .then(function(d){ counts[emoji] = d.value || 0; })
+        .catch(function(){ counts[emoji] = 0; })
+        .then(function(){
+          pending--;
+          if (pending === 0) renderMini(mini, counts);
+        });
     });
   });
+
+  function renderMini(mini, counts){
+    var total = 0, leader = null, leaderCount = -1;
+    EMOJI.forEach(function(emoji){
+      var c = counts[emoji] || 0;
+      total += c;
+      if (c > leaderCount){ leaderCount = c; leader = emoji; }
+    });
+    if (total === 0){ mini.classList.add('empty'); return; }
+
+    var collapsed = document.createElement('div');
+    collapsed.className = 'reactions-collapsed';
+    collapsed.textContent = leader + ' ' + total.toLocaleString();
+
+    var full = document.createElement('div');
+    full.className = 'reactions-full';
+    EMOJI.forEach(function(emoji){
+      var c = counts[emoji] || 0;
+      if (c === 0) return;
+      var span = document.createElement('span');
+      span.textContent = emoji + ' ' + c.toLocaleString();
+      full.appendChild(span);
+    });
+
+    mini.appendChild(collapsed);
+    mini.appendChild(full);
+  }
 })();
 </script>
 </body>
