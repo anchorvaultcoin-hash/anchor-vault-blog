@@ -43,6 +43,75 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
   .catch(function(){});
 </script>"""
 
+# Реакции на посты: общий счётчик через тот же Abacus, что и просмотры.
+# GET /get — читает без инкремента (для загрузки текущих цифр).
+# GET /hit — увеличивает на 1 (для клика). localStorage не даёт накрутить
+# один эмодзи с одного браузера больше одного раза — не защита от накрутки
+# вообще, но от случайного повторного клика бережёт.
+REACTION_EMOJI = ["🔥", "👍", "🤯"]
+
+REACTIONS_JS = """<script>
+(function(){
+  var NS = 'anchor-vault-blog';
+  var EMOJI = """ + repr(REACTION_EMOJI).replace("'", '"') + """;
+
+  function keyFor(slug, emoji){ return 'reactions-' + slug + '-' + encodeURIComponent(emoji); }
+  function votedKey(slug, emoji){ return 'reacted:' + slug + ':' + emoji; }
+
+  function renderCount(el, value){
+    el.textContent = value > 0 ? value.toLocaleString() : '';
+  }
+
+  function loadCounts(root){
+    var slug = root.getAttribute('data-slug');
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      var emoji = btn.getAttribute('data-emoji');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, emoji))
+        .then(function(r){ return r.json(); })
+        .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value || 0); })
+        .catch(function(){});
+      if (localStorage.getItem(votedKey(slug, emoji))) btn.classList.add('voted');
+    });
+  }
+
+  function vote(root, btn){
+    var slug = root.getAttribute('data-slug');
+    var emoji = btn.getAttribute('data-emoji');
+    if (localStorage.getItem(votedKey(slug, emoji))) return; // уже жал этот эмодзи
+    localStorage.setItem(votedKey(slug, emoji), '1');
+    btn.classList.add('voted');
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(slug, emoji))
+      .then(function(r){ return r.json(); })
+      .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value); })
+      .catch(function(){});
+  }
+
+  document.querySelectorAll('.reactions').forEach(function(root){
+    loadCounts(root);
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ vote(root, btn); });
+    });
+  });
+
+  // Мини-виджет на карточках главной: суммарное число реакций по посту,
+  // без возможности проголосовать — только чтение.
+  document.querySelectorAll('.reactions-mini').forEach(function(mini){
+    var slug = mini.getAttribute('data-slug');
+    EMOJI.forEach(function(emoji){
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, emoji))
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (!d.value) return;
+          var span = document.createElement('span');
+          span.textContent = emoji + ' ' + d.value;
+          mini.appendChild(span);
+        })
+        .catch(function(){});
+    });
+  });
+})();
+</script>"""
+
 SITE_NAME = "AnchorVaultCoin"
 BLOG_TITLE = "Блог о безопасности криптовалюты"
 BLOG_DESC = ("Разборы реальных краж, простые объяснения и практические советы "
@@ -141,6 +210,21 @@ footer.bottom .wrap{display:flex; justify-content:space-between; align-items:cen
 }
 .share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
 .share-btn svg{opacity:.85}
+.reactions{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0 0}
+.reaction-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 13px;
+  border:1px solid var(--border); border-radius:20px; background:var(--bg3);
+  color:var(--text2); font-size:14px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.reaction-btn:hover{border-color:var(--gold); background:var(--bg2)}
+.reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
+.reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
+.reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .reactions-mini{
+  display:flex; gap:6px; margin-top:8px; font-size:12px; color:var(--text2);
+}
+.card .reactions-mini span{display:inline-flex; align-items:center; gap:3px}
 main img{
   display:block; max-width:100%; height:auto; margin:30px auto 8px;
   border:1px solid var(--border); border-radius:12px; background:var(--bg2);
@@ -244,6 +328,7 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
   </div>
 </div></footer>
 {COUNTER_JS}
+{REACTIONS_JS}
 </body>
 </html>
 """
@@ -395,6 +480,10 @@ def main():
   <button class="share-btn" onclick="navigator.clipboard.writeText('{url}');this.textContent='{share_copied}'" type="button">{share_copy}</button>
 </div>
 
+<div class="reactions" data-slug="{slug}">
+{"".join(f'<button class="reaction-btn" data-emoji="{e}" type="button">{e}<span class="reaction-count"></span></button>' for e in REACTION_EMOJI)}
+</div>
+
 <hr>
 <p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
 где каждая операция подтверждается двумя отдельными ключами.
@@ -431,6 +520,7 @@ def main():
                     f'<h2>{html.escape(pp["title"])}</h2>'
                     f'<p>{html.escape(pp["desc"])}</p>'
                     f'<div class="meta">{pp["date"]}</div>'
+                    f'<div class="reactions-mini" data-slug="{pp["slug"]}"></div>'
                     f'</div>{thumb}</a>')
 
         cards = "\n".join(card(pp) for pp in lang_posts) or f"<p>{info['empty']}</p>"
