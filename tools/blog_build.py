@@ -75,7 +75,7 @@ REACTIONS_JS = """<script>
   function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
 
   function renderCount(el, value){
-    el.textContent = value > 0 ? value.toLocaleString() : '';
+    el.textContent = (value || 0).toLocaleString();
   }
 
   function loadCounts(root){
@@ -83,8 +83,14 @@ REACTIONS_JS = """<script>
     root.querySelectorAll('.reaction-btn').forEach(function(btn){
       var code = btn.getAttribute('data-code');
       fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
-        .then(function(r){ return r.json(); })
-        .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value || 0); })
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          // Счётчика может не быть вовсе (никто не голосовал) — это 404 и нормальный 0.
+          // А вот при 429/500 значение неизвестно, и затирать его нулём нельзя.
+          if (d && typeof d.value === 'number') {
+            renderCount(btn.querySelector('.reaction-count'), d.value);
+          }
+        })
         .catch(function(){});
       if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
     });
@@ -96,10 +102,24 @@ REACTIONS_JS = """<script>
     if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
     localStorage.setItem(votedKey(rkey, code), '1');
     btn.classList.add('voted');
+
+    function rollback(){
+      btn.classList.remove('voted');
+      localStorage.removeItem(votedKey(rkey, code));
+    }
+
     fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
-      .then(function(r){ return r.json(); })
-      .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value); })
-      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(rkey, code)); });
+      .then(function(r){
+        // 429 (лимит 30 запросов/10 сек) отдаёт валидный JSON с ошибкой,
+        // поэтому одного .catch мало — проверяем статус явно.
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function(d){
+        if (typeof d.value !== 'number') throw new Error('no value');
+        renderCount(btn.querySelector('.reaction-count'), d.value);
+      })
+      .catch(rollback);
   }
 
   document.querySelectorAll('.reactions').forEach(function(root){
@@ -536,7 +556,7 @@ def main():
 </div>
 
 <div class="reactions" data-rkey="{reaction_key(slug)}">
-{"".join(f'<button class="reaction-btn" data-code="{code}" type="button">{e}<span class="reaction-count"></span></button>' for e, code in REACTION_EMOJI)}
+{"".join(f'<button class="reaction-btn" data-code="{code}" type="button">{e}<span class="reaction-count">0</span></button>' for e, code in REACTION_EMOJI)}
 </div>
 
 <hr>
