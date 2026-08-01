@@ -48,15 +48,18 @@ fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
 # GET /hit — увеличивает на 1 (для клика). localStorage не даёт накрутить
 # один эмодзи с одного браузера больше одного раза — не защита от накрутки
 # вообще, но от случайного повторного клика бережёт.
-REACTION_EMOJI = ["🔥", "👍", "🤯"]
+# Abacus принимает в ключах только [A-Za-z0-9_\-.] — эмодзи туда положить нельзя
+# (сервер вернёт "Invalid key"). Поэтому у каждой реакции два значения:
+# сам эмодзи (для показа) и латинский код (для ключа счётчика).
+REACTION_EMOJI = [("🔥", "fire"), ("👍", "like"), ("🤯", "mind")]
 
 REACTIONS_JS = """<script>
 (function(){
   var NS = 'anchor-vault-blog';
-  var EMOJI = """ + repr(REACTION_EMOJI).replace("'", '"') + """;
+  var EMOJI = """ + repr(REACTION_EMOJI).replace("'", '"') + """; // [[emoji, code], ...]
 
-  function keyFor(slug, emoji){ return 'reactions-' + slug + '-' + encodeURIComponent(emoji); }
-  function votedKey(slug, emoji){ return 'reacted:' + slug + ':' + emoji; }
+  function keyFor(slug, code){ return 'reactions-' + slug + '-' + code; }
+  function votedKey(slug, code){ return 'reacted:' + slug + ':' + code; }
 
   function renderCount(el, value){
     el.textContent = value > 0 ? value.toLocaleString() : '';
@@ -65,25 +68,25 @@ REACTIONS_JS = """<script>
   function loadCounts(root){
     var slug = root.getAttribute('data-slug');
     root.querySelectorAll('.reaction-btn').forEach(function(btn){
-      var emoji = btn.getAttribute('data-emoji');
-      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, emoji))
+      var code = btn.getAttribute('data-code');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, code))
         .then(function(r){ return r.json(); })
         .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value || 0); })
         .catch(function(){});
-      if (localStorage.getItem(votedKey(slug, emoji))) btn.classList.add('voted');
+      if (localStorage.getItem(votedKey(slug, code))) btn.classList.add('voted');
     });
   }
 
   function vote(root, btn){
     var slug = root.getAttribute('data-slug');
-    var emoji = btn.getAttribute('data-emoji');
-    if (localStorage.getItem(votedKey(slug, emoji))) return; // уже жал этот эмодзи
-    localStorage.setItem(votedKey(slug, emoji), '1');
+    var code = btn.getAttribute('data-code');
+    if (localStorage.getItem(votedKey(slug, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(slug, code), '1');
     btn.classList.add('voted');
-    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(slug, emoji))
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(slug, code))
       .then(function(r){ return r.json(); })
       .then(function(d){ renderCount(btn.querySelector('.reaction-count'), d.value); })
-      .catch(function(){});
+      .catch(function(){ btn.classList.remove('voted'); localStorage.removeItem(votedKey(slug, code)); });
   }
 
   document.querySelectorAll('.reactions').forEach(function(root){
@@ -94,18 +97,19 @@ REACTIONS_JS = """<script>
   });
 
   // Мини-виджет на карточках главной: свёрнутый в один значок с общей суммой,
-  // при наведении разворачивается в полный список по каждому эмодзи.
+  // при наведении разворачивается в полный список по каждой реакции.
   // Только чтение — проголосовать можно лишь внутри самой статьи.
   document.querySelectorAll('.reactions-mini').forEach(function(mini){
     var slug = mini.getAttribute('data-slug');
     var pending = EMOJI.length;
     var counts = {};
 
-    EMOJI.forEach(function(emoji){
-      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, emoji))
+    EMOJI.forEach(function(pair){
+      var code = pair[1];
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(slug, code))
         .then(function(r){ return r.json(); })
-        .then(function(d){ counts[emoji] = d.value || 0; })
-        .catch(function(){ counts[emoji] = 0; })
+        .then(function(d){ counts[code] = d.value || 0; })
+        .catch(function(){ counts[code] = 0; })
         .then(function(){
           pending--;
           if (pending === 0) renderMini(mini, counts);
@@ -114,22 +118,24 @@ REACTIONS_JS = """<script>
   });
 
   function renderMini(mini, counts){
-    var total = 0, leader = null, leaderCount = -1;
-    EMOJI.forEach(function(emoji){
-      var c = counts[emoji] || 0;
+    var total = 0, leaderEmoji = null, leaderCount = -1;
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var c = counts[code] || 0;
       total += c;
-      if (c > leaderCount){ leaderCount = c; leader = emoji; }
+      if (c > leaderCount){ leaderCount = c; leaderEmoji = emoji; }
     });
     if (total === 0){ mini.classList.add('empty'); return; }
 
     var collapsed = document.createElement('div');
     collapsed.className = 'reactions-collapsed';
-    collapsed.textContent = leader + ' ' + total.toLocaleString();
+    collapsed.textContent = leaderEmoji + ' ' + total.toLocaleString();
 
     var full = document.createElement('div');
     full.className = 'reactions-full';
-    EMOJI.forEach(function(emoji){
-      var c = counts[emoji] || 0;
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var c = counts[code] || 0;
       if (c === 0) return;
       var span = document.createElement('span');
       span.textContent = emoji + ' ' + c.toLocaleString();
@@ -525,7 +531,7 @@ def main():
 </div>
 
 <div class="reactions" data-slug="{slug}">
-{"".join(f'<button class="reaction-btn" data-emoji="{e}" type="button">{e}<span class="reaction-count"></span></button>' for e in REACTION_EMOJI)}
+{"".join(f'<button class="reaction-btn" data-code="{code}" type="button">{e}<span class="reaction-count"></span></button>' for e, code in REACTION_EMOJI)}
 </div>
 
 <hr>
