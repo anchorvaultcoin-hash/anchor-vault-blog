@@ -51,10 +51,48 @@ API_URL = "https://api.deepseek.com/chat/completions"
 PORT = 8765
 LANGS = {"en": "English", "zh": "Simplified Chinese"}
 
-SYSTEM_PROMPT = """Translate the following text into {target_lang}.
-Preserve Markdown formatting (## headings, **bold**, paragraph breaks).
-Keep a calm, direct, non-marketing tone. Adapt idioms naturally.
-Output ONLY the translated text, nothing else — no notes, no original text, no labels."""
+# Раздельные промпты — китайский и английский тексты живут по разным правилам.
+# Синхронизировано с tools/translate_draft.py и tools/publish_all.py —
+# держать все три файла одинаковыми.
+
+_SHARED_RULES = """Preserve Markdown formatting exactly (## headings, **bold**, paragraph breaks,
+list markers). Keep every fact, number, date, and proper name unchanged — do not add,
+drop, or soften anything from the source. Do not translate: token tickers (USDC, USDT, ANCR),
+company and project names (Humanity Protocol, Pantera Capital), and URLs.
+Output ONLY the translated text — no notes, no original text, no labels like "Translation:"."""
+
+SYSTEM_PROMPTS = {
+    "zh": f"""You are a professional translator working from Russian/English into Simplified
+Chinese (简体中文, mainland China audience — never Traditional Chinese), specializing in
+crypto security and blockchain writing.
+
+Translate for meaning, not word-for-word. Avoid "翻译腔" (translation-ese, calques from the
+source language) — restructure sentences the way a native Chinese blog writer would, using
+natural connectors and rhythm. Style: 公众号-style tech/security writing — direct, confident,
+slightly punchy, short paragraphs. Headlines should be sharp, not descriptive.
+
+Standard terminology (use consistently): multisig → 多签, vault → 金库, exploit/hack → 攻击/漏洞利用,
+cold wallet → 冷钱包, seed phrase → 助记词, non-custodial → 非托管.
+
+A native Chinese reader should not be able to tell this is a translation.
+
+{_SHARED_RULES}""",
+
+    "en": f"""You are a professional translator working from Russian into English, specializing
+in crypto security and technical/blog writing for an international audience.
+
+Translate for meaning, not word-for-word. Russian sentences are often longer and more
+formal than natural English — break them up, cut filler, and use the plain, direct register
+a native English blog writer would use. Avoid stiff constructions that read as translated
+("it should be noted that", "the given"). Contractions are fine where they read naturally.
+Keep the calm, matter-of-fact tone of the source — this is security writing, not marketing copy.
+
+A native English reader should not be able to tell this is a translation.
+
+{_SHARED_RULES}""",
+}
+
+TRANSLATE_TEMPERATURE = 0.8
 
 # Сессия с trust_env=False: игнорирует системный SOCKS-прокси,
 # который на этой машине ломает запросы к API.
@@ -261,7 +299,7 @@ def translit(text):
     return "".join(table.get(ch, ch) for ch in text.lower())
 
 
-def call_deepseek(text, target_lang_name):
+def call_deepseek(text, target_lang):
     if not text.strip():
         return ""
     resp = SESSION.post(
@@ -270,10 +308,10 @@ def call_deepseek(text, target_lang_name):
         json={
             "model": "deepseek-chat",
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT.format(target_lang=target_lang_name)},
+                {"role": "system", "content": SYSTEM_PROMPTS[target_lang]},
                 {"role": "user", "content": text},
             ],
-            "temperature": 0.3,
+            "temperature": TRANSLATE_TEMPERATURE,
         },
         timeout=180,
     )
@@ -370,13 +408,13 @@ def publish(d, log):
     for lang, lang_name in LANGS.items():
         try:
             log.append(f"[{lang}] перевожу заголовок...")
-            t = clean(call_deepseek(title, lang_name))
+            t = clean(call_deepseek(title, lang))
             log.append(f"[{lang}] перевожу описание...")
-            ds = clean(call_deepseek(desc, lang_name))
+            ds = clean(call_deepseek(desc, lang))
             log.append(f"[{lang}] перевожу текст...")
-            b = call_deepseek(body, lang_name)
+            b = call_deepseek(body, lang)
 
-            cap = clean(call_deepseek(img_caption, lang_name)) if img_caption else ""
+            cap = clean(call_deepseek(img_caption, lang)) if img_caption else ""
             img_md_l = ""
             if d.get("img"):
                 img_md_l = f"![{cap or t}]({BLOG_URL}/img/{slug}{os.path.splitext(d.get('img_name') or '.jpg')[1].lower() or '.jpg'})"

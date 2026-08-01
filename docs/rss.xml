@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 01 Aug 2026 11:53:42 +0000</lastBuildDate>
+  <lastBuildDate>Sat, 01 Aug 2026 12:54:57 +0000</lastBuildDate>
   <item>
     <title>Мультиподпись не спасла: как $36 миллионов утекли из-за одного ноутбука</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html</link>
@@ -12,16 +12,16 @@
     <description>У них было шесть ключей вместо одного. Это должно было защитить. Разбираем, почему не защитило.</description>
   </item>
   <item>
-    <title>Multisignature didn&#x27;t save the day: how $36 million leaked because of a single laptop.</title>
-    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz-en.html</link>
-    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz-en.html</guid>
-    <description>They had six keys instead of one. That was supposed to provide protection. Let&#x27;s break down why it didn&#x27;t.</description>
+    <title>Multisig didn&#x27;t save them: how $36 million leaked from a single laptop</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html</guid>
+    <description>They had six keys instead of one. It was supposed to protect them. Here’s why it didn’t.</description>
   </item>
   <item>
-    <title>多重签名未能挽救：3600万美元如何因一台笔记本电脑而流失</title>
-    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz-zh.html</link>
-    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz-zh.html</guid>
-    <description>他们有六把钥匙，而不是一把。这本应起到保护作用。我们来分析一下为什么没能保护住。</description>
+    <title>多签也没用：一台笔记本，3600万美元就这么没了</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html</guid>
+    <description>他们用了六个密钥，而不是一个。本意是为了安全。我们来拆解一下，为什么这反而没防住。</description>
   </item>
   <item>
     <title>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов</title>

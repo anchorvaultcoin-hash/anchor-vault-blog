@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多签也没用：一台笔记本，3600万美元就这么没了 — AnchorVaultCoin</title>
+<meta name="description" content="他们用了六个密钥，而不是一个。本意是为了安全。我们来拆解一下，为什么这反而没防住。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html">
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多签也没用：一台笔记本，3600万美元就这么没了 — AnchorVaultCoin">
+<meta property="og:description" content="他们用了六个密钥，而不是一个。本意是为了安全。我们来拆解一下，为什么这反而没防住。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"多签也没用：一台笔记本，3600万美元就这么没了",
+"description":"他们用了六个密钥，而不是一个。本意是为了安全。我们来拆解一下，为什么这反而没防住。",
+"datePublished":"2026-08-01","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">博客</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">关于我们</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← 所有文章</a>
+<h1>多签也没用：一台笔记本，3600万美元就这么没了</h1>
+<div class="meta">2026-08-01</div>
+<p>如果有人跟你说过“改用多签吧，更安全”——那今天这个故事告诉你，这话只对了一半。</p>
+<p><img alt="六个密钥中的三个，就存在这台笔记本电脑上。一次入侵，多签阈值就被突破了。" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.png" />
+<em>六个密钥中的三个，就存在这台笔记本电脑上。一次入侵，多签阈值就被突破了。</em></p>
+<p>发生了什么</p>
+<p>2026年6月9日，Humanity Protocol项目被盗超过3600万美元的项目原生代币。这项目不是小打小闹——背后站着Pantera Capital和Jump Crypto，当时估值超过十亿美元。团队做对了该做的事：没有把金库密钥放在同一个地方。以太坊上的多签要求六签中至少三签。BNB Chain上则是五签中三签。</p>
+<p>多签的意义就在于此：你被偷走一个密钥，不够。得偷好几个，而且最好分散在不同的人、不同的设备、不同的地点手里。一台机器被攻破，不应该拖垮整个系统。</p>
+<p>但没奏效。以太坊上的六个密钥，全部放在一名员工的同一台笔记本电脑里。那台电脑被黑之后，攻击者手里一下就凑齐了签名所需的全部条件——不是一个密钥，而是直接三个。形式上，“六选三”的条件满足了。只不过这三个全来自同一个源头。</p>
+<p>攻击者把桥的所有者改成了自己，把代码换成了恶意版本，一次性转走了约1.41亿枚H代币。在BNB Chain上，他用同样的手法，五选三的密钥也一样搞定——把代码换成无限铸造的版本，凭空又多印了2亿枚代币。</p>
+<p>项目创始人后来向CoinDesk解释：部分密钥在配置过程中，不小心被卷进了那台被入侵设备的备份里。没人故意把它们放一起——这是配置过程中无意间发生的。</p>
+<p>代币暴跌超过80%。</p>
+<p>为什么这不是孤例</p>
+<p>看2026年的大型攻击事件，画面似曾相识。4月Drift Protocol被黑，损失2.85亿美元——同样不是代码漏洞，而是针对多签持有者的社会工程攻击，外加移除了更换签名者组成的时间锁。CertiK分析师在2026年上半年总结里直说：几乎一半的损失都集中在两起事件上，而这两起都和密钥管理及基础设施有关，不是智能合约的漏洞。</p>
+<p>重点在转移。以前是找代码里的bug。现在越来越多人冲着持有密钥的人去——以及这些密钥物理上放在哪里。</p>
+<p>真正的错误在哪</p>
+<p>不在签名数量上。六选三，这是正常且合理的方案。错误在于，“分开存放”和“分开配置”不是一回事。三个密钥存在数据库里三个不同的字段，但物理上——在同一块硬盘上，同一个密码保护下，同一个被入侵的进程都能访问。</p>
+<p>多签防的是单个密钥被盗。但如果一次设备失窃直接交出多个密钥，多签毫无办法。阈值数的是签名，不数这些签名从哪来的。</p>
+<p>能带走什么</p>
+<p>如果你有一套多密钥的方案，值得检查的不是“有几个密钥”，而是“它们物理上放在哪，谁能一次拿到不止一个”。一台被入侵的笔记本、一个被黑的云账户、一个能接触到全部的人——这已经不是多签了，这是一个密钥，只是切成几片又放回了同一个地方。</p>
+<p>第二点，是关于配置过程本身。密钥意外进了备份，不是有人做了这个决定，而是配置完之后没人检查东西落在了哪里。密钥分离不是配一次就永远有效的。它需要时不时亲手复查一遍：这些密钥是不是真的还分散着，还是半年下来在配置和备份之间，又悄悄聚到了一起。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F3600.html&text=%E5%A4%9A%E7%AD%BE%E4%B9%9F%E6%B2%A1%E7%94%A8%EF%BC%9A%E4%B8%80%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%8C3600%E4%B8%87%E7%BE%8E%E5%85%83%E5%B0%B1%E8%BF%99%E4%B9%88%E6%B2%A1%E4%BA%86%20%E2%80%94%20%E4%BB%96%E4%BB%AC%E7%94%A8%E4%BA%86%E5%85%AD%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E3%80%82%E6%9C%AC%E6%84%8F%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AE%89%E5%85%A8%E3%80%82%E6%88%91%E4%BB%AC%E6%9D%A5%E6%8B%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E5%8F%8D%E8%80%8C%E6%B2%A1%E9%98%B2%E4%BD%8F%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F3600.html&text=%E5%A4%9A%E7%AD%BE%E4%B9%9F%E6%B2%A1%E7%94%A8%EF%BC%9A%E4%B8%80%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%8C3600%E4%B8%87%E7%BE%8E%E5%85%83%E5%B0%B1%E8%BF%99%E4%B9%88%E6%B2%A1%E4%BA%86%20%E2%80%94%20%E4%BB%96%E4%BB%AC%E7%94%A8%E4%BA%86%E5%85%AD%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E3%80%82%E6%9C%AC%E6%84%8F%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AE%89%E5%85%A8%E3%80%82%E6%88%91%E4%BB%AC%E6%9D%A5%E6%8B%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E5%8F%8D%E8%80%8C%E6%B2%A1%E9%98%B2%E4%BD%8F%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E5%A4%9A%E7%AD%BE%E4%B9%9F%E6%B2%A1%E7%94%A8%EF%BC%9A%E4%B8%80%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%8C3600%E4%B8%87%E7%BE%8E%E5%85%83%E5%B0%B1%E8%BF%99%E4%B9%88%E6%B2%A1%E4%BA%86%20%E2%80%94%20%E4%BB%96%E4%BB%AC%E7%94%A8%E4%BA%86%E5%85%AD%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E3%80%82%E6%9C%AC%E6%84%8F%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AE%89%E5%85%A8%E3%80%82%E6%88%91%E4%BB%AC%E6%9D%A5%E6%8B%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E5%8F%8D%E8%80%8C%E6%B2%A1%E9%98%B2%E4%BD%8F%E3%80%82%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F3600.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2F3600.html&title=%E5%A4%9A%E7%AD%BE%E4%B9%9F%E6%B2%A1%E7%94%A8%EF%BC%9A%E4%B8%80%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%9C%AC%EF%BC%8C3600%E4%B8%87%E7%BE%8E%E5%85%83%E5%B0%B1%E8%BF%99%E4%B9%88%E6%B2%A1%E4%BA%86%20%E2%80%94%20%E4%BB%96%E4%BB%AC%E7%94%A8%E4%BA%86%E5%85%AD%E4%B8%AA%E5%AF%86%E9%92%A5%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E3%80%82%E6%9C%AC%E6%84%8F%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AE%89%E5%85%A8%E3%80%82%E6%88%91%E4%BB%AC%E6%9D%A5%E6%8B%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E5%8F%8D%E8%80%8C%E6%B2%A1%E9%98%B2%E4%BD%8F%E3%80%82" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/3600.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+</body>
+</html>
