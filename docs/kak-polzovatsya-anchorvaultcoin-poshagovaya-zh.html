@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何使用AnchorVaultCoin：新手分步指南 — AnchorVaultCoin</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html">
+
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用AnchorVaultCoin：新手分步指南 — AnchorVaultCoin">
+<meta property="og:description" content="">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+.reactions{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0 0}
+.reaction-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 13px;
+  border:1px solid var(--border); border-radius:20px; background:var(--bg3);
+  color:var(--text2); font-size:14px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.reaction-btn:hover{border-color:var(--gold); background:var(--bg2)}
+.reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
+.reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
+.reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .pin{font-size:15px; opacity:.9}
+.card .reactions-mini{
+  display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
+}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"如何使用AnchorVaultCoin：新手分步指南",
+"description":"",
+"datePublished":"2026-08-02","inLanguage":"ru",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>如何使用AnchorVaultCoin：新手分步指南</h1>
+<div class="meta">2026-08-02</div>
+<p>AnchorVaultCoin的设计初衷是让长期持有变得更简单、更安全。但记住：任何加密资产都有风险，只投入你能承受损失的钱。金库不会让你一夜暴富，但它能帮你在熊市中拿住筹码，在牛市中收获复利。</p>
+<p>祝你在加密世界里，走得稳，活得久。
+description: 简而言之——如何创建一个金库、存入和取出加密货币，以及如果丢失了密钥访问权限该怎么办。
+date: 2026-08-02
+lang: zh
+slug: kak-polzovatsya-anchorvaultcoin-poshagovaya-zh
+group: kak-polzovatsya-anchorvaultcoin-poshagovaya</p>
+<hr />
+<p>如果你曾经因为手机丢失、助记词泄露，或者一次手滑操作而提心吊胆，生怕自己的加密资产一夜归零——那这份指南就是为你准备的。AnchorVaultCoin 是一种全新类型的非托管钱包：钱始终在你手里，但想转走它，需要的不再是一个、而是两个独立授权。下面我们一步步拆解，看看它实际怎么运作。</p>
+<p>![AnchorVaultCoin 使用指南</p>
+<h2>什么是 AnchorVaultCoin？</h2>
+<p>AnchorVaultCoin（ANCR）是一个非托管的加密金库协议，用户可以把资产存进智能合约，享受自动化收益和安全保障。这里是一份完整的使用教程，从创建钱包到日常操作，一步步带你上手。</p>
+<h2>第一步：准备钱包</h2>
+<p>ANCR 运行在以太坊兼容网络上，所以你需要一个支持 EVM 的钱包，比如 MetaMask 或 Rabby。</p>
+<ol>
+<li>安装钱包插件或 App；</li>
+<li>创建新钱包，<strong>务必妥善备份助记词</strong>——这是你资产的唯一凭证，丢了谁也找不回来；</li>
+<li>往钱包里充入 ETH（用于支付 Gas 费）和你想存入金库的资产（比如 USDC、USDT）。</li>
+</ol>
+<h2>第二步：连接官网</h2>
+<p>打开 AnchorVaultCoin 的官方应用页面，点击右上角「连接钱包」。系统会弹出钱包授权窗口，确认签名即可完成连接。</p>
+<blockquote>
+<p>注意：<strong>一定要核对网址</strong>，钓鱼网站经常伪装成官方页面。建议把官网存进书签，不要从广告链接或陌生人发的消息里进入。</p>
+</blockquote>
+<h2>第三步：存入资产</h2>
+<ol>
+<li>在首页选择你想存入的金库（比如稳定币金库或 ANCR 质押池）；</li>
+<li>输入存入金额，系统会显示预估收益和锁定期；</li>
+<li>点击「存入」并确认钱包里的交易；</li>
+<li>等待链上确认，完成后你的资产就进入金库，开始自动赚取收益。</li>
+</ol>
+<h2>第四步：查看收益</h2>
+<p>存入成功后，你会在仪表盘看到：
+- 当前本金；
+- 累计收益（实时更新）；
+- 年化收益率（APY）；
+- 可提取金额。</p>
+<p>收益会自动复投，不需要手动操作。</p>
+<h2>第五步：提取资产</h2>
+<p>当你需要取出资金时：</p>
+<ol>
+<li>进入「我的金库」页面；</li>
+<li>选择要提取的资产和金额；</li>
+<li>如果金库有锁定期，注意查看解锁时间——提前提取可能会收取罚金；</li>
+<li>点击「提取」，确认交易，资产会直接打回你的钱包。</li>
+</ol>
+<h2>安全提示</h2>
+<ul>
+<li><strong>助记词永远不要告诉任何人</strong>，官方客服绝不会找你要助记词；</li>
+<li>涉及大额操作前，先小额测试一遍流程；</li>
+<li>定期检查钱包授权，把不用的合约授权撤销掉；</li>
+<li>遇到「送币」「翻倍」之类的消息，直接无视。</li>
+</ul>
+<h2>常见问题</h2>
+<p><strong>问：ANCR 安全吗？</strong>
+答：协议代码经过审计，但任何 DeFi 都有风险。建议只投入你能承受损失的资金，不要把鸡蛋放在一个篮子里。</p>
+<p><strong>问：Gas 费太高怎么办？</strong>
+答：选择网络空闲时段交易（比如周末或深夜），或者用支持 EIP-1559 的钱包自行调整手续费。</p>
+<p><strong>问：可以用冷钱包连接吗？</strong>
+答：可以。Ledger 或 Trezor 这类硬件钱包连接后使用体验一样，安全性更高，适合大额持仓。</p>
+<hr />
+<p>现在你已经知道怎么用了。从一笔小额开始，熟悉流程后再逐步加仓。记住：在加密世界，安全永远第一。](https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-anchorvaultcoin-poshagovaya.jpg)
+*AnchorVaultCoin 使用指南</p>
+<h2>什么是 AnchorVaultCoin？</h2>
+<p>AnchorVaultCoin（ANCR）是一个非托管的加密金库协议，用户可以把资产存进智能合约，享受自动化收益和安全保障。这里是一份完整的使用教程，从创建钱包到日常操作，一步步带你上手。</p>
+<h2>第一步：准备钱包</h2>
+<p>ANCR 运行在以太坊兼容网络上，所以你需要一个支持 EVM 的钱包，比如 MetaMask 或 Rabby。</p>
+<ol>
+<li>安装钱包插件或 App；</li>
+<li>创建新钱包，<strong>务必妥善备份助记词</strong>——这是你资产的唯一凭证，丢了谁也找不回来；</li>
+<li>往钱包里充入 ETH（用于支付 Gas 费）和你想存入金库的资产（比如 USDC、USDT）。</li>
+</ol>
+<h2>第二步：连接官网</h2>
+<p>打开 AnchorVaultCoin 的官方应用页面，点击右上角「连接钱包」。系统会弹出钱包授权窗口，确认签名即可完成连接。</p>
+<blockquote>
+<p>注意：<strong>一定要核对网址</strong>，钓鱼网站经常伪装成官方页面。建议把官网存进书签，不要从广告链接或陌生人发的消息里进入。</p>
+</blockquote>
+<h2>第三步：存入资产</h2>
+<ol>
+<li>在首页选择你想存入的金库（比如稳定币金库或 ANCR 质押池）；</li>
+<li>输入存入金额，系统会显示预估收益和锁定期；</li>
+<li>点击「存入」并确认钱包里的交易；</li>
+<li>等待链上确认，完成后你的资产就进入金库，开始自动赚取收益。</li>
+</ol>
+<h2>第四步：查看收益</h2>
+<p>存入成功后，你会在仪表盘看到：
+- 当前本金；
+- 累计收益（实时更新）；
+- 年化收益率（APY）；
+- 可提取金额。</p>
+<p>收益会自动复投，不需要手动操作。</p>
+<h2>第五步：提取资产</h2>
+<p>当你需要取出资金时：</p>
+<ol>
+<li>进入「我的金库」页面；</li>
+<li>选择要提取的资产和金额；</li>
+<li>如果金库有锁定期，注意查看解锁时间——提前提取可能会收取罚金；</li>
+<li>点击「提取」，确认交易，资产会直接打回你的钱包。</li>
+</ol>
+<h2>安全提示</h2>
+<ul>
+<li><strong>助记词永远不要告诉任何人</strong>，官方客服绝不会找你要助记词；</li>
+<li>涉及大额操作前，先小额测试一遍流程；</li>
+<li>定期检查钱包授权，把不用的合约授权撤销掉；</li>
+<li>遇到「送币」「翻倍」之类的消息，直接无视。</li>
+</ul>
+<h2>常见问题</h2>
+<p><strong>问：ANCR 安全吗？</strong>
+答：协议代码经过审计，但任何 DeFi 都有风险。建议只投入你能承受损失的资金，不要把鸡蛋放在一个篮子里。</p>
+<p><strong>问：Gas 费太高怎么办？</strong>
+答：选择网络空闲时段交易（比如周末或深夜），或者用支持 EIP-1559 的钱包自行调整手续费。</p>
+<p><strong>问：可以用冷钱包连接吗？</strong>
+答：可以。Ledger 或 Trezor 这类硬件钱包连接后使用体验一样，安全性更高，适合大额持仓。</p>
+<hr />
+<p>现在你已经知道怎么用了。从一笔小额开始，熟悉流程后再逐步加仓。记住：在加密世界，安全永远第一。*</p>
+<p>用大白话讲清楚 AnchorVaultCoin 是什么</p>
+<p>传统加密钱包的逻辑很简单：一把钥匙（助记词）＝全部控制权。助记词被偷，资产全没。这也是加密圈绝大多数被盗案的根源。</p>
+<p>AnchorVaultCoin 的设计完全不同。你的资产存放在智能合约里的一个专属“保险库”中，任何操作——提现、转账、修改设置——都需要一把独立的授权密钥来签名，而这把密钥和你的钱包无关。就算助记词泄露了，攻击者也拿不走钱：他手里根本没有第二把钥匙。</p>
+<p>如何创建保险库——分步操作</p>
+<ul>
+<li><strong>连接钱包。</strong> 和用其他 DeFi 服务一样，连上 MetaMask 或同类钱包即可。</li>
+<li><strong>开一个新保险库。</strong> 选择等级：SAFE、VAULT 或 FORTRESS——三者手续费和可用的时间锁不同（详见下文）。</li>
+<li><strong>设置一个备用（emergency）地址。</strong> 这是用于极端情况的收款地址：万一你同时丢了两个密钥，资金会被打到这里。该地址只能设置一次；之后想改也可以，但必须等 7 天延迟生效——防止有人在你不知情的情况下偷换地址。</li>
+<li><strong>存入资产。</strong> 支持广泛的 ERC-20 代币——不只是标准的 18 位小数代币，像 USDC、WBTC 这类也都能存。</li>
+</ul>
+<p>如何提现</p>
+<p>常规提现只需要主授权密钥（main key）签名——这是日常操作，手续费最低。如果接收方希望“再多一道确认”，可以选择接收方确认的快速转账（quick transfer），或者更谨慎的 48 小时托管转账（secure transfer）。</p>
+<p>密钥丢了怎么办</p>
+<p>这是加密用户最普遍的恐惧——而紧急退出功能就是为这个场景设计的。</p>
+<p><strong>panicWithdraw</strong> 是一笔完全不需要签名的操作。任何人都可以从任意地址调用它。但有两道关键限制，保证它不会变成漏洞：</p>
+<ul>
+<li>资金只会被打到你事先设定的备用地址——绝不会进入调用者的钱包。</li>
+<li>会扣除 20% 的罚金——这是为“无需签名即可触发紧急退出”所付出的代价。</li>
+</ul>
+<p>也就是说，就算攻击者拿到了你的主钱包（但不知道备用地址、也没有授权密钥），他能做的极限就是把你的钱强制打到你的备用地址上，自己还得倒贴 20% 的罚金。钱，他一分都偷不走。</p>
+<p>保险库等级与手续费</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>手续费（开库/存入）</th>
+<th>最大时间锁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAFE</td>
+<td>0.50%</td>
+<td>无</td>
+</tr>
+<tr>
+<td>VAULT</td>
+<td>1.50%</td>
+<td>最长 72 小时</td>
+</tr>
+<tr>
+<td>FORTRESS</td>
+<td>2.00%</td>
+<td>最长 168 小时</td>
+</tr>
+</tbody>
+</table>
+<p>全部操作及费率明细</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>手续费</th>
+<th>谁签名</th>
+<th>资金去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常规提现</td>
+<td>0.50%</td>
+<td>主密钥</td>
+<td>任意地址</td>
+</tr>
+<tr>
+<td>快速转账</td>
+<td>0.50%</td>
+<td>主密钥 + 接收方确认</td>
+<td>接收方</td>
+</tr>
+<tr>
+<td>安全转账</td>
+<td>0.50%</td>
+<td>主密钥 + 接收方确认</td>
+<td>接收方</td>
+</tr>
+<tr>
+<td>提前关闭</td>
+<td>5%</td>
+<td>备用密钥</td>
+<td>所有者</td>
+</tr>
+<tr>
+<td>退回备用地址</td>
+<td>10%</td>
+<td>备用密钥</td>
+<td>备用地址</td>
+</tr>
+<tr>
+<td>紧急提现</td>
+<td>15%</td>
+<td>备用密钥</td>
+<td>任意地址</td>
+</tr>
+<tr>
+<td>恐慌提现（免签名）</td>
+<td>20%</td>
+<td>无需签名</td>
+<td>仅限备用地址</td>
+</tr>
+</tbody>
+</table>
+<p>独立审计验证中</p>
+<p>该智能合约目前正在接受 Hexens（hexens.io）的独立安全审计——这是加密行业里知名的审计机构之一，项目入选了他们的 Builder Support Ecosystem Program。截至本文发布，审计已进入最后阶段：初版报告已出，反馈问题已修复，正在复测中。最终报告尚未发布——在那之前，任何声称“审计已通过”的说法都为时过早，我们也不会做这种表态。</p>
+<p>常见问题解答</p>
+<p><strong>这是非托管钱包吗？</strong>
+是的。只有所有者通过自己的授权密钥才能操作保险库。项目方没有权限触碰任何用户的资金——这不是一句空话，而是写死在合约架构里的。</p>
+<p><strong>如果我两个密钥同时丢了怎么办？</strong>
+那就用恐慌提现——这是唯一不需要签名的操作。资金不会“烧掉”，也不会永远锁死——它们会安全回到你的备用地址。</p>
+<p><strong>只能存 ANCR 吗？</strong>
+不是，支持多种 ERC-20 代币。</p>
+<p><strong>什么时候上线主网？</strong>
+主网启动必须等最终审计报告出炉——这是项目方的底线原则。</p>
+<p>网站：
+https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html</p>
+<p>Telegram：
+https://t.me/AnchorVaultCoin</p>
+<p>X：
+https://x.com/Anchorvaultcoin</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html&text=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8AnchorVaultCoin%EF%BC%9A%E6%96%B0%E6%89%8B%E5%88%86%E6%AD%A5%E6%8C%87%E5%8D%97" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html&text=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8AnchorVaultCoin%EF%BC%9A%E6%96%B0%E6%89%8B%E5%88%86%E6%AD%A5%E6%8C%87%E5%8D%97" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8AnchorVaultCoin%EF%BC%9A%E6%96%B0%E6%89%8B%E5%88%86%E6%AD%A5%E6%8C%87%E5%8D%97%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html&title=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8AnchorVaultCoin%EF%BC%9A%E6%96%B0%E6%89%8B%E5%88%86%E6%AD%A5%E6%8C%87%E5%8D%97" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html');this.textContent='Скопировано'" type="button">Скопировать ссылку</button>
+</div>
+
+<div class="reactions" data-rkey="1d88b0ea825ed7ee">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+<script>
+(function(){
+  var NS = 'anchor-vault-blog';
+  var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
+
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
+
+  function renderCount(el, value){
+    el.textContent = (value || 0).toLocaleString();
+  }
+
+  function loadCounts(root){
+    var rkey = root.getAttribute('data-rkey');
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      var code = btn.getAttribute('data-code');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          // Счётчика может не быть вовсе (никто не голосовал) — это 404 и нормальный 0.
+          // А вот при 429/500 значение неизвестно, и затирать его нулём нельзя.
+          if (d && typeof d.value === 'number') {
+            renderCount(btn.querySelector('.reaction-count'), d.value);
+          }
+        })
+        .catch(function(){});
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
+    });
+  }
+
+  function vote(root, btn){
+    var rkey = root.getAttribute('data-rkey');
+    var code = btn.getAttribute('data-code');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
+    btn.classList.add('voted');
+
+    function rollback(){
+      btn.classList.remove('voted');
+      localStorage.removeItem(votedKey(rkey, code));
+    }
+
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
+      .then(function(r){
+        // 429 (лимит 30 запросов/10 сек) отдаёт валидный JSON с ошибкой,
+        // поэтому одного .catch мало — проверяем статус явно.
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function(d){
+        if (typeof d.value !== 'number') throw new Error('no value');
+        renderCount(btn.querySelector('.reaction-count'), d.value);
+      })
+      .catch(rollback);
+  }
+
+  document.querySelectorAll('.reactions').forEach(function(root){
+    loadCounts(root);
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ vote(root, btn); });
+    });
+  });
+
+  // Виджет на карточках главной. Только чтение, без кликов.
+  //
+  // ВАЖНО: у Abacus лимит 30 запросов с IP за 10 секунд. На главной может быть
+  // 18+ постов x 3 реакции = 54+ запроса. Если слать их разом, часть отвалится
+  // и счётчики покажут нули. Поэтому: сначала берём из кэша (мгновенно),
+  // затем догружаем очередью по одному запросу раз в 350 мс.
+  var CACHE_TTL = 5 * 60 * 1000; // 5 минут
+  var queue = [];
+  var queueRunning = false;
+
+  function cacheGet(key){
+    try {
+      var raw = localStorage.getItem('rc:' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.t > CACHE_TTL) return null;
+      return obj.v;
+    } catch(e){ return null; }
+  }
+
+  function cacheSet(key, value){
+    try { localStorage.setItem('rc:' + key, JSON.stringify({v: value, t: Date.now()})); } catch(e){}
+  }
+
+  function runQueue(){
+    if (queueRunning || queue.length === 0) return;
+    queueRunning = true;
+    var job = queue.shift();
+    fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + job.key)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (d && typeof d.value === 'number'){
+          cacheSet(job.key, d.value);
+          job.span.textContent = job.emoji + ' ' + d.value;
+        }
+      })
+      .catch(function(){})
+      .then(function(){
+        queueRunning = false;
+        setTimeout(runQueue, 350); // ~3 запроса/сек, с запасом под лимит
+      });
+  }
+
+  document.querySelectorAll('.reactions-mini').forEach(function(mini){
+    var rkey = mini.getAttribute('data-rkey');
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var key = keyFor(rkey, code);
+      var span = document.createElement('span');
+      var cached = cacheGet(key);
+      span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
+      mini.appendChild(span);
+      queue.push({key: key, span: span, emoji: emoji});
+    });
+  });
+  runQueue();
+})();
+</script>
+</body>
+</html>
