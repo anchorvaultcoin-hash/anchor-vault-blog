@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制 — AnchorVaultCoin</title>
+<meta name="description" content="普通加密钱包里最危险的情况很简单：一旦攻击者拿到你的私钥或助记词，他就能完全掌控你的资产。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制 — AnchorVaultCoin">
+<meta property="og:description" content="普通加密钱包里最危险的情况很简单：一旦攻击者拿到你的私钥或助记词，他就能完全掌控你的资产。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+.reactions{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0 0}
+.reaction-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 13px;
+  border:1px solid var(--border); border-radius:20px; background:var(--bg3);
+  color:var(--text2); font-size:14px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.reaction-btn:hover{border-color:var(--gold); background:var(--bg2)}
+.reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
+.reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
+.reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .pin{font-size:15px; opacity:.9}
+.card .reactions-mini{
+  display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
+}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制",
+"description":"普通加密钱包里最危险的情况很简单：一旦攻击者拿到你的私钥或助记词，他就能完全掌控你的资产。",
+"datePublished":"2026-08-03","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">博客</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">关于我们</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← 所有文章</a>
+<h1>如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制</h1>
+<div class="meta">2026-08-03</div>
+<h2>核心理念</h2>
+<p><img alt="2把安全密钥" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.jpg" />
+<em>2把安全密钥</em></p>
+<p>普通加密钱包最危险的情况其实很简单：一旦攻击者拿到了私钥或助记词，他就能完全控制这个钱包里的资产。</p>
+<p>所以，安全问题应该换个问法：</p>
+<p><strong>如果某个密钥真的被盗了，会发生什么？</strong></p>
+<p>这才是访问分离的意义所在。</p>
+<p>在 AnchorVaultCoin 中，一个金库使用三个不同的地址：</p>
+<p>🔑 <strong>工作密钥</strong> — 用于日常操作。</p>
+<p>🔐 <strong>备用密钥</strong> — 单独存放，作为独立的第二层验证。</p>
+<p>🚨 <strong>应急地址</strong> — 用于紧急退出路径的独立地址。</p>
+<p>这三个地址必须互不相同。</p>
+<p>这不是走形式。如果多个角色被同一个钱包控制，分离就没有任何意义了。</p>
+<h2>场景一：工作钱包的助记词被盗</h2>
+<p>假设攻击者拿到了工作钱包的助记词。</p>
+<p>这是个严重的问题：对应的钱包不能再被视为安全。</p>
+<p>但对于 AnchorVaultCoin 的受保护操作来说，如果该操作需要第二个密钥进行独立授权，光有工作密钥是不够的。</p>
+<p>结论是：</p>
+<p>工作密钥被泄露 → 备用密钥仍然独立 → 仅凭一个被盗的密钥无法完成此类操作。</p>
+<p>这就是为什么不能把工作密钥和备用密钥放在一起，也不能用同一个钱包承担两个角色。</p>
+<h2>场景二：工作钱包的私钥被盗</h2>
+<p>结果类似。</p>
+<p>私钥可以控制对应的外部钱包。因此，这个密钥必须被视为已泄露。</p>
+<p>但只要第二个独立密钥在另一个钱包里且没有被泄露，攻击者就无法自动获得完整的授权信息。</p>
+<p>一个密钥丢了——第二道防线还在所有者手里。</p>
+<p>这就是&rdquo;无单点故障&rdquo;原则。</p>
+<h2>场景三：工作电脑中毒</h2>
+<p>换个场景。</p>
+<p>用户在一台电脑上处理加密货币，而这台电脑同时用来上网、下载和其他日常任务。</p>
+<p>如果设备被入侵，风险不仅仅来自助记词。钱包访问、会话数据和用户操作本身都可能受影响。</p>
+<p>密钥分离并不会让中毒的设备变得安全。</p>
+<p>所以，防护必须是多层级的：</p>
+<p><strong>安全设备 + 密钥分开存放 + 权限分离。</strong></p>
+<p>AnchorVaultCoin 只是这套体系中的一层。</p>
+<h2>场景四：用户丢失了工作密钥</h2>
+<p>这次不是攻击场景。</p>
+<p>你丢失了工作钱包的访问权限。</p>
+<p>这确实很麻烦，但备用密钥就是为这种情况准备的。</p>
+<p>如果备用密钥是单独创建并存放在安全的地方，它就是系统中一个独立的环节。</p>
+<p>因此，丢失工作密钥不应该自动意味着失去对整个金库的访问权。</p>
+<h2>场景五：工作密钥被盗，但备用密钥安然无恙</h2>
+<p>这是这套架构存在的核心场景之一。</p>
+<p>攻击者拿到了第一个密钥。</p>
+<p>所有者手里还有第二个。</p>
+<p>原则就是：</p>
+<p><strong>1 个被泄露的密钥 ≠ 对金库的完全控制。</strong></p>
+<p>但前提是：第二个密钥真正独立，没有和第一个一起泄露。</p>
+<h2>场景六：两个密钥都被盗</h2>
+<p>这里必须说实话。</p>
+<p>如果攻击者拿到了操作授权所需的两个独立密钥，没人能保证系统会神奇地保住资金。</p>
+<p>这就是物理分离如此重要的原因。</p>
+<p>不要把两个密钥存放在：</p>
+<ul>
+<li>同一个地方；</li>
+<li>同一台设备上；</li>
+<li>同一份备份里；</li>
+<li>同一个云存储中；</li>
+<li>和同一个助记词放在一起。</li>
+</ul>
+<p>两个密钥必须始终是两道独立的防线。</p>
+<h2>场景七：两个密钥都丢了</h2>
+<p>这是另一种情况。</p>
+<p>如果所有者同时失去了工作密钥和备用密钥的访问权，还有应急地址。</p>
+<p>它不是为日常使用设计的。</p>
+<p>它的角色是作为紧急退出路径的独立地址。</p>
+<p>整体结构是这样的：</p>
+<p><strong>工作密钥</strong> → 日常管理</p>
+<p><strong>备用密钥</strong> → 独立储备</p>
+<p><strong>应急地址</strong> → 最后手段</p>
+<p>核心规则不变：</p>
+<p><strong>三个地址必须互不相同。</strong></p>
+<h2>场景八：为什么不能一个钱包搞定一切？</h2>
+<p>乍一看，一个钱包更简单。</p>
+<p>一个钱包。</p>
+<p>一个助记词。</p>
+<p>一个地址。</p>
+<p>但这恰恰制造了单点故障。</p>
+<p>一旦这个唯一的访问入口被攻破，整个系统立刻面临风险。</p>
+<p>分离做的事情正好相反：</p>
+<p><strong>一个环节丢失或被泄露，不会自动变成所有环节都被攻破。</strong></p>
+<h2>场景九：攻击者只知道金库地址怎么办？</h2>
+<p>公开地址本身不是私钥。</p>
+<p>它只能用来查看链上的余额和资金流向。</p>
+<p>但知道地址 ≠ 拥有操作授权的密钥。</p>
+<p>不过，地址的公开性确实会暴露余额和活动信息，所以用户要谨慎对待自己发布地址的地方。</p>
+<h2>AnchorVaultCoin 真正想改变什么</h2>
+<p>常规逻辑通常是这样的：</p>
+<p><strong>一个钱包 → 一个密钥 → 一次失误 = 大麻烦。</strong></p>
+<p>这里的思路不同：</p>
+<p><strong>工作密钥 + 独立备用密钥 + 单独的应急地址。</strong></p>
+<p>目标不是承诺&rdquo;绝对无法被攻破&rdquo;。</p>
+<p>目标是降低单一环节被攻破后的损失。</p>
+<p>正因为如此，AnchorVaultCoin 的安全性不仅取决于代码，还取决于所有者如何组织自己的密钥。</p>
+<h2>所有者的核心准则</h2>
+<p>如果你创建了一个金库，不要把三个地址当成三个随手填写的字段。</p>
+<p>这是三个不同的角色。</p>
+<p><strong>工作密钥</strong> — 日常使用。</p>
+<p><strong>备用密钥</strong> — 单独存放。</p>
+<p><strong>应急地址</strong> — 作为极端情况下的独立通道。</p>
+<p>永远不要把这三个角色合并到同一个钱包里。</p>
+<p>密钥和存放位置分离得越彻底，一个环节出问题演变成整个金库失控的概率就越低。</p>
+<p>在使用任何加密货币存储系统之前，务必查阅其最新文档，搞清楚哪些操作需要哪些密钥。</p>
+<p>关于 AnchorVaultCoin 的工作原理和当前版本，可以访问项目官网了解更多。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html&text=%E5%A6%82%E6%9E%9C%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%E8%A2%AB%E7%9B%97%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%20AnchorVaultCoin%20%E7%9A%84%E9%98%B2%E6%8A%A4%E6%9C%BA%E5%88%B6%20%E2%80%94%20%E6%99%AE%E9%80%9A%E5%8A%A0%E5%AF%86%E9%92%B1%E5%8C%85%E9%87%8C%E6%9C%80%E5%8D%B1%E9%99%A9%E7%9A%84%E6%83%85%E5%86%B5%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E4%B8%80%E6%97%A6%E6%94%BB%E5%87%BB%E8%80%85%E6%8B%BF%E5%88%B0%E4%BD%A0%E7%9A%84%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E4%BB%96%E5%B0%B1%E8%83%BD%E5%AE%8C%E5%85%A8%E6%8E%8C%E6%8E%A7%E4%BD%A0%E7%9A%84%E8%B5%84%E4%BA%A7%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html&text=%E5%A6%82%E6%9E%9C%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%E8%A2%AB%E7%9B%97%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%20AnchorVaultCoin%20%E7%9A%84%E9%98%B2%E6%8A%A4%E6%9C%BA%E5%88%B6%20%E2%80%94%20%E6%99%AE%E9%80%9A%E5%8A%A0%E5%AF%86%E9%92%B1%E5%8C%85%E9%87%8C%E6%9C%80%E5%8D%B1%E9%99%A9%E7%9A%84%E6%83%85%E5%86%B5%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E4%B8%80%E6%97%A6%E6%94%BB%E5%87%BB%E8%80%85%E6%8B%BF%E5%88%B0%E4%BD%A0%E7%9A%84%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E4%BB%96%E5%B0%B1%E8%83%BD%E5%AE%8C%E5%85%A8%E6%8E%8C%E6%8E%A7%E4%BD%A0%E7%9A%84%E8%B5%84%E4%BA%A7%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E5%A6%82%E6%9E%9C%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%E8%A2%AB%E7%9B%97%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%20AnchorVaultCoin%20%E7%9A%84%E9%98%B2%E6%8A%A4%E6%9C%BA%E5%88%B6%20%E2%80%94%20%E6%99%AE%E9%80%9A%E5%8A%A0%E5%AF%86%E9%92%B1%E5%8C%85%E9%87%8C%E6%9C%80%E5%8D%B1%E9%99%A9%E7%9A%84%E6%83%85%E5%86%B5%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E4%B8%80%E6%97%A6%E6%94%BB%E5%87%BB%E8%80%85%E6%8B%BF%E5%88%B0%E4%BD%A0%E7%9A%84%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E4%BB%96%E5%B0%B1%E8%83%BD%E5%AE%8C%E5%85%A8%E6%8E%8C%E6%8E%A7%E4%BD%A0%E7%9A%84%E8%B5%84%E4%BA%A7%E3%80%82%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html&title=%E5%A6%82%E6%9E%9C%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%E8%A2%AB%E7%9B%97%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90%20AnchorVaultCoin%20%E7%9A%84%E9%98%B2%E6%8A%A4%E6%9C%BA%E5%88%B6%20%E2%80%94%20%E6%99%AE%E9%80%9A%E5%8A%A0%E5%AF%86%E9%92%B1%E5%8C%85%E9%87%8C%E6%9C%80%E5%8D%B1%E9%99%A9%E7%9A%84%E6%83%85%E5%86%B5%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E4%B8%80%E6%97%A6%E6%94%BB%E5%87%BB%E8%80%85%E6%8B%BF%E5%88%B0%E4%BD%A0%E7%9A%84%E7%A7%81%E9%92%A5%E6%88%96%E5%8A%A9%E8%AE%B0%E8%AF%8D%EF%BC%8C%E4%BB%96%E5%B0%B1%E8%83%BD%E5%AE%8C%E5%85%A8%E6%8E%8C%E6%8E%A7%E4%BD%A0%E7%9A%84%E8%B5%84%E4%BA%A7%E3%80%82" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
+<div class="reactions" data-rkey="dd3ef8ddebdb36d2">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+<script>
+(function(){
+  var NS = 'anchor-vault-blog';
+  var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
+
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
+
+  function renderCount(el, value){
+    el.textContent = (value || 0).toLocaleString();
+  }
+
+  function loadCounts(root){
+    var rkey = root.getAttribute('data-rkey');
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      var code = btn.getAttribute('data-code');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          // Счётчика может не быть вовсе (никто не голосовал) — это 404 и нормальный 0.
+          // А вот при 429/500 значение неизвестно, и затирать его нулём нельзя.
+          if (d && typeof d.value === 'number') {
+            renderCount(btn.querySelector('.reaction-count'), d.value);
+          }
+        })
+        .catch(function(){});
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
+    });
+  }
+
+  function vote(root, btn){
+    var rkey = root.getAttribute('data-rkey');
+    var code = btn.getAttribute('data-code');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
+    btn.classList.add('voted');
+
+    function rollback(){
+      btn.classList.remove('voted');
+      localStorage.removeItem(votedKey(rkey, code));
+    }
+
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
+      .then(function(r){
+        // 429 (лимит 30 запросов/10 сек) отдаёт валидный JSON с ошибкой,
+        // поэтому одного .catch мало — проверяем статус явно.
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function(d){
+        if (typeof d.value !== 'number') throw new Error('no value');
+        renderCount(btn.querySelector('.reaction-count'), d.value);
+      })
+      .catch(rollback);
+  }
+
+  document.querySelectorAll('.reactions').forEach(function(root){
+    loadCounts(root);
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ vote(root, btn); });
+    });
+  });
+
+  // Виджет на карточках главной. Только чтение, без кликов.
+  //
+  // ВАЖНО: у Abacus лимит 30 запросов с IP за 10 секунд. На главной может быть
+  // 18+ постов x 3 реакции = 54+ запроса. Если слать их разом, часть отвалится
+  // и счётчики покажут нули. Поэтому: сначала берём из кэша (мгновенно),
+  // затем догружаем очередью по одному запросу раз в 350 мс.
+  var CACHE_TTL = 5 * 60 * 1000; // 5 минут
+  var queue = [];
+  var queueRunning = false;
+
+  function cacheGet(key){
+    try {
+      var raw = localStorage.getItem('rc:' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.t > CACHE_TTL) return null;
+      return obj.v;
+    } catch(e){ return null; }
+  }
+
+  function cacheSet(key, value){
+    try { localStorage.setItem('rc:' + key, JSON.stringify({v: value, t: Date.now()})); } catch(e){}
+  }
+
+  function runQueue(){
+    if (queueRunning || queue.length === 0) return;
+    queueRunning = true;
+    var job = queue.shift();
+    fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + job.key)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (d && typeof d.value === 'number'){
+          cacheSet(job.key, d.value);
+          job.span.textContent = job.emoji + ' ' + d.value;
+        }
+      })
+      .catch(function(){})
+      .then(function(){
+        queueRunning = false;
+        setTimeout(runQueue, 350); // ~3 запроса/сек, с запасом под лимит
+      });
+  }
+
+  document.querySelectorAll('.reactions-mini').forEach(function(mini){
+    var rkey = mini.getAttribute('data-rkey');
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var key = keyFor(rkey, code);
+      var span = document.createElement('span');
+      var cached = cacheGet(key);
+      span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
+      mini.appendChild(span);
+      queue.push({key: key, span: span, emoji: emoji});
+    });
+  });
+  runQueue();
+})();
+</script>
+</body>
+</html>

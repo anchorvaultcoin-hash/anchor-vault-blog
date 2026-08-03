@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections. — AnchorVaultCoin</title>
+<meta name="description" content="The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets hold of your private key or seed phrase, they can take full control of your funds.">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections. — AnchorVaultCoin">
+<meta property="og:description" content="The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets hold of your private key or seed phrase, they can take full control of your funds.">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+.reactions{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0 0}
+.reaction-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 13px;
+  border:1px solid var(--border); border-radius:20px; background:var(--bg3);
+  color:var(--text2); font-size:14px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.reaction-btn:hover{border-color:var(--gold); background:var(--bg2)}
+.reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
+.reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
+.reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .pin{font-size:15px; opacity:.9}
+.card .reactions-mini{
+  display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
+}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections.",
+"description":"The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets hold of your private key or seed phrase, they can take full control of your funds.",
+"datePublished":"2026-08-03","inLanguage":"en",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Blog</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">About</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><span style="color:var(--gold);font-weight:600">EN</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html">RU</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← All articles</a>
+<h1>What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections.</h1>
+<div class="meta">2026-08-03</div>
+<h2>The Core Idea</h2>
+<p><img alt="Two security keys" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.jpg" />
+<em>Two security keys</em></p>
+<p>The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets access to the private key or seed phrase, they can take control of that wallet&rsquo;s assets.</p>
+<p>So the security question needs to be asked differently:</p>
+<p>What happens if one key does get stolen?</p>
+<p>That&rsquo;s where separating access starts to make sense.</p>
+<p>In AnchorVaultCoin, a single vault uses three different addresses:</p>
+<p>🔑 <strong>Working key</strong> — for everyday operations.</p>
+<p>🔐 <strong>Backup key</strong> — stored separately and acts as an independent second layer of protection.</p>
+<p>🚨 <strong>Emergency address</strong> — a separate address for emergency exit.</p>
+<p>All three addresses must be different.</p>
+<p>This isn&rsquo;t just a formality. If multiple roles are controlled by a single wallet, the whole point of separation is lost.</p>
+<h2>Scenario #1: The working wallet&rsquo;s seed phrase is stolen</h2>
+<p>Let&rsquo;s say an attacker gets hold of the working wallet&rsquo;s seed phrase.</p>
+<p>That&rsquo;s a serious problem: that wallet can no longer be considered safe.</p>
+<p>But for protected AnchorVaultCoin operations, a single working key isn&rsquo;t enough when the operation requires independent authorization from a second key.</p>
+<p>So here&rsquo;s the situation:</p>
+<p>Working key compromised → backup key stays separate → one stolen key isn&rsquo;t enough for such an operation.</p>
+<p>That&rsquo;s exactly why you shouldn&rsquo;t store the working and backup keys together, or use the same wallet for both roles.</p>
+<h2>Scenario #2: The working wallet&rsquo;s private key is stolen</h2>
+<p>The result is similar.</p>
+<p>A private key gives control over the corresponding external wallet. So that key has to be treated as compromised.</p>
+<p>But if the second independent key lives in a different wallet and was never exposed, the attacker doesn&rsquo;t automatically get the full set of authorization data.</p>
+<p>One key is lost — the second line of defense stays with the owner.</p>
+<p>This is the principle of having no single point of failure.</p>
+<h2>Scenario #3: The working computer is infected</h2>
+<p>Now let&rsquo;s consider a different situation.</p>
+<p>A user works with crypto on a computer that&rsquo;s also used for regular browsing, downloads, and other tasks.</p>
+<p>If the device is compromised, the risk isn&rsquo;t just about the seed phrase. Wallet access, session data, and the user&rsquo;s own operations can all be affected.</p>
+<p>Separating keys doesn&rsquo;t make an infected device safe.</p>
+<p>That&rsquo;s why protection has to come from multiple layers:</p>
+<p>secure device + separate key storage + separation of authority.</p>
+<p>AnchorVaultCoin is just one layer of that system.</p>
+<h2>Scenario #4: The user loses the working key</h2>
+<p>This time, no attack involved.</p>
+<p>You&rsquo;ve lost access to your working wallet.</p>
+<p>It&rsquo;s inconvenient, but this is exactly what the backup key is for.</p>
+<p>If the backup key was created separately and stored safely, it remains an independent element of the system.</p>
+<p>So losing the working key shouldn&rsquo;t automatically mean losing access to the entire vault.</p>
+<h2>Scenario #5: The working key is stolen, but the backup key stays safe</h2>
+<p>This is one of the main scenarios this architecture exists for.</p>
+<p>The attacker gets the first key.</p>
+<p>The owner keeps the second one.</p>
+<p>That gives us the principle:</p>
+<p>1 compromised key ≠ full control over the vault.</p>
+<p>But only on the condition that the second key is genuinely independent and wasn&rsquo;t exposed along with the first.</p>
+<h2>Scenario #6: Both keys are stolen</h2>
+<p>Here we need to be honest.</p>
+<p>If an attacker gets both independent keys required to authorize an operation, no one can promise the system will magically save the funds.</p>
+<p>That&rsquo;s exactly why physical separation matters so much.</p>
+<p>Don&rsquo;t store both keys:</p>
+<ul>
+<li>in one place;</li>
+<li>on one device;</li>
+<li>in one backup;</li>
+<li>in one cloud storage;</li>
+<li>next to the same seed phrase.</li>
+</ul>
+<p>Two keys have to remain two independent lines of defense.</p>
+<h2>Scenario #7: Both keys are lost</h2>
+<p>This is a different situation.</p>
+<p>If the owner loses access to both the working and backup keys, there&rsquo;s the emergency address.</p>
+<p>It&rsquo;s not meant for everyday use.</p>
+<p>Its role is to be a separate address for emergency exit.</p>
+<p>So the scheme looks like this:</p>
+<p><strong>WORKING KEY</strong> → day-to-day management</p>
+<p><strong>BACKUP KEY</strong> → independent reserve</p>
+<p><strong>EMERGENCY ADDRESS</strong> → last resort</p>
+<p>And once again, the main rule:</p>
+<p>The three addresses must be different.</p>
+<h2>Scenario #8: Why not just use one wallet for everything?</h2>
+<p>At first glance, it seems simpler.</p>
+<p>One wallet.</p>
+<p>One seed.</p>
+<p>One address.</p>
+<p>But then you have a single point of failure.</p>
+<p>If that one access point is compromised, the entire system is at risk at once.</p>
+<p>Separation does the opposite:</p>
+<p>one element can be lost or compromised without automatically turning that problem into a compromise of everything else.</p>
+<h2>Scenario #9: What if the attacker only knows the vault&rsquo;s address?</h2>
+<p>A public address on its own is not a private key.</p>
+<p>It can be used to view the state of the vault and fund movements on the blockchain.</p>
+<p>But knowing an address is not the same as having the key to authorize an operation.</p>
+<p>That said, address publicity can still reveal information about balances and activity, so users should be careful about where they publish their addresses.</p>
+<h2>What AnchorVaultCoin is actually trying to change</h2>
+<p>The usual logic often looks like this:</p>
+<p>one wallet → one key → one failure = big problem.</p>
+<p>Here the approach is different:</p>
+<p>working key + independent backup key + separate emergency address.</p>
+<p>The goal isn&rsquo;t to promise that hacking is impossible.</p>
+<p>The goal is to reduce the consequences of one element being compromised.</p>
+<p>That&rsquo;s exactly why AnchorVaultCoin&rsquo;s security depends not only on code, but also on how the owner organizes their keys.</p>
+<h2>The owner&rsquo;s main rule</h2>
+<p>If you&rsquo;re creating a vault, don&rsquo;t treat the three addresses as three fields you just need to fill in.</p>
+<p>These are three different roles.</p>
+<p>Working key — you use it.</p>
+<p>Backup key — you store it separately.</p>
+<p>Emergency address — you keep it as a separate path for the worst case.</p>
+<p>And never combine these roles in one wallet.</p>
+<p>The better your keys and their storage locations are separated, the lower the chance that one problem turns into losing control of the entire vault.</p>
+<p>Before using any crypto storage system, always check its current documentation and understand which operations require which keys.</p>
+<p>You can learn more about how AnchorVaultCoin works and its current version on the project&rsquo;s official website.</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html&text=What%20happens%20if%20your%20private%20key%20or%20seed%20phrase%20gets%20stolen%3F%20Breaking%20down%20AnchorVaultCoin%27s%20protections.%20%E2%80%94%20The%20most%20dangerous%20situation%20in%20an%20ordinary%20crypto%20wallet%20is%20simple%3A%20if%20an%20attacker%20gets%20hold%20of%20your%20private%20key%20or%20seed%20phrase%2C%20they%20can%20take%20full%20control%20of%20your%20funds." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html&text=What%20happens%20if%20your%20private%20key%20or%20seed%20phrase%20gets%20stolen%3F%20Breaking%20down%20AnchorVaultCoin%27s%20protections.%20%E2%80%94%20The%20most%20dangerous%20situation%20in%20an%20ordinary%20crypto%20wallet%20is%20simple%3A%20if%20an%20attacker%20gets%20hold%20of%20your%20private%20key%20or%20seed%20phrase%2C%20they%20can%20take%20full%20control%20of%20your%20funds." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=What%20happens%20if%20your%20private%20key%20or%20seed%20phrase%20gets%20stolen%3F%20Breaking%20down%20AnchorVaultCoin%27s%20protections.%20%E2%80%94%20The%20most%20dangerous%20situation%20in%20an%20ordinary%20crypto%20wallet%20is%20simple%3A%20if%20an%20attacker%20gets%20hold%20of%20your%20private%20key%20or%20seed%20phrase%2C%20they%20can%20take%20full%20control%20of%20your%20funds.%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fchto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html&title=What%20happens%20if%20your%20private%20key%20or%20seed%20phrase%20gets%20stolen%3F%20Breaking%20down%20AnchorVaultCoin%27s%20protections.%20%E2%80%94%20The%20most%20dangerous%20situation%20in%20an%20ordinary%20crypto%20wallet%20is%20simple%3A%20if%20an%20attacker%20gets%20hold%20of%20your%20private%20key%20or%20seed%20phrase%2C%20they%20can%20take%20full%20control%20of%20your%20funds." target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html');this.textContent='Copied'" type="button">Copy link</button>
+</div>
+
+<div class="reactions" data-rkey="917070010d0443f3">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+<script>
+(function(){
+  var NS = 'anchor-vault-blog';
+  var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
+
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
+
+  function renderCount(el, value){
+    el.textContent = (value || 0).toLocaleString();
+  }
+
+  function loadCounts(root){
+    var rkey = root.getAttribute('data-rkey');
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      var code = btn.getAttribute('data-code');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          // Счётчика может не быть вовсе (никто не голосовал) — это 404 и нормальный 0.
+          // А вот при 429/500 значение неизвестно, и затирать его нулём нельзя.
+          if (d && typeof d.value === 'number') {
+            renderCount(btn.querySelector('.reaction-count'), d.value);
+          }
+        })
+        .catch(function(){});
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
+    });
+  }
+
+  function vote(root, btn){
+    var rkey = root.getAttribute('data-rkey');
+    var code = btn.getAttribute('data-code');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
+    btn.classList.add('voted');
+
+    function rollback(){
+      btn.classList.remove('voted');
+      localStorage.removeItem(votedKey(rkey, code));
+    }
+
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
+      .then(function(r){
+        // 429 (лимит 30 запросов/10 сек) отдаёт валидный JSON с ошибкой,
+        // поэтому одного .catch мало — проверяем статус явно.
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function(d){
+        if (typeof d.value !== 'number') throw new Error('no value');
+        renderCount(btn.querySelector('.reaction-count'), d.value);
+      })
+      .catch(rollback);
+  }
+
+  document.querySelectorAll('.reactions').forEach(function(root){
+    loadCounts(root);
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ vote(root, btn); });
+    });
+  });
+
+  // Виджет на карточках главной. Только чтение, без кликов.
+  //
+  // ВАЖНО: у Abacus лимит 30 запросов с IP за 10 секунд. На главной может быть
+  // 18+ постов x 3 реакции = 54+ запроса. Если слать их разом, часть отвалится
+  // и счётчики покажут нули. Поэтому: сначала берём из кэша (мгновенно),
+  // затем догружаем очередью по одному запросу раз в 350 мс.
+  var CACHE_TTL = 5 * 60 * 1000; // 5 минут
+  var queue = [];
+  var queueRunning = false;
+
+  function cacheGet(key){
+    try {
+      var raw = localStorage.getItem('rc:' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.t > CACHE_TTL) return null;
+      return obj.v;
+    } catch(e){ return null; }
+  }
+
+  function cacheSet(key, value){
+    try { localStorage.setItem('rc:' + key, JSON.stringify({v: value, t: Date.now()})); } catch(e){}
+  }
+
+  function runQueue(){
+    if (queueRunning || queue.length === 0) return;
+    queueRunning = true;
+    var job = queue.shift();
+    fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + job.key)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (d && typeof d.value === 'number'){
+          cacheSet(job.key, d.value);
+          job.span.textContent = job.emoji + ' ' + d.value;
+        }
+      })
+      .catch(function(){})
+      .then(function(){
+        queueRunning = false;
+        setTimeout(runQueue, 350); // ~3 запроса/сек, с запасом под лимит
+      });
+  }
+
+  document.querySelectorAll('.reactions-mini').forEach(function(mini){
+    var rkey = mini.getAttribute('data-rkey');
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var key = keyFor(rkey, code);
+      var span = document.createElement('span');
+      var cached = cacheGet(key);
+      span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
+      mini.appendChild(span);
+      queue.push({key: key, span: span, emoji: emoji});
+    });
+  });
+  runQueue();
+})();
+</script>
+</body>
+</html>

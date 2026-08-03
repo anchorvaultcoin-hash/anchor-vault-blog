@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 03 Aug 2026 07:46:04 +0000</lastBuildDate>
+  <lastBuildDate>Mon, 03 Aug 2026 19:11:30 +0000</lastBuildDate>
   <item>
     <title>如何用好加密金库：3个地址，3层防护</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html</link>
@@ -34,6 +34,24 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya.html</guid>
     <description>Простыми словами — как создать сейф, положить и снять крипту, и что делать, если потерял доступ к ключам.</description>
+  </item>
+  <item>
+    <title>如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html</guid>
+    <description>普通加密钱包里最危险的情况很简单：一旦攻击者拿到你的私钥或助记词，他就能完全掌控你的资产。</description>
+  </item>
+  <item>
+    <title>What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections.</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html</guid>
+    <description>The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets hold of your private key or seed phrase, they can take full control of your funds.</description>
+  </item>
+  <item>
+    <title>Что произойдёт, если украли приватный ключ или seed-фразу? Разбираем защиту AnchorVaultCoin</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html</guid>
+    <description>Самая опасная ситуация в обычном криптокошельке проста: если злоумышленник получил доступ к приватному ключу или seed-фразе, он может получить контроль над</description>
   </item>
   <item>
     <title>如何使用AnchorVaultCoin：新手分步指南</title>
