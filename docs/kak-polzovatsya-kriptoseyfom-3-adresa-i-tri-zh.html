@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Блог о безопасности криптовалюты — AnchorVaultCoin</title>
-<meta name="description" content="Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.">
-<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ru/">
-
+<title>如何用好加密金库：3个地址，3层防护 — AnchorVaultCoin</title>
+<meta name="description" content="简单讲清楚：金库需要哪些地址，为什么要分开，以及“金库”“保险库”“堡垒”三个级别有什么区别。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">
 <meta name="yandex-verification" content="c44efc0436415d5b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Блог о безопасности криптовалюты — AnchorVaultCoin">
-<meta property="og:description" content="Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.">
-<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ru/">
+<meta property="og:title" content="如何用好加密金库：3个地址，3层防护 — AnchorVaultCoin">
+<meta property="og:description" content="简单讲清楚：金库需要哪些地址，为什么要分开，以及“金库”“保险库”“堡垒”三个级别有什么区别。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html">
 <meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Anchorvaultcoin">
@@ -147,7 +150,17 @@ main figcaption{
   .nav a{margin-left:14px; font-size:13px}
 }
 </style>
-
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"如何用好加密金库：3个地址，3层防护",
+"description":"简单讲清楚：金库需要哪些地址，为什么要分开，以及“金库”“保险库”“堡垒”三个级别有什么区别。",
+"datePublished":"2026-08-03","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -156,26 +169,76 @@ main figcaption{
     Anchor<span>Vault</span>Coin
   </a>
   <nav class="nav">
-    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
-    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">博客</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">关于我们</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
-    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">EN</a> · <span style="color:var(--gold);font-weight:600">RU</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/zh/">ZH</a></span>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
   </nav>
 </div></header>
 <main><div class="wrap">
-<h1>Блог о безопасности криптовалюты</h1>
-<p class="lead">Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</p>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html"><div class="card-body"><h2><span class="pin">📌</span> Как пользоваться криптосейфом: 3 адреса и три уровня защиты</h2><p>Простое объяснение: какие адреса нужны для сейфа, зачем они разделены и чем отличаются уровни СЕЙФ, ХРАНИЛИЩЕ и КРЕПОСТЬ.</p><div class="meta">2026-08-03</div><div class="reactions-mini" data-rkey="3886a0b40288901f"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya.html"><div class="card-body"><h2><span class="pin">📌</span> Как пользоваться AnchorVaultCoin: пошаговая инструкция для новичков</h2><p>Простыми словами — как создать сейф, положить и снять крипту, и что делать, если потерял доступ к ключам.</p><div class="meta">2026-08-02</div><div class="reactions-mini" data-rkey="706bf5b1d0f62641"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-anchorvaultcoin-poshagovaya.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html"><div class="card-body"><h2>如何使用AnchorVaultCoin：新手分步指南</h2><p></p><div class="meta">2026-08-03</div><div class="reactions-mini" data-rkey="1d88b0ea825ed7ee"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-anchorvaultcoin-poshagovaya.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/tvoy-koshelek-uzhe-vzlomali-ty-prosto-esche-ne.html"><div class="card-body"><h2>Твой кошелёк уже взломали. Ты просто ещё не знаешь.</h2><p>Humanity Protocol, Coldcard, Drift Protocol. $9,5 млрд ущерба за полгода. И ни одного взлома кода — только люди.</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="18a4fd31a54e682a"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/tvoy-koshelek-uzhe-vzlomali-ty-prosto-esche-ne.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom.html"><div class="card-body"><h2>Крах мультиподписи: почему 2026 год стал годом «человеческого фактора» в криптобезопасности</h2><p>И как некастодиальные хранилища меняют правила игры</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="2305fce8129d6277"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/krah-multipodpisi-pochemu-2026-god-stal-godom.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.html"><div class="card-body"><h2>Мультиподпись не спасла: как $36 миллионов утекли из-за одного ноутбука</h2><p>У них было шесть ключей вместо одного. Это должно было защитить. Разбираем, почему не защитило.</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="7cbbad3604eb0218"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ukrali-sid-frazu-chto-proishodit-dalshe-i-pochemu.html"><div class="card-body"><h2>Украли сид-фразу: что происходит дальше и почему деньги не вернуть</h2><p>Если вы читаете это в панике — пролистайте сразу к разделу «Что делать прямо сейчас». Остальное прочитаете потом.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="5212a4013ce64e70"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/ukrali-sid-frazu-chto-proishodit-dalshe-i-pochemu.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.html"><div class="card-body"><h2>Пропала крипта без кражи сид-фразы: что такое approval-фишинг</h2><p>Если вы обнаружили, что деньги пропали, а сид-фразу никому не показывали — не спешите думать, что это баг или ошибка.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="fa4e7bed40c41066"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki.html"><div class="card-body"><h2>Поддельное приложение кошелька: как мошенники украли криптовалюту у пользователей</h2><p>Разбор реального случая с фальшивым кошельком: как одно приложение в магазине привело к потере сотен тысяч долларов.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="d6a1b80aad9577d4"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/poddelnoe-prilozhenie-koshelka-kak-moshenniki.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa.html"><div class="card-body"><h2>Отравление адреса: как копипаст из истории кошелька стоил человеку $50 миллионов</h2><p>Он сделал тестовый перевод на $50 — всё по правилам безопасности. Через 26 минут потерял 50 миллионов. Разбор реального случая и как проверять адрес.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="bbc3cbf3dd0b45f8"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg" alt="" loading="lazy"></a>
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← 所有文章</a>
+<h1>如何用好加密金库：3个地址，3层防护</h1>
+<div class="meta">2026-08-03</div>
+<p>第一次接触加密金库，你可能会觉得这事儿比实际复杂。说白了，核心就两件事：准备好三个不同的地址，再挑一个合适的安全级别。</p>
+<p><img alt="3把钥匙 3个保险箱 怎么用？" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.jpg" />
+<em>3把钥匙 3个保险箱 怎么用？</em></p>
+<h2>第一步：三个地址，各司其职</h2>
+<p>一个金库，需要<strong>三个不同的地址</strong>。</p>
+<p><strong>1. 工作密钥</strong></p>
+<p>这是你日常使用的主钱包。平时和金库相关的操作，都用它来完成。</p>
+<p><strong>2. 备用密钥</strong></p>
+<p>以防工作密钥出问题——比如你丢了访问权限。备用密钥要和工作密钥分开存放。</p>
+<p><strong>3. 应急地址</strong></p>
+<p>这是最后一条退路——万一两个密钥都丢了，就用它。它不参与日常操作，唯一的任务就是：在正常访问金库已经不可能的时候，接收资产。</p>
+<p>最关键的一条规则：<strong>这三个地址必须各不相同。</strong></p>
+<p>别图省事，同一个钱包既当工作密钥又当备用密钥还当应急地址。分设的意义就在于——一个地址丢了或被攻破，不会让三个角色同时完蛋。</p>
+<h2>第二步：选金库级别</h2>
+<p>AnchorVaultCoin 有三个级别，区别在于费用和操作前可设置的等待时间。</p>
+<p><strong>保险箱（SAFE）</strong></p>
+<p>最简单的选项。</p>
+<p>手续费 <strong>0.5%</strong>。</p>
+<p>没有额外的时间延迟。如果你不需要操作前留出检查窗口，想随时动用资金，选这个就行。</p>
+<p><strong>金库（VAULT）</strong></p>
+<p>中间档。</p>
+<p>手续费 <strong>1.5%</strong>。</p>
+<p>可以设置最长 <strong>72 小时</strong>的延迟，也就是三天。</p>
+<p>延迟有什么用？它给你留出额外时间发现可疑操作。如果你看到一笔自己没做过的交易，在它真正执行之前，你有更多时间做出反应。</p>
+<p><strong>堡垒（FORTRESS）</strong></p>
+<p>三个级别里的最高档。</p>
+<p>手续费 <strong>2%</strong>。</p>
+<p>延迟最长可达 <strong>168 小时——整整七天</strong>。</p>
+<p>适合那种把反应时间看得比操作速度更重的人。</p>
+<h2>怎么选？</h2>
+<p>没有标准答案。</p>
+<p>要简单、要快——选 <strong>保险箱</strong>。</p>
+<p>想给操作留出验证时间——选 <strong>金库</strong>。</p>
+<p>愿意等更久、换最长的安全窗口——选 <strong>堡垒</strong>。</p>
+<p>逻辑很简单：<strong>操作正式执行前的时间越长，你有越多时间发现问题、做出反应。</strong></p>
+<h2>记住这几条</h2>
+<p>创建金库之前，别急。</p>
+<p>先备好<strong>三个不同的地址</strong>：</p>
+<p><strong>工作密钥 → 备用密钥 → 应急地址。</strong></p>
+<p>分开存放，别把多个角色塞进同一个钱包。</p>
+<p>然后，按你的存储习惯选一个级别：<strong>保险箱、金库或堡垒</strong>。</p>
+<p>这套系统的意义，不是让加密货币管理变得更复杂。恰恰相反——提前把日常访问、备用方案和应急出口分开，再决定你愿意为可疑操作留出多少反应时间。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html&text=%E5%A6%82%E4%BD%95%E7%94%A8%E5%A5%BD%E5%8A%A0%E5%AF%86%E9%87%91%E5%BA%93%EF%BC%9A3%E4%B8%AA%E5%9C%B0%E5%9D%80%EF%BC%8C3%E5%B1%82%E9%98%B2%E6%8A%A4%20%E2%80%94%20%E7%AE%80%E5%8D%95%E8%AE%B2%E6%B8%85%E6%A5%9A%EF%BC%9A%E9%87%91%E5%BA%93%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%86%E5%BC%80%EF%BC%8C%E4%BB%A5%E5%8F%8A%E2%80%9C%E9%87%91%E5%BA%93%E2%80%9D%E2%80%9C%E4%BF%9D%E9%99%A9%E5%BA%93%E2%80%9D%E2%80%9C%E5%A0%A1%E5%9E%92%E2%80%9D%E4%B8%89%E4%B8%AA%E7%BA%A7%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html&text=%E5%A6%82%E4%BD%95%E7%94%A8%E5%A5%BD%E5%8A%A0%E5%AF%86%E9%87%91%E5%BA%93%EF%BC%9A3%E4%B8%AA%E5%9C%B0%E5%9D%80%EF%BC%8C3%E5%B1%82%E9%98%B2%E6%8A%A4%20%E2%80%94%20%E7%AE%80%E5%8D%95%E8%AE%B2%E6%B8%85%E6%A5%9A%EF%BC%9A%E9%87%91%E5%BA%93%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%86%E5%BC%80%EF%BC%8C%E4%BB%A5%E5%8F%8A%E2%80%9C%E9%87%91%E5%BA%93%E2%80%9D%E2%80%9C%E4%BF%9D%E9%99%A9%E5%BA%93%E2%80%9D%E2%80%9C%E5%A0%A1%E5%9E%92%E2%80%9D%E4%B8%89%E4%B8%AA%E7%BA%A7%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%E5%A6%82%E4%BD%95%E7%94%A8%E5%A5%BD%E5%8A%A0%E5%AF%86%E9%87%91%E5%BA%93%EF%BC%9A3%E4%B8%AA%E5%9C%B0%E5%9D%80%EF%BC%8C3%E5%B1%82%E9%98%B2%E6%8A%A4%20%E2%80%94%20%E7%AE%80%E5%8D%95%E8%AE%B2%E6%B8%85%E6%A5%9A%EF%BC%9A%E9%87%91%E5%BA%93%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%86%E5%BC%80%EF%BC%8C%E4%BB%A5%E5%8F%8A%E2%80%9C%E9%87%91%E5%BA%93%E2%80%9D%E2%80%9C%E4%BF%9D%E9%99%A9%E5%BA%93%E2%80%9D%E2%80%9C%E5%A0%A1%E5%9E%92%E2%80%9D%E4%B8%89%E4%B8%AA%E7%BA%A7%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E3%80%82%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html&title=%E5%A6%82%E4%BD%95%E7%94%A8%E5%A5%BD%E5%8A%A0%E5%AF%86%E9%87%91%E5%BA%93%EF%BC%9A3%E4%B8%AA%E5%9C%B0%E5%9D%80%EF%BC%8C3%E5%B1%82%E9%98%B2%E6%8A%A4%20%E2%80%94%20%E7%AE%80%E5%8D%95%E8%AE%B2%E6%B8%85%E6%A5%9A%EF%BC%9A%E9%87%91%E5%BA%93%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%86%E5%BC%80%EF%BC%8C%E4%BB%A5%E5%8F%8A%E2%80%9C%E9%87%91%E5%BA%93%E2%80%9D%E2%80%9C%E4%BF%9D%E9%99%A9%E5%BA%93%E2%80%9D%E2%80%9C%E5%A0%A1%E5%9E%92%E2%80%9D%E4%B8%89%E4%B8%AA%E7%BA%A7%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E3%80%82" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
+<div class="reactions" data-rkey="f489ab287cd08f38">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
 </div></main>
 <footer class="bottom"><div class="wrap">
   <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>

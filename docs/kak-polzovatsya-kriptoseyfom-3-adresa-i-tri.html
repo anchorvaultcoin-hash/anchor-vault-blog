@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как пользоваться криптосейфом: 3 адреса и три уровня защиты — AnchorVaultCoin</title>
+<meta name="description" content="Простое объяснение: какие адреса нужны для сейфа, зачем они разделены и чем отличаются уровни СЕЙФ, ХРАНИЛИЩЕ и КРЕПОСТЬ.">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">
+<meta name="yandex-verification" content="c44efc0436415d5b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как пользоваться криптосейфом: 3 адреса и три уровня защиты — AnchorVaultCoin">
+<meta property="og:description" content="Простое объяснение: какие адреса нужны для сейфа, зачем они разделены и чем отличаются уровни СЕЙФ, ХРАНИЛИЩЕ и КРЕПОСТЬ.">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html">
+<meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Anchorvaultcoin">
+<link rel="icon" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="AnchorVaultCoin" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/rss.xml">
+<style>
+:root{
+  --bg:#0b0d11; --bg2:#181e2c; --bg3:#0f1318;
+  --gold:#d4a843; --gold2:#b8911e;
+  --accent:#f97316; --accent2:#fdba74;
+  --text:#e2e8f0; --text2:#94a3b8; --text3:#7c8aa0;
+  --border:#2a3347;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.7; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--gold); text-decoration:none}
+a:hover{color:var(--accent2); text-decoration:underline}
+.wrap{max-width:720px; margin:0 auto; padding:0 20px}
+header.top{
+  border-bottom:1px solid var(--border); background:var(--bg3);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(8px);
+}
+header.top .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.2px}
+.brand span{color:var(--gold)}
+.nav a{color:var(--text2); font-size:14px; margin-left:20px}
+.nav a:hover{color:var(--gold); text-decoration:none}
+.nav .soc{display:inline-flex; align-items:center; gap:6px}
+.nav .soc svg{opacity:.85}
+@media(max-width:560px){.nav .soc span{display:none} .nav .soc{margin-left:16px}}
+main{padding:48px 0 72px}
+h1{font-size:34px; line-height:1.25; margin:0 0 14px; letter-spacing:-.6px}
+h2{font-size:23px; margin:38px 0 12px; letter-spacing:-.3px}
+h3{font-size:19px; margin:30px 0 10px; color:var(--gold)}
+p{margin:0 0 18px; color:var(--text)}
+ul,ol{margin:0 0 18px; padding-left:22px}
+li{margin-bottom:8px}
+blockquote{
+  margin:24px 0; padding:14px 20px; border-left:3px solid var(--gold);
+  background:var(--bg2); border-radius:0 8px 8px 0; color:var(--text2);
+}
+blockquote p:last-child{margin-bottom:0}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px;
+  background:var(--bg2); padding:2px 6px; border-radius:4px; color:var(--accent2);
+}
+pre{background:var(--bg2); padding:16px; border-radius:8px; overflow-x:auto; border:1px solid var(--border)}
+pre code{background:none; padding:0; color:var(--text)}
+hr{border:none; border-top:1px solid var(--border); margin:36px 0}
+.meta{color:var(--text3); font-size:14px; margin-bottom:34px}
+.lead{font-size:18px; color:var(--text2); margin-bottom:30px}
+.card{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:22px; margin-bottom:16px; border:1px solid var(--border);
+  border-radius:12px; background:var(--bg3); transition:border-color .2s, transform .2s;
+}
+.card-body{flex:1; min-width:0}
+.card-thumb{
+  width:104px; height:104px; flex-shrink:0; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); background:var(--bg2);
+}
+@media(max-width:600px){
+  .card{gap:13px; padding:18px}
+  .card-thumb{width:74px; height:74px}
+}
+.card:hover{border-color:var(--gold2); text-decoration:none; transform:translateY(-2px)}
+.card h2{margin:0 0 8px; font-size:20px; color:var(--text)}
+.card p{color:var(--text2); margin:0 0 10px; font-size:15px}
+.card .meta{margin:0; font-size:13px}
+footer.bottom{border-top:1px solid var(--border); padding:28px 0; color:var(--text3); font-size:14px}
+footer.bottom .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px}
+.soc-row{display:flex; gap:10px; flex-wrap:wrap}
+#vc{
+  display:none; margin-left:12px; padding:2px 10px;
+  background:#fff; color:#0b0d11; border-radius:20px;
+  font-size:12.5px; font-weight:600; vertical-align:1px;
+}
+.soc-btn{
+  display:inline-flex; align-items:center; gap:8px; padding:9px 16px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg2);
+  color:var(--text); font-size:14px; font-weight:500; transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none; background:var(--bg3)}
+.soc-btn svg{opacity:.9}
+.back{display:inline-block; margin-bottom:28px; font-size:14px; color:var(--text2)}
+.share{display:flex; gap:8px; flex-wrap:wrap; margin:34px 0}
+.share-btn{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 14px;
+  border:1px solid var(--border); border-radius:9px; background:var(--bg3);
+  color:var(--text2); font-size:13.5px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.share-btn:hover{border-color:var(--gold); color:var(--gold); text-decoration:none}
+.share-btn svg{opacity:.85}
+.reactions{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0 0}
+.reaction-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 13px;
+  border:1px solid var(--border); border-radius:20px; background:var(--bg3);
+  color:var(--text2); font-size:14px; transition:.2s; cursor:pointer;
+  font-family:inherit;
+}
+.reaction-btn:hover{border-color:var(--gold); background:var(--bg2)}
+.reaction-btn.voted{border-color:var(--gold); background:rgba(212,175,55,.12); color:var(--gold)}
+.reaction-count{font-size:12.5px; color:var(--text2); min-width:8px}
+.reaction-btn.voted .reaction-count{color:var(--gold)}
+.card .pin{font-size:15px; opacity:.9}
+.card .reactions-mini{
+  display:flex; gap:10px; margin-top:8px; font-size:12.5px; color:var(--text2);
+}
+main img{
+  display:block; max-width:100%; height:auto; margin:30px auto 8px;
+  border:1px solid var(--border); border-radius:12px; background:var(--bg2);
+  box-shadow:0 6px 24px rgba(0,0,0,.4);
+}
+main img + em{
+  display:block; margin:0 0 30px; text-align:center;
+  color:var(--text3); font-size:13.5px; font-style:normal; line-height:1.5;
+}
+main figure{margin:30px 0}
+main figure img{margin:0 auto 8px}
+main figcaption{
+  text-align:center; color:var(--text3); font-size:13.5px; line-height:1.5;
+}
+@media(max-width:600px){
+  main img{border-radius:9px; margin:22px auto 8px}
+}
+@media(max-width:600px){
+  h1{font-size:27px} main{padding:32px 0 52px}
+  .nav a{margin-left:14px; font-size:13px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"Как пользоваться криптосейфом: 3 адреса и три уровня защиты",
+"description":"Простое объяснение: какие адреса нужны для сейфа, зачем они разделены и чем отличаются уровни СЕЙФ, ХРАНИЛИЩЕ и КРЕПОСТЬ.",
+"datePublished":"2026-08-03","inLanguage":"ru",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html" style="display:flex;align-items:center;gap:8px">
+    <img src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/favicon.png" alt="" width="28" height="28" style="border-radius:50%">
+    Anchor<span>Vault</span>Coin
+  </a>
+  <nav class="nav">
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Блог</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">О сервисе</a>
+    <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
+    <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html">EN</a> · <span style="color:var(--gold);font-weight:600">RU</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html">ZH</a></span>
+  </nav>
+</div></header>
+<main><div class="wrap">
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← Все статьи</a>
+<h1>Как пользоваться криптосейфом: 3 адреса и три уровня защиты</h1>
+<div class="meta">2026-08-03</div>
+<p>Если вы впервые сталкиваетесь с криптосейфом, всё может показаться сложнее, чем есть на самом деле. На практике главное — правильно подготовить три адреса и выбрать подходящий уровень защиты.</p>
+<p><img alt="3 ключа 3 сейфа Как пользоваться?" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.jpg" />
+<em>3 ключа 3 сейфа Как пользоваться?</em></p>
+<h3>Сначала — три разных адреса</h3>
+<p>Для одного сейфа нужны <strong>три разных адреса</strong>.</p>
+<p><strong>1. Рабочий ключ</strong></p>
+<p>Это ваш основной кошелёк для повседневного использования. С его помощью вы выполняете обычные операции с сейфом.</p>
+<p><strong>2. Запасной ключ</strong></p>
+<p>Он нужен на случай, если с рабочим ключом что-то случится: например, вы потеряете к нему доступ. Запасной ключ следует хранить отдельно от рабочего.</p>
+<p><strong>3. Аварийный адрес</strong></p>
+<p>Это адрес для крайнего случая — если доступ потерян сразу к обоим ключам. Он не используется для повседневных операций. Его задача — принять средства, когда обычный доступ к сейфу уже невозможен.</p>
+<p>Самое важное правило: <strong>все три адреса должны быть разными.</strong></p>
+<p>Не стоит использовать один и тот же кошелёк сразу как рабочий ключ, запасной ключ и аварийный адрес. Смысл разделения именно в том, чтобы потеря или компрометация одного адреса не создавала проблему сразу для всех трёх ролей.</p>
+<h3>Теперь выберите уровень сейфа</h3>
+<p>В AnchorVaultCoin есть три уровня. Они отличаются стоимостью и тем, насколько большую временную паузу можно использовать перед операцией.</p>
+<p><strong>СЕЙФ (SAFE)</strong></p>
+<p>Это самый простой вариант.</p>
+<p>Комиссия — <strong>0,5%</strong>.</p>
+<p>Дополнительной временной задержки нет. Если вам не нужна дополнительная пауза для проверки операций и вы хотите пользоваться средствами без такой задержки, подходит этот уровень.</p>
+<p><strong>ХРАНИЛИЩЕ (VAULT)</strong></p>
+<p>Средний вариант.</p>
+<p>Комиссия — <strong>1,5%</strong>.</p>
+<p>Можно установить задержку до <strong>72 часов</strong>, то есть до трёх суток.</p>
+<p>Зачем нужна задержка? Она даёт дополнительное время заметить подозрительную операцию. Если вы увидели что-то, чего не совершали, у вас появляется больше времени среагировать до выполнения операции.</p>
+<p><strong>КРЕПОСТЬ (FORTRESS)</strong></p>
+<p>Максимальный уровень из трёх.</p>
+<p>Комиссия — <strong>2%</strong>.</p>
+<p>Задержка может составлять до <strong>168 часов — семи суток</strong>.</p>
+<p>Это вариант для тех, кому важнее максимальное время на реакцию, чем скорость выполнения операций.</p>
+<h3>Какой вариант выбрать?</h3>
+<p>Здесь нет универсального ответа.</p>
+<p>Если вам важны простота и скорость — <strong>СЕЙФ</strong>.</p>
+<p>Если хотите дополнительное время для проверки операций — <strong>ХРАНИЛИЩЕ</strong>.</p>
+<p>Если готовы ждать дольше ради максимально продолжительной временной защиты — <strong>КРЕПОСТЬ</strong>.</p>
+<p>Логика простая: <strong>чем больше времени проходит до окончательного выполнения операции, тем больше времени у владельца заметить проблему и отреагировать.</strong></p>
+<h3>Главное запомнить</h3>
+<p>Перед созданием сейфа не спешите.</p>
+<p>Подготовьте <strong>три разных адреса</strong>:</p>
+<p><strong>Рабочий ключ → Запасной ключ → Аварийный адрес.</strong></p>
+<p>Храните их раздельно и не объединяйте несколько ролей в одном кошельке.</p>
+<p>После этого выберите уровень, который соответствует вашему способу хранения: <strong>СЕЙФ, ХРАНИЛИЩЕ или КРЕПОСТЬ</strong>.</p>
+<p>Смысл всей системы не в том, чтобы сделать управление криптовалютой сложнее. Наоборот — заранее разделить обычный доступ, запасной вариант и аварийный выход, а затем выбрать, сколько времени вы хотите иметь для реакции на подозрительную операцию.</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html&text=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D1%81%D0%B5%D0%B9%D1%84%D0%BE%D0%BC%3A%203%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%B8%20%D1%82%D1%80%D0%B8%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F%20%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D1%8B%20%E2%80%94%20%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%3A%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D0%B9%D1%84%D0%B0%2C%20%D0%B7%D0%B0%D1%87%D0%B5%D0%BC%20%D0%BE%D0%BD%D0%B8%20%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%B8%20%D1%87%D0%B5%D0%BC%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B0%D1%8E%D1%82%D1%81%D1%8F%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B8%20%D0%A1%D0%95%D0%99%D0%A4%2C%20%D0%A5%D0%A0%D0%90%D0%9D%D0%98%D0%9B%D0%98%D0%A9%D0%95%20%D0%B8%20%D0%9A%D0%A0%D0%95%D0%9F%D0%9E%D0%A1%D0%A2%D0%AC." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html&text=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D1%81%D0%B5%D0%B9%D1%84%D0%BE%D0%BC%3A%203%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%B8%20%D1%82%D1%80%D0%B8%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F%20%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D1%8B%20%E2%80%94%20%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%3A%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D0%B9%D1%84%D0%B0%2C%20%D0%B7%D0%B0%D1%87%D0%B5%D0%BC%20%D0%BE%D0%BD%D0%B8%20%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%B8%20%D1%87%D0%B5%D0%BC%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B0%D1%8E%D1%82%D1%81%D1%8F%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B8%20%D0%A1%D0%95%D0%99%D0%A4%2C%20%D0%A5%D0%A0%D0%90%D0%9D%D0%98%D0%9B%D0%98%D0%A9%D0%95%20%D0%B8%20%D0%9A%D0%A0%D0%95%D0%9F%D0%9E%D0%A1%D0%A2%D0%AC." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D1%81%D0%B5%D0%B9%D1%84%D0%BE%D0%BC%3A%203%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%B8%20%D1%82%D1%80%D0%B8%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F%20%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D1%8B%20%E2%80%94%20%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%3A%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D0%B9%D1%84%D0%B0%2C%20%D0%B7%D0%B0%D1%87%D0%B5%D0%BC%20%D0%BE%D0%BD%D0%B8%20%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%B8%20%D1%87%D0%B5%D0%BC%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B0%D1%8E%D1%82%D1%81%D1%8F%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B8%20%D0%A1%D0%95%D0%99%D0%A4%2C%20%D0%A5%D0%A0%D0%90%D0%9D%D0%98%D0%9B%D0%98%D0%A9%D0%95%20%D0%B8%20%D0%9A%D0%A0%D0%95%D0%9F%D0%9E%D0%A1%D0%A2%D0%AC.%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fkak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html&title=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D1%81%D0%B5%D0%B9%D1%84%D0%BE%D0%BC%3A%203%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%B8%20%D1%82%D1%80%D0%B8%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D1%8F%20%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D1%8B%20%E2%80%94%20%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%8A%D1%8F%D1%81%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%3A%20%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%B0%20%D0%BD%D1%83%D0%B6%D0%BD%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D0%B9%D1%84%D0%B0%2C%20%D0%B7%D0%B0%D1%87%D0%B5%D0%BC%20%D0%BE%D0%BD%D0%B8%20%D1%80%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%B8%20%D1%87%D0%B5%D0%BC%20%D0%BE%D1%82%D0%BB%D0%B8%D1%87%D0%B0%D1%8E%D1%82%D1%81%D1%8F%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B8%20%D0%A1%D0%95%D0%99%D0%A4%2C%20%D0%A5%D0%A0%D0%90%D0%9D%D0%98%D0%9B%D0%98%D0%A9%D0%95%20%D0%B8%20%D0%9A%D0%A0%D0%95%D0%9F%D0%9E%D0%A1%D0%A2%D0%AC." target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html');this.textContent='Скопировано'" type="button">Скопировать ссылку</button>
+</div>
+
+<div class="reactions" data-rkey="3886a0b40288901f">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
+  <div class="soc-row">
+    <a class="soc-btn" href="https://x.com/Anchorvaultcoin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>Читать в X</span></a>
+    <a class="soc-btn" href="https://t.me/AnchorVaultCoin"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram-канал</span></a>
+  </div>
+</div></footer>
+<script>
+fetch('https://abacus.jasoncameron.dev/hit/anchor-vault-blog/visits')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    document.getElementById('vcn').textContent = d.value.toLocaleString();
+    document.getElementById('vc').style.display = 'inline-block';
+  })
+  .catch(function(){});
+</script>
+<script>
+(function(){
+  var NS = 'anchor-vault-blog';
+  var EMOJI = [["🔥", "fire"], ["👍", "like"], ["🤯", "mind"]]; // [[emoji, code], ...]
+
+  function keyFor(rkey, code){ return 'r-' + rkey + '-' + code; }
+  function votedKey(rkey, code){ return 'reacted:' + rkey + ':' + code; }
+
+  function renderCount(el, value){
+    el.textContent = (value || 0).toLocaleString();
+  }
+
+  function loadCounts(root){
+    var rkey = root.getAttribute('data-rkey');
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      var code = btn.getAttribute('data-code');
+      fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + keyFor(rkey, code))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          // Счётчика может не быть вовсе (никто не голосовал) — это 404 и нормальный 0.
+          // А вот при 429/500 значение неизвестно, и затирать его нулём нельзя.
+          if (d && typeof d.value === 'number') {
+            renderCount(btn.querySelector('.reaction-count'), d.value);
+          }
+        })
+        .catch(function(){});
+      if (localStorage.getItem(votedKey(rkey, code))) btn.classList.add('voted');
+    });
+  }
+
+  function vote(root, btn){
+    var rkey = root.getAttribute('data-rkey');
+    var code = btn.getAttribute('data-code');
+    if (localStorage.getItem(votedKey(rkey, code))) return; // уже жал эту реакцию
+    localStorage.setItem(votedKey(rkey, code), '1');
+    btn.classList.add('voted');
+
+    function rollback(){
+      btn.classList.remove('voted');
+      localStorage.removeItem(votedKey(rkey, code));
+    }
+
+    fetch('https://abacus.jasoncameron.dev/hit/' + NS + '/' + keyFor(rkey, code))
+      .then(function(r){
+        // 429 (лимит 30 запросов/10 сек) отдаёт валидный JSON с ошибкой,
+        // поэтому одного .catch мало — проверяем статус явно.
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      })
+      .then(function(d){
+        if (typeof d.value !== 'number') throw new Error('no value');
+        renderCount(btn.querySelector('.reaction-count'), d.value);
+      })
+      .catch(rollback);
+  }
+
+  document.querySelectorAll('.reactions').forEach(function(root){
+    loadCounts(root);
+    root.querySelectorAll('.reaction-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ vote(root, btn); });
+    });
+  });
+
+  // Виджет на карточках главной. Только чтение, без кликов.
+  //
+  // ВАЖНО: у Abacus лимит 30 запросов с IP за 10 секунд. На главной может быть
+  // 18+ постов x 3 реакции = 54+ запроса. Если слать их разом, часть отвалится
+  // и счётчики покажут нули. Поэтому: сначала берём из кэша (мгновенно),
+  // затем догружаем очередью по одному запросу раз в 350 мс.
+  var CACHE_TTL = 5 * 60 * 1000; // 5 минут
+  var queue = [];
+  var queueRunning = false;
+
+  function cacheGet(key){
+    try {
+      var raw = localStorage.getItem('rc:' + key);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (Date.now() - obj.t > CACHE_TTL) return null;
+      return obj.v;
+    } catch(e){ return null; }
+  }
+
+  function cacheSet(key, value){
+    try { localStorage.setItem('rc:' + key, JSON.stringify({v: value, t: Date.now()})); } catch(e){}
+  }
+
+  function runQueue(){
+    if (queueRunning || queue.length === 0) return;
+    queueRunning = true;
+    var job = queue.shift();
+    fetch('https://abacus.jasoncameron.dev/get/' + NS + '/' + job.key)
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (d && typeof d.value === 'number'){
+          cacheSet(job.key, d.value);
+          job.span.textContent = job.emoji + ' ' + d.value;
+        }
+      })
+      .catch(function(){})
+      .then(function(){
+        queueRunning = false;
+        setTimeout(runQueue, 350); // ~3 запроса/сек, с запасом под лимит
+      });
+  }
+
+  document.querySelectorAll('.reactions-mini').forEach(function(mini){
+    var rkey = mini.getAttribute('data-rkey');
+    EMOJI.forEach(function(pair){
+      var emoji = pair[0], code = pair[1];
+      var key = keyFor(rkey, code);
+      var span = document.createElement('span');
+      var cached = cacheGet(key);
+      span.textContent = emoji + ' ' + (cached === null ? 0 : cached);
+      mini.appendChild(span);
+      queue.push({key: key, span: span, emoji: emoji});
+    });
+  });
+  runQueue();
+})();
+</script>
+</body>
+</html>

@@ -2,21 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ru/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/zh/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.html</loc>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-en.html</loc>
@@ -32,7 +50,7 @@
   </url>
   <url>
     <loc>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
