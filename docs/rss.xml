@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 03 Aug 2026 19:11:30 +0000</lastBuildDate>
+  <lastBuildDate>Tue, 04 Aug 2026 05:52:50 +0000</lastBuildDate>
   <item>
     <title>如何用好加密金库：3个地址，3层防护</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html</link>
@@ -36,6 +36,30 @@
     <description>Простыми словами — как создать сейф, положить и снять крипту, и что делать, если потерял доступ к ключам.</description>
   </item>
   <item>
+    <title>А теперь немного с юмором. Если держишь крупную сумму в крипте, резервный адрес лучше хранить отдельно.</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-zh.html</guid>
+    <description>做到完全隔离，万一主钱包被攻破，你就得被迫：</description>
+  </item>
+  <item>
+    <title>Now, a bit of humor. When you&#x27;re holding a serious bag of crypto, it&#x27;s better to keep your backup address somewhere else.</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-en.html</guid>
+    <description>So separate that if your primary wallet is compromised, you&#x27;d have to:</description>
+  </item>
+  <item>
+    <title>А теперь немного с юмором. Когда держишь крупную сумму в крипте, резервный адрес лучше хранить отдельно.</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu.html</guid>
+    <description>Настолько отдельно, чтобы при компрометации основного кошелька тебе пришлось:</description>
+  </item>
+  <item>
+    <title>如何使用AnchorVaultCoin：新手分步指南</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</guid>
+    <description></description>
+  </item>
+  <item>
     <title>如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-zh.html</guid>
@@ -52,12 +76,6 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.html</guid>
     <description>Самая опасная ситуация в обычном криптокошельке проста: если злоумышленник получил доступ к приватному ключу или seed-фразе, он может получить контроль над</description>
-  </item>
-  <item>
-    <title>如何使用AnchorVaultCoin：新手分步指南</title>
-    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</link>
-    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</guid>
-    <description></description>
   </item>
   <item>
     <title>你的钱包已经被盗了，只是你还不知道而已。</title>
