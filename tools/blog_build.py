@@ -349,9 +349,17 @@ SHARE_LABELS = {
     "zh": {"copy": "复制链接", "copied": "已复制"},
 }
 UI = {
-    "ru": {"blog": "Блог", "about": "О сервисе", "back": "← Все статьи"},
-    "en": {"blog": "Blog", "about": "About", "back": "← All articles"},
-    "zh": {"blog": "博客", "about": "关于我们", "back": "← 所有文章"},
+    "ru": {"blog": "Блог", "about": "О сервисе", "back": "← Все статьи", "guide": "Как пользоваться"},
+    "en": {"blog": "Blog", "about": "About", "back": "← All articles", "guide": "How it works"},
+    "zh": {"blog": "博客", "about": "关于我们", "back": "← 所有文章", "guide": "使用指南"},
+}
+
+# Статья-гайд "как пользоваться" — по одной на каждый язык, все три уже
+# переведены и опубликованы (kak-polzovatsya-kriptoseyfom-3-adresa-i-tri*.md)
+GUIDE_SLUG = {
+    "ru": "kak-polzovatsya-kriptoseyfom-3-adresa-i-tri",
+    "en": "kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en",
+    "zh": "kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh",
 }
 
 
@@ -388,6 +396,7 @@ def page(title, description, canonical, body, lang="ru", jsonld="", lang_switch=
   <nav class="nav">
     <a href="{BLOG_URL}/">{ui["blog"]}</a>
     <a href="{SITE_URL}/landing.html">{ui["about"]}</a>
+    <a href="{BLOG_URL}/{GUIDE_SLUG.get(lang, GUIDE_SLUG['ru'])}.html">{ui["guide"]}</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X">{IC_X}<span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram">{IC_TG}<span>Telegram</span></a>
     {lang_switch}
