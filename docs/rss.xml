@@ -4,7 +4,7 @@
   <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/</link>
   <description>Разборы реальных краж, простые объяснения и практические советы о том, как не потерять свои монеты.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 04 Aug 2026 05:52:50 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 05 Aug 2026 04:41:10 +0000</lastBuildDate>
   <item>
     <title>如何用好加密金库：3个地址，3层防护</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-zh.html</link>
@@ -36,6 +36,30 @@
     <description>Простыми словами — как создать сейф, положить и снять крипту, и что делать, если потерял доступ к ключам.</description>
   </item>
   <item>
+    <title>Coldcard漏洞：助记词生成并非随机</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html</guid>
+    <description>Coldcard承认：部分助记词生成存在可预测性，而非随机性——导致超过8900万美元从原本操作正确的账户中流失。</description>
+  </item>
+  <item>
+    <title>Coldcard Vulnerability: Seed Phrases Were Not Generated Randomly</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html</guid>
+    <description>Coldcard has admitted that some seed phrases were generated predictably rather than at random — and because of this, over $89 million has been drained from accounts that were otherwise set up correctly.</description>
+  </item>
+  <item>
+    <title>Уязвимость Coldcard: сид-фразы генерировались не случайно</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne.html</guid>
+    <description>Coldcard признал: часть сид-фраз создавалась предсказуемо, а не случайно — из-за этого больше $89 млн ушло со счетов, где всё было сделано правильно.</description>
+  </item>
+  <item>
+    <title>如何使用AnchorVaultCoin：新手分步指南</title>
+    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</link>
+    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</guid>
+    <description></description>
+  </item>
+  <item>
     <title>А теперь немного с юмором. Если держишь крупную сумму в крипте, резервный адрес лучше хранить отдельно.</title>
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-zh.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-zh.html</guid>
@@ -52,12 +76,6 @@
     <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu.html</link>
     <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu.html</guid>
     <description>Настолько отдельно, чтобы при компрометации основного кошелька тебе пришлось:</description>
-  </item>
-  <item>
-    <title>如何使用AnchorVaultCoin：新手分步指南</title>
-    <link>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</link>
-    <guid>https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-zh.html</guid>
-    <description></description>
   </item>
   <item>
     <title>如果私钥或助记词被盗，会发生什么？深入解析 AnchorVaultCoin 的防护机制</title>

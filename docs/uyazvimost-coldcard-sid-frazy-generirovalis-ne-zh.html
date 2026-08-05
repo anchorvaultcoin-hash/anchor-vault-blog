@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Security Blog — AnchorVaultCoin</title>
-<meta name="description" content="Breakdowns of real thefts, plain-language explanations, and practical advice on not losing your coins.">
-<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">
-
+<title>Coldcard漏洞：助记词生成并非随机 — AnchorVaultCoin</title>
+<meta name="description" content="Coldcard承认：部分助记词生成存在可预测性，而非随机性——导致超过8900万美元从原本操作正确的账户中流失。">
+<link rel="canonical" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html">
+<link rel="alternate" hreflang="en" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html">
+<link rel="alternate" hreflang="ru" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne.html">
+<link rel="alternate" hreflang="zh" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html">
+<link rel="alternate" hreflang="x-default" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html">
 <meta name="yandex-verification" content="c44efc0436415d5b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Crypto Security Blog — AnchorVaultCoin">
-<meta property="og:description" content="Breakdowns of real thefts, plain-language explanations, and practical advice on not losing your coins.">
-<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">
+<meta property="og:title" content="Coldcard漏洞：助记词生成并非随机 — AnchorVaultCoin">
+<meta property="og:description" content="Coldcard承认：部分助记词生成存在可预测性，而非随机性——导致超过8900万美元从原本操作正确的账户中流失。">
+<meta property="og:url" content="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html">
 <meta property="og:image" content="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Anchorvaultcoin">
@@ -147,7 +150,17 @@ main figcaption{
   .nav a{margin-left:14px; font-size:13px}
 }
 </style>
-
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"Coldcard漏洞：助记词生成并非随机",
+"description":"Coldcard承认：部分助记词生成存在可预测性，而非随机性——导致超过8900万美元从原本操作正确的账户中流失。",
+"datePublished":"2026-08-05","inLanguage":"zh",
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html"},
+"image":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png",
+"author":{"@type":"Organization","name":"AnchorVaultCoin","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html"},
+"publisher":{"@type":"Organization","name":"AnchorVaultCoin",
+"logo":{"@type":"ImageObject","url":"https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/og.png"}}}
+</script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -156,28 +169,54 @@ main figcaption{
     Anchor<span>Vault</span>Coin
   </a>
   <nav class="nav">
-    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">Blog</a>
-    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">About</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">博客</a>
+    <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">关于我们</a>
     <a class="soc" href="https://x.com/Anchorvaultcoin" aria-label="X"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg><span>X</span></a>
     <a class="soc" href="https://t.me/AnchorVaultCoin" aria-label="Telegram"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg><span>Telegram</span></a>
-    <span class="soc" style="gap:8px"><span style="color:var(--gold);font-weight:600">EN</span> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ru/">RU</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/zh/">ZH</a></span>
+    <span class="soc" style="gap:8px"><a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html">EN</a> · <a href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne.html">RU</a> · <span style="color:var(--gold);font-weight:600">ZH</span></span>
   </nav>
 </div></header>
 <main><div class="wrap">
-<h1>Crypto Security Blog</h1>
-<p class="lead">Breakdowns of real thefts, plain-language explanations, and practical advice on not losing your coins.</p>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri-en.html"><div class="card-body"><h2><span class="pin">📌</span> How to Use a Crypto Safe: 3 Addresses and Three Levels of Protection</h2><p>A simple explanation: which addresses a Safe needs, why they’re separated, and how the SAFE, VAULT, and FORTRESS levels differ.</p><div class="meta">2026-08-03</div><div class="reactions-mini" data-rkey="ce21d9634c6d7ac8"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-kriptoseyfom-3-adresa-i-tri.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/kak-polzovatsya-anchorvaultcoin-poshagovaya-en.html"><div class="card-body"><h2><span class="pin">📌</span> How to Use AnchorVaultCoin: A Step-by-Step Guide for Beginners</h2><p>In plain terms — how to set up a vault, deposit and withdraw crypto, and what to do if you lose access to your keys.</p><div class="meta">2026-08-02</div><div class="reactions-mini" data-rkey="46bab9b5a16693e4"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/kak-polzovatsya-anchorvaultcoin-poshagovaya.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-en.html"><div class="card-body"><h2>Coldcard Vulnerability: Seed Phrases Were Not Generated Randomly</h2><p>Coldcard has admitted that some seed phrases were generated predictably rather than at random — and because of this, over $89 million has been drained from accounts that were otherwise set up correctly.</p><div class="meta">2026-08-05</div><div class="reactions-mini" data-rkey="cf7afad3bb57e16e"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/uyazvimost-coldcard-sid-frazy-generirovalis-ne.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu-en.html"><div class="card-body"><h2>Now, a bit of humor. When you&#x27;re holding a serious bag of crypto, it&#x27;s better to keep your backup address somewhere else.</h2><p>So separate that if your primary wallet is compromised, you&#x27;d have to:</p><div class="meta">2026-08-04</div><div class="reactions-mini" data-rkey="76d08cb5375c82f5"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/a-teper-nemnogo-s-yumorom-kogda-derzhish-krupnuyu.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili-en.html"><div class="card-body"><h2>What happens if your private key or seed phrase gets stolen? Breaking down AnchorVaultCoin&#x27;s protections.</h2><p>The most dangerous situation in an ordinary crypto wallet is simple: if an attacker gets hold of your private key or seed phrase, they can take full control of your funds.</p><div class="meta">2026-08-03</div><div class="reactions-mini" data-rkey="917070010d0443f3"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/chto-proizoydet-esli-ukrali-privatnyy-klyuch-ili.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/tvoy-koshelek-uzhe-vzlomali-ty-prosto-esche-ne-en.html"><div class="card-body"><h2>Your wallet’s already been compromised. You just don’t know it yet.</h2><p>Humanity Protocol, Coldcard, Drift Protocol. $9.5 billion in losses over six months. And not a single code exploit — only people.</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="19884d42dd1db638"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/tvoy-koshelek-uzhe-vzlomali-ty-prosto-esche-ne.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/krah-multipodpisi-pochemu-2026-god-stal-godom-en.html"><div class="card-body"><h2>The collapse of multisig: why 2026 became the year of the &quot;human factor&quot; in crypto security</h2><p>And how non-custodial storage is changing the game</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="7147c2e84e4f22f2"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/krah-multipodpisi-pochemu-2026-god-stal-godom.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/multisig-didnt-save-them-how-36-million-leaked-from-a-single.html"><div class="card-body"><h2>Multisig didn&#x27;t save them: how $36 million leaked from a single laptop</h2><p>They had six keys instead of one. It was supposed to protect them. Here’s why it didn’t.</p><div class="meta">2026-08-01</div><div class="reactions-mini" data-rkey="46c98ca99042572a"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/multipodpis-ne-spasla-kak-36-millionov-utekli-iz.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/propala-kripta-bez-krazhi-sid-frazy-chto-takoe-en.html"><div class="card-body"><h2>Crypto gone without seed phrase theft: what is approval phishing</h2><p>If you discover that funds are missing but haven&#x27;t shown your seed phrase to anyone, don&#x27;t rush to assume it&#x27;s a bug or a mistake.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="2f3bdd80508afcd4"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/propala-kripta-bez-krazhi-sid-frazy-chto-takoe.jpg" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/ukrali-sid-frazu-chto-proishodit-dalshe-i-pochemu-en.html"><div class="card-body"><h2>The seed phrase was stolen: what happens next and why the money cannot be recovered</h2><p>If you&#x27;re reading this in a panic — skip straight to the &quot;What to do right now&quot; section. You can read the rest later.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="97eeb5758156f9cf"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/ukrali-sid-frazu-chto-proishodit-dalshe-i-pochemu.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/poddelnoe-prilozhenie-koshelka-kak-moshenniki-en.html"><div class="card-body"><h2>Fake wallet app: how scammers stole cryptocurrency from users</h2><p>Analysis of a real case involving a fake wallet: how one app in the store led to the loss of hundreds of thousands of dollars.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="d807d6d15de337ef"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/poddelnoe-prilozhenie-koshelka-kak-moshenniki.png" alt="" loading="lazy"></a>
-<a class="card" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/otravlenie-adresa-en.html"><div class="card-body"><h2>Address poisoning: how copy-pasting from a wallet history cost a person $50 million.</h2><p>He did a test transfer of $50 — all according to security protocols. Within 26 minutes, he lost 50 million. A breakdown of a real case and how to verify an address.</p><div class="meta">2026-07-31</div><div class="reactions-mini" data-rkey="b31725e7cb007905"></div></div><img class="card-thumb" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/otravlenie-adresa.jpg" alt="" loading="lazy"></a>
+<a class="back" href="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/">← 所有文章</a>
+<h1>Coldcard漏洞：助记词生成并非随机</h1>
+<div class="meta">2026-08-05</div>
+<p>2026年7月30日，25分钟内，约五百个比特币钱包中消失了594 BTC——按当时价格约合3800万美元。这些钱包的主人没有点击过钓鱼链接，没有在陌生网站上输入过助记词，也没有把设备连过网。其中一些人几个月都没打开过钱包。存放密钥的设备是Coldcard——市场上最受尊重的硬件钱包之一，设计初衷就是永不触碰网络。</p>
+<p><img alt="一次物理掷骰——这种随机性，不是一行代码能攻破的。" src="https://anchorvaultcoin-hash.github.io/anchor-vault-blog/img/uyazvimost-coldcard-sid-frazy-generirovalis-ne.jpg" />
+<em>一次物理掷骰——这种随机性，不是一行代码能攻破的。</em></p>
+<p>当天傍晚，事情已经明朗：这不是孤例。到8月初，受影响金额升至8900万美元，涉及超过4500个地址。原因不是盗窃。原因是这些钱包的助记词从来就不是真正随机的。</p>
+<p><strong>技术层面发生了什么</strong></p>
+<p>创建钱包时，设备必须选出一组随机的12或24个单词——即助记词。这个选择有多“随机”，决定了一切：如果选项可以被预测或穷举，钱包就是脆弱的，哪怕它从未联网、主人每一步都做对了。</p>
+<p>2021年3月，Coldcard固件中一行代码出了错。这个错误让设备悄悄从专用的硬件随机数生成器切换到了软件生成器——后者更快，但只要你清楚它的起点，就能预测输出。而它的起点并非秘密：芯片的唯一标识符加计时器读数。</p>
+<p>Coldcard开发者估算：本该有128位熵（组合数量大到全世界的电脑都穷举不完），这批固件实际只产生约40位熵。这不是数量级的差别，而是“全世界电脑一起算也破不了”和“一台普通游戏电脑花合理时间就能破解”之间的差别。攻击者显然用了自动化代码分析，在公司自己发现之前就找到了漏洞——制造商Coinkite声称代码一直是开源的。</p>
+<p><strong>谁受影响</strong></p>
+<p>受威胁的是固件版本4.0.1–4.1.9的Coldcard Mk3，前提是助记词创建时没有使用额外的掷骰子选项（一种增加独立随机性的功能）也没有设置BIP-39密码短语。更新型号——Mk4、Mk5、Q——使用不同固件，据公司称不受此特定错误影响。其他品牌的钱包（Trezor、Ledger）也不受影响——它们的代码不同，随机性来自多个独立源而非单一来源。</p>
+<p>关键要理解：这不是“硬件钱包不行”的故事。这是一个关于“就算持有者行为完全正确——离线存储、从不在网上输入助记词、不给任何人看——只要助记词本身从一开始就不是随机的，一切防护都白搭”的故事。用户这边根本没法自查：无论助记词是从多少个真实候选中选出来的，它看起来都一样随机。</p>
+<p><strong>现在该做什么</strong></p>
+<p>如果你在用Coldcard——三个可执行的步骤：</p>
+<p><strong>更新固件。</strong> Mk3升级到4.2.0或更高，Mk4/Mk5升级到5.6.0+，Q升级到1.5.0Q+。更新固件不会修复已有的助记词——它只修复未来生成助记词的随机源。</p>
+<p><strong>更新后生成新的助记词，并把资产转过去。</strong> 把旧助记词“搬”到新固件上没有用——漏洞不在固件本身，而在助记词当初是怎么被选出来的，这没法事后补救。</p>
+<p><strong>如果记不清创建时是否用了掷骰子或密码短语——就当没用过。</strong> 公司明确表态：不确定就转移资产，这比猜来猜去靠谱。</p>
+<p>如果你用的是Ledger、Trezor或其他品牌——这个特定漏洞与你无关。</p>
+<p><strong>问题的本质</strong></p>
+<p>这个故事有个令人不安的特点：这个弱点悄无声息地存在了五年，毫无征兆，直到有人开始有针对性地在开源代码里找漏洞。没有任何一份“如何正确存储加密货币”的清单提醒过这件事——因为发现bug之前，根本无从提醒。</p>
+<p>说句实在话：这不是密钥被偷的故事，而是密钥从一开始就不是真正随机的故事——而且如果第二个密钥也是用同样损坏的方式生成的，那多一把也救不了。但加密资产存储还有另一个更常见的问题：哪怕密钥生成得完美无缺，只要它是唯一能授权任何操作的东西，它依然是单点故障。这第二个问题有简单的解法——大额操作需要另一个独立保管的密钥来确认，这样单个秘密的丢失或泄露不会意味着全盘皆输。</p>
+
+<div class="share">
+  <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fuyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html&text=Coldcard%E6%BC%8F%E6%B4%9E%EF%BC%9A%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%B9%B6%E9%9D%9E%E9%9A%8F%E6%9C%BA%20%E2%80%94%20Coldcard%E6%89%BF%E8%AE%A4%EF%BC%9A%E9%83%A8%E5%88%86%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%AD%98%E5%9C%A8%E5%8F%AF%E9%A2%84%E6%B5%8B%E6%80%A7%EF%BC%8C%E8%80%8C%E9%9D%9E%E9%9A%8F%E6%9C%BA%E6%80%A7%E2%80%94%E2%80%94%E5%AF%BC%E8%87%B4%E8%B6%85%E8%BF%878900%E4%B8%87%E7%BE%8E%E5%85%83%E4%BB%8E%E5%8E%9F%E6%9C%AC%E6%93%8D%E4%BD%9C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%B4%A6%E6%88%B7%E4%B8%AD%E6%B5%81%E5%A4%B1%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg> X</a>
+  <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fuyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html&text=Coldcard%E6%BC%8F%E6%B4%9E%EF%BC%9A%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%B9%B6%E9%9D%9E%E9%9A%8F%E6%9C%BA%20%E2%80%94%20Coldcard%E6%89%BF%E8%AE%A4%EF%BC%9A%E9%83%A8%E5%88%86%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%AD%98%E5%9C%A8%E5%8F%AF%E9%A2%84%E6%B5%8B%E6%80%A7%EF%BC%8C%E8%80%8C%E9%9D%9E%E9%9A%8F%E6%9C%BA%E6%80%A7%E2%80%94%E2%80%94%E5%AF%BC%E8%87%B4%E8%B6%85%E8%BF%878900%E4%B8%87%E7%BE%8E%E5%85%83%E4%BB%8E%E5%8E%9F%E6%9C%AC%E6%93%8D%E4%BD%9C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%B4%A6%E6%88%B7%E4%B8%AD%E6%B5%81%E5%A4%B1%E3%80%82" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.94 15.4l-.2 2.83c.29 0 .41-.12.56-.27l1.35-1.29 2.8 2.05c.51.29.88.141.02-.47l1.85-8.67c.17-.76-.28-1.06-.78-.88L4.4 13.1c-.75.29-.74.71-.13.9l3.5 1.098.12-5.11c.38-.25.73-.11.44.14z"/></svg> Telegram</a>
+  <a class="share-btn" href="https://api.whatsapp.com/send?text=Coldcard%E6%BC%8F%E6%B4%9E%EF%BC%9A%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%B9%B6%E9%9D%9E%E9%9A%8F%E6%9C%BA%20%E2%80%94%20Coldcard%E6%89%BF%E8%AE%A4%EF%BC%9A%E9%83%A8%E5%88%86%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%AD%98%E5%9C%A8%E5%8F%AF%E9%A2%84%E6%B5%8B%E6%80%A7%EF%BC%8C%E8%80%8C%E9%9D%9E%E9%9A%8F%E6%9C%BA%E6%80%A7%E2%80%94%E2%80%94%E5%AF%BC%E8%87%B4%E8%B6%85%E8%BF%878900%E4%B8%87%E7%BE%8E%E5%85%83%E4%BB%8E%E5%8E%9F%E6%9C%AC%E6%93%8D%E4%BD%9C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%B4%A6%E6%88%B7%E4%B8%AD%E6%B5%81%E5%A4%B1%E3%80%82%20https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fuyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="share-btn" href="https://www.reddit.com/submit?url=https%3A%2F%2Fanchorvaultcoin-hash.github.io%2Fanchor-vault-blog%2Fuyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html&title=Coldcard%E6%BC%8F%E6%B4%9E%EF%BC%9A%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%B9%B6%E9%9D%9E%E9%9A%8F%E6%9C%BA%20%E2%80%94%20Coldcard%E6%89%BF%E8%AE%A4%EF%BC%9A%E9%83%A8%E5%88%86%E5%8A%A9%E8%AE%B0%E8%AF%8D%E7%94%9F%E6%88%90%E5%AD%98%E5%9C%A8%E5%8F%AF%E9%A2%84%E6%B5%8B%E6%80%A7%EF%BC%8C%E8%80%8C%E9%9D%9E%E9%9A%8F%E6%9C%BA%E6%80%A7%E2%80%94%E2%80%94%E5%AF%BC%E8%87%B4%E8%B6%85%E8%BF%878900%E4%B8%87%E7%BE%8E%E5%85%83%E4%BB%8E%E5%8E%9F%E6%9C%AC%E6%93%8D%E4%BD%9C%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%B4%A6%E6%88%B7%E4%B8%AD%E6%B5%81%E5%A4%B1%E3%80%82" target="_blank" rel="noopener noreferrer">Reddit</a>
+  <button class="share-btn" onclick="navigator.clipboard.writeText('https://anchorvaultcoin-hash.github.io/anchor-vault-blog/uyazvimost-coldcard-sid-frazy-generirovalis-ne-zh.html');this.textContent='已复制'" type="button">复制链接</button>
+</div>
+
+<div class="reactions" data-rkey="c740c20778829fc3">
+<button class="reaction-btn" data-code="fire" type="button">🔥<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="like" type="button">👍<span class="reaction-count">0</span></button><button class="reaction-btn" data-code="mind" type="button">🤯<span class="reaction-count">0</span></button>
+</div>
+
+<hr>
+<p class="meta">AnchorVaultCoin — сервис хранения и переводов криптовалюты,
+где каждая операция подтверждается двумя отдельными ключами.
+<a href="https://anchorvaultcoin-hash.github.io/anchor-vault-frontend/landing.html">Подробнее</a>.</p>
 </div></main>
 <footer class="bottom"><div class="wrap">
   <div>© 2026 AnchorVaultCoin<span id="vc"><span id="vcn"></span></span></div>
